@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/TACREQ_12_1_1A" xmlns="http://xml.amadeus.com/TACREQ_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="Ticket_ProcessEDocAirportControl">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Generic Request Message
+This message is the generic request for Airline to Airline EMd messaging.
+New TKCREQ 08.1</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="msgActionDetails" type="MessageActionDetailsTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">To identify exact message use</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="sysProvider" minOccurs="0" type="TicketAgentInfoTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">tai</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="referenceInfo" minOccurs="0" type="ReservationControlInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">rci</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numberOfUnits" minOccurs="0" type="NumberOfUnitsTypeI_63413S">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">eqn</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="leg" minOccurs="0" maxOccurs="2" type="TravelProductInformationTypeI" />
+        <xs:element name="paxInfo" minOccurs="0" type="TravellerInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Customer related information</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="frequentTravellerInfo" minOccurs="0" type="FrequentTravellerInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">fti</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="fop" minOccurs="0" type="FormOfPaymentTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">fop</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="bookingStatus" minOccurs="0" type="RelatedProductInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Booking status of the current leg (confirmed, waitlisted, ...)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="textInfo" minOccurs="0" maxOccurs="9" type="InteractiveFreeTextTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">ift</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cri" minOccurs="0" type="ConsumerReferenceInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Form of ID information</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="hostDetails" minOccurs="0" type="CascadingHostDetailsTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">CASCADING Host Details</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="docGroup" minOccurs="0" maxOccurs="999">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">docGroup</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="docInfo" type="TicketNumberTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey basic document data such as  number, etc</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="paxInfo" minOccurs="0" type="TravellerInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Customer related information</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="sysProvider" minOccurs="0" type="TicketAgentInfoTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">tai</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="referenceInfo" minOccurs="0" type="ReservationControlInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">References to a different information (depends on the version): - SBR record locator - ...</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="frequentTravellerInfo" minOccurs="0" type="FrequentTravellerInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">fti</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="fareInfo" minOccurs="0" type="MonetaryInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Fare related information: - base fare - total amount - net fare - transaction total - equivalent fare - commission amount - commission rate - additional collection</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="fop" minOccurs="0" type="FormOfPaymentTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey data related to a form of payment.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="productInfo" minOccurs="0" type="PricingTicketingDetailsTypeI" />
+              <xs:element name="originDestination" minOccurs="0" type="OriginAndDestinationDetailsTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey origin and destination data.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="taxInfo" minOccurs="0" maxOccurs="5" type="TaxTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">txd</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="originatorInfo" minOccurs="0" type="OriginatorOfRequestDetailsTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey data about original issue of a document</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="validityDates" minOccurs="0" type="DateAndTimeInformationTypeI" />
+              <xs:element name="tourInfo" minOccurs="0" type="TourInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey tour information</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="numberOfUnits" minOccurs="0" type="NumberOfUnitsTypeI_63413S">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Carries total number of flight segments for the given pasenger</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="textInfo" minOccurs="0" maxOccurs="9" type="InteractiveFreeTextTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey information which can't be represented in a fully structured way, e.g. - customer telephone number - endorsement information - present to - present at - remarks - original issue information - reason for issuance - ...</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="documentInformation" minOccurs="0" maxOccurs="99" type="DocumentInformationDetailsTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">did</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="tbdDetails" minOccurs="0" type="TravellerBaggageDetailsTypeI" />
+              <xs:element name="cri" minOccurs="0" type="ConsumerReferenceInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Form of ID information</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="pricingInfo" minOccurs="0" type="PricingTicketingSubsequentTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Fare basis and ticket designator for the current leg</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="couponGroup" minOccurs="0" maxOccurs="4">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">To convey data for valuable coupons related to a single document</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="couponInfo" type="CouponInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">To convey coupon basic data such as  number within a document, status, ...</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="leg" minOccurs="0" maxOccurs="2" type="TravelProductInformationTypeI" />
+                    <xs:element name="pricingInfo" minOccurs="0" type="PricingTicketingSubsequentTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Fare basis and ticket designator for the current leg</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="validityDates" minOccurs="0" type="DateAndTimeInformationTypeI" />
+                    <xs:element name="bookingStatus" minOccurs="0" type="RelatedProductInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Booking status of the current leg (confirmed, waitlisted, ...)</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="textInfo" minOccurs="0" maxOccurs="9" type="InteractiveFreeTextTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">ift</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="baggageInfo" minOccurs="0" type="ExcessBaggageTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Baggage allowance for the current leg</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="productInfo" minOccurs="0" type="PricingTicketingDetailsTypeI" />
+                    <xs:element name="frequentTravellerInfo" minOccurs="0" type="FrequentTravellerInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Customer's frequent flyer card reference</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="tbdDetails" minOccurs="0" type="TravellerBaggageDetailsTypeI" />
+                    <xs:element name="numberOfUnits" minOccurs="0" type="NumberOfUnitsTypeI" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="BaggageDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number and weight of baggage.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeAllowance" minOccurs="0" type="NumericInteger_Length1To15" />
+      <xs:element name="measurement" minOccurs="0" type="NumericDecimal_Length1To18" />
+      <xs:element name="quantityCode" minOccurs="0" type="NumericInteger_Length1To3" />
+      <xs:element name="processIndicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaggageDetailsTypeI_99963C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number and weight of baggage.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeAllowance" minOccurs="0" type="NumericInteger_Length1To15" />
+      <xs:element name="measurement" minOccurs="0" type="NumericDecimal_Length1To18" />
+      <xs:element name="quantityCode" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="unitQualifier" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="processIndicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BaggageReferenceDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify additional information concerning baggage.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="number" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BagtagDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify baggage by company identification, serial numbers, and destination.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="company" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="identifier" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="number" minOccurs="0" type="NumericInteger_Length1To15" />
+      <xs:element name="location" minOccurs="0" type="AlphaNumericString_Length1To25" />
+      <xs:element name="companyNumber" minOccurs="0" type="AlphaNumericString_Length1To15" />
+      <xs:element name="indicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="characteristic" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CascadingHostDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide information that is required  from one host to another host via an intermediary host.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="hostDetails" minOccurs="0" maxOccurs="9" type="HostDefinitionTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyIdentificationNumbersTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Number to identify a company and any associated companies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="identifier" type="AlphaNumericString_Length1To15" />
+      <xs:element name="otherIdentifier" minOccurs="0" type="AlphaNumericString_Length1To15" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code or name to identify a company and any associated companies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="marketingCompany" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="operatingCompany" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="otherCompany" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyIdentificationTypeI_99918C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code or name to identify a company and any associated companies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="marketingCompany" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="operatingCompany" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumerReferenceIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of consumer references by type, company, number and reference to a traveller.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceQualifier" type="AlphaNumericString_Length1To3" />
+      <xs:element name="referenceNumber" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="referencePartyName" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="travellerReferenceNbr" minOccurs="0" type="AlphaNumericString_Length1To10" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsumerReferenceInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify consumer reference information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="customerReferences" maxOccurs="20" type="ConsumerReferenceIdentificationTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CouponInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the coupon number, status, value, and other related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cpnNumber" minOccurs="0" type="AlphaNumericString_Length1To6" />
+      <xs:element name="cpnStatus" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="cpnAmount" minOccurs="0" type="NumericDecimal_Length1To18" />
+      <xs:element name="cpnExchangeMedia" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="settlementAuthorization" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="voluntaryIndic" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="cpnPreviousStatus" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="cpnSequenceNumber" minOccurs="0" type="AlphaNumericString_Length1To6" />
+      <xs:element name="cpnReferenceNumber" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="cpnInConnectionWithQualifier" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CouponInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify data specific to a value (flight) coupon.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="couponDetails" type="CouponInformationDetailsTypeI" />
+      <xs:element name="otherCouponDetails" minOccurs="0" maxOccurs="3" type="CouponInformationDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndTimeDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide date and time details relative to flight movements.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="qualifier" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="date" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="time" minOccurs="0" type="AlphaNumericString_Length1To4" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndTimeInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide date and time details relative to flight movements.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dateAndTimeDetails" minOccurs="0" maxOccurs="99" type="DateAndTimeDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of document by number, status and date.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="date" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify information concerning a document.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="documentDetails" type="DocumentDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExcessBaggageDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify details concerning a traveller's excess baggage.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="currency" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="amount" minOccurs="0" type="NumericDecimal_Length1To18" />
+      <xs:element name="processIndicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExcessBaggageTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify information concerning excess baggage charges and the associated baggage details.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="excessBaggageDetails" minOccurs="0" type="ExcessBaggageDetailsTypeI" />
+      <xs:element name="baggageDetails" minOccurs="0" maxOccurs="3" type="BaggageDetailsTypeI_99963C" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the form of payment type, amounts, approval codes, and other related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="AlphaNumericString_Length1To10" />
+      <xs:element name="indicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="amount" minOccurs="0" type="NumericDecimal_Length1To18" />
+      <xs:element name="vendorCode" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="creditCardNumber" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="expiryDate" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="approvalCode" minOccurs="0" type="AlphaNumericString_Length1To17" />
+      <xs:element name="sourceOfApproval" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="authorisedAmount" minOccurs="0" type="NumericDecimal_Length1To18" />
+      <xs:element name="addressVerification" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="customerAccount" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="extendedPayment" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="fopFreeText" minOccurs="0" type="AlphaNumericString_Length1To70" />
+      <xs:element name="membershipStatus" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="transactionInfo" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey details describing the form of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="formOfPayment" maxOccurs="99" type="FormOfPaymentDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextQualificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the type, purpose, and language of free text and whether any action is required.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="textSubjectQualifier" type="AlphaNumericString_Length1To3" />
+      <xs:element name="informationType" minOccurs="0" type="AlphaNumericString_Length1To4" />
+      <xs:element name="status" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of the frequent traveller number by company code with the capability to reference a specific traveller.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="carrier" type="AlphaNumericString_Length1To35" />
+      <xs:element name="number" type="AlphaNumericString_Length1To25" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify frequent traveler information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="frequentTravellerDetails" maxOccurs="9" type="FrequentTravellerIdentificationTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HostDefinitionTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify host details.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="qualifier" type="AlphaString_Length1To1" />
+      <xs:element name="definition" minOccurs="0" type="NumericInteger_Length1To1" />
+      <xs:element name="carrier" minOccurs="0" type="AlphaNumericString_Length1To17" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InteractiveFreeTextTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide free text information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeTextQualification" minOccurs="0" type="FreeTextQualificationTypeI" />
+      <xs:element name="freeText" minOccurs="0" maxOccurs="99" type="AlphaNumericString_Length1To70" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InternalIDDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an internal identification and the type of identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="inhouseId" minOccurs="0" type="AlphaNumericString_Length1To9" />
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a location and related country.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="city" minOccurs="0" type="AlphaNumericString_Length1To25" />
+      <xs:element name="country" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify a location by code or name.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="trueLocationId" minOccurs="0" type="AlphaNumericString_Length1To25" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageActionDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the message type and business function.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="messageFunctionDetails" minOccurs="0" type="MessageFunctionBusinessDetailsTypeI" />
+      <xs:element name="responseType" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageFunctionBusinessDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To indicate the type and function of a message or part of a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="businessFunction" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="messageFunction" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="responsibleAgency" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="additionalMessageFunction" minOccurs="0" maxOccurs="20" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the type of monetary amount, the amount, and the currency code.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="typeQualifier" type="AlphaNumericString_Length1To3" />
+      <xs:element name="amount" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="currency" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey monetary amounts, rates and percentages.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="monetaryDetails" maxOccurs="20" type="MonetaryInformationDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of number of units and its purpose.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="numberOfUnit" minOccurs="0" type="NumericInteger_Length1To15" />
+      <xs:element name="unitQualifier" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitDetailsTypeI_99895C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of number of units and its purpose.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="numberOfUnit" type="NumericInteger_Length1To15" />
+      <xs:element name="unitQualifier" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number of units required.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="quantityDetails" type="NumberOfUnitDetailsTypeI" />
+      <xs:element name="otherQuantityDetails" minOccurs="0" maxOccurs="8" type="NumberOfUnitDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitsTypeI_63413S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number of units required.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="quantityDetails" type="NumberOfUnitDetailsTypeI_99895C" />
+      <xs:element name="otherQuantityDetails" minOccurs="0" maxOccurs="8" type="NumberOfUnitDetailsTypeI_99895C" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginAndDestinationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey the origin and destination of a journey.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="origin" minOccurs="0" type="AlphaNumericString_Length1To25" />
+      <xs:element name="destination" minOccurs="0" type="AlphaNumericString_Length1To25" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginatorDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Characteristics of the originator of a request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="codedCountry" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="codedCurrency" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="codedLanguage" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginatorIdentificationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the originator of the travel request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="originatorId" minOccurs="0" type="AlphaNumericString_Length1To9" />
+      <xs:element name="inHouseIdentification1" minOccurs="0" type="AlphaNumericString_Length1To9" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginatorOfRequestDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the point of sale details.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="deliveringSystem" minOccurs="0" type="SystemDetailsTypeI" />
+      <xs:element name="originIdentification" minOccurs="0" type="OriginatorIdentificationDetailsTypeI" />
+      <xs:element name="locationDetails" minOccurs="0" type="LocationTypeI" />
+      <xs:element name="cascadingSystem" minOccurs="0" type="SystemDetailsTypeI" />
+      <xs:element name="originatorTypeCode" type="AlphaNumericString_Length1To1" />
+      <xs:element name="originDetails" minOccurs="0" type="OriginatorDetailsTypeI" />
+      <xs:element name="originator" type="AlphaNumericString_Length1To9" />
+      <xs:element name="communicationNumber" minOccurs="0" type="AlphaNumericString_Length1To25" />
+      <xs:element name="partyIdentification" minOccurs="0" type="AlphaNumericString_Length1To17" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PricingTicketingDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey pricing and date information related to a ticket.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="priceTicketDetails" minOccurs="0" type="PricingTicketingInformationTypeI" />
+      <xs:element name="priceTariffType" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="productDateTimeDetails" minOccurs="0" type="ProductDateTimeTypeI" />
+      <xs:element name="companyDetails" minOccurs="0" type="CompanyIdentificationTypeI" />
+      <xs:element name="companyNumberDetails" minOccurs="0" type="CompanyIdentificationNumbersTypeI" />
+      <xs:element name="locationDetails" minOccurs="0" type="LocationDetailsTypeI" />
+      <xs:element name="otherLocationDetails" minOccurs="0" type="LocationDetailsTypeI" />
+      <xs:element name="idNumber" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Waiver Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PricingTicketingInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify indicators related to pricing and ticketing.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ticketingModeIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Ticketing Mode Indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="internationalDomSalesIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">International or Domestic Sales Indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="statisticalCode" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Statistical Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="selfSaleIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Self Sale Indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="netReportingIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Net Reporting Indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="taxOnCommissionIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Tax on Commission</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nonEndorsableIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Non Endorsable indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nonRefundableIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Non Refundable indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="penaltyRestrictionIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Penalty Restriction</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="presentCreditCardIndicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Present Credit Card indicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="indicator11" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator12" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator13" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="nonInterlineableIndicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator15" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="nonExchangeableIndicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator17" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator18" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator19" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="indicator20" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PricingTicketingSubsequentTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey additional information related to a ticket.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fareBasisDetails" minOccurs="0" type="RateTariffClassInformationTypeI" />
+      <xs:element name="priceType" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="specialCondition" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="otherSpecialCondition" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="additionalSpecialCondition" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductDateTimeTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the dates and times associated with a product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="departureDate" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductDateTimeTypeI_99921C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the dates and times associated with a product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="departureDate" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="departureTime" minOccurs="0" type="AlphaNumericString_Length1To4" />
+      <xs:element name="arrivalDate" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="arrivalTime" minOccurs="0" type="AlphaNumericString_Length1To4" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductIdentificationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code, number or name to identify a specific product or service.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flightNumber" type="AlphaNumericString_Length1To35" />
+      <xs:element name="bookingClass" minOccurs="0" type="AlphaNumericString_Length1To17" />
+      <xs:element name="operationalSuffix" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="modifier" minOccurs="0" maxOccurs="3" type="AlphaNumericString_Length1To7" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductTypeDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify additional characteristics of a product or service.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flightIndicator" maxOccurs="9" type="AlphaNumericString_Length1To6" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RateTariffClassInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the current and/or original fare basis code.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="rateTariffClass" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RelatedProductInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To indicate quantity and action required in relation to a product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusCode" minOccurs="0" maxOccurs="10" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="controlNumber" minOccurs="0" type="AlphaNumericString_Length1To20" />
+      <xs:element name="controlType" minOccurs="0" type="AlphaNumericString_Length1To1" />
+      <xs:element name="date" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="time" minOccurs="0" type="NumericInteger_Length1To9" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" minOccurs="0" maxOccurs="9" type="ReservationControlInformationDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify by code or name and location the system that originates or delivers the message for a third party.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" type="AlphaNumericString_Length1To35" />
+      <xs:element name="locationId" minOccurs="0" type="AlphaNumericString_Length1To25" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TaxDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a rate, type of tax, and currency code.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="rate" minOccurs="0" type="AlphaNumericString_Length1To17" />
+      <xs:element name="countryCode" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="currencyCode" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="type" minOccurs="0" maxOccurs="99" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TaxTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify details relating to tax(es).</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="taxCategory" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="taxDetails" minOccurs="0" maxOccurs="99" type="TaxDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketAgentInfoTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey travel agent and system identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyIdNumber" minOccurs="0" type="AlphaNumericString_Length1To15" />
+      <xs:element name="internalIdDetails" minOccurs="0" maxOccurs="5" type="InternalIDDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a ticket number, type of ticket, and related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="numberOfBooklets" minOccurs="0" type="NumericInteger_Length1To15" />
+      <xs:element name="dataIndicator" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="requestNotification" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="inConnectionWith" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">in Connection With Documetn Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information related to a specific ticket.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="documentDetails" type="TicketNumberDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TourDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide details of a tour by code, name of the tour provider, length, number of stops, room occupancy and number of rooms.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tourCode" minOccurs="0" type="AlphaNumericString_Length1To35" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TourInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information concerning a tour.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tourInformationDetails" minOccurs="0" type="TourDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravelProductInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify details related to a product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flightDate" minOccurs="0" type="ProductDateTimeTypeI_99921C" />
+      <xs:element name="boardPointDetails" minOccurs="0" type="LocationTypeI" />
+      <xs:element name="offpointDetails" minOccurs="0" type="LocationTypeI" />
+      <xs:element name="companyDetails" minOccurs="0" type="CompanyIdentificationTypeI_99918C" />
+      <xs:element name="flightIdentification" minOccurs="0" type="ProductIdentificationDetailsTypeI" />
+      <xs:element name="flightTypeDetails" minOccurs="0" type="ProductTypeDetailsTypeI" />
+      <xs:element name="itemNumber" minOccurs="0" type="NumericInteger_Length1To6" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerBaggageDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the baggage details, including number of bags and serial numbers.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="status" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="baggageDetails" type="BaggageDetailsTypeI" />
+      <xs:element name="otherBaggageDetails" minOccurs="0" type="BaggageDetailsTypeI" />
+      <xs:element name="baggageReferenceDetails" minOccurs="0" type="BaggageReferenceDetailsTypeI" />
+      <xs:element name="bagtagDetails" minOccurs="0" maxOccurs="99" type="BagtagDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the given/first name and the title of a traveller and the traveller type.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="givenName" minOccurs="0" type="AlphaNumericString_Length1To70" />
+      <xs:element name="infantIndicator" minOccurs="0" type="AlphaNumericString_Length1To1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a traveler(s) and personal details relating to the traveler(s).</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="paxDetails" type="TravellerSurnameInformationTypeI" />
+      <xs:element name="otherPaxDetails" minOccurs="0" maxOccurs="99" type="TravellerDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerSurnameInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of the surname of a traveller, the type of traveller, number of travellers per surname and the action to be taken.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="surname" type="AlphaNumericString_Length1To70" />
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="quantity" minOccurs="0" type="NumericInteger_Length1To15" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,6}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To70">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..70</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="70" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To25">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..25</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To17">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..17</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="17" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To20">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..20</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,9}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,15}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To7">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="7" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To10">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..10</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To18">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..18</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,1}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,3}" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095535F6FD330107FF7A7B078E101354D2B40A2921FC2921504DD4617DE2A559E7D6D2D1C3BF89C6961DA77E79CA4309E8097E8EEECDCF97E7FD6D555B52DEAAADC5F5F8965BE58CEF277B3E56BBEF14ECB9E2FF255FE7AF5E62D5F6FEA573925392B3645EC5BC04B63C1C9060415F6EF251A55A772F6809ADD49842B3AC3562A10A718DBD57CFED0D84C3652438799F2CD9CDD754E5B284D107384188D3BE25C1B854C9D407DBBA56F23450C1D30E535D01514CEBB94350D38CAA6B3A695AE4FE384EBACA542DB07733C45F1A218C7F19BE0DB6020CAD073E934BFF0EE6034F530D2F28FEEE04323A3F16EC53B27BB78F2C1FC00CD3B84E1BA36A8ACC72E00C7188C8AB6E7F4CF9DD1D423E3045BCE67FC3C0C339961CAADE5DBF40EE45B7A7DB8079DBD601A0EB2B3711DDA04971607691198F6DD9D855BF8DE81537023A33A4D27E0DEFF1398E07EDF794C043DED1FEF21206D4551000BD4862279A409FD133B107DDBCE12663E3139E4039DC3CF29FA4B03EB95B413E4D61F35D158AE761FAAA2DC55DA1CA48AB5F7167755BD2F0D46E9E2053145FC1173BB8D0CDF20313EDEC1816BDC7DF647EAE58EC3438CBE76B6670D84234C600CF1A501ABF1D687F80B3E5A1CE95D05264CFFAC95C4BAB19372DC7F41D47AE3E215C4918E416CC1FBF80CA1214F02CED8B8424214938FF279BE986A78E943610DF59E149BB4601460494AA2D924CA11456C6488A9EF57679489FDB4480CD2A11DF449F808C21AE753E7BAD8CC1F3558436B4812D05346A72C3D4F3FB70F89E5E2EC99B1275506A806271BA7D803DA78DDC5B68B97DE6A082215189BCD36238C2F919BDF3E99CDD80892F858B067F3457153EC6BA388DBFD62F98664DD48E34455960C1E5A626C2F715F566B516FBF566786B80C20C57279CE45FDE9625B7D612D59C2E089481EA11FF9110B8AEE4D228DC2011B39C028A6B9E475C216ABD2ABC2843494DC1E83B7EC4C9B588303B2F136D90DE3B4219BA420164BF61320FB89F616050000
+-->
+

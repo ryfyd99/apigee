@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/TSRHRQ_09_1_1A" xmlns="http://xml.amadeus.com/TSRHRQ_09_1_1A" elementFormDefault="qualified">
+  <xs:element name="SalesReports_DisplayTransactionHistoryReport">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To display the History report</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="documentNumber" minOccurs="0" type="TicketNumberTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Conveys an optional document number.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="sequenceNumber" minOccurs="0" type="ItemNumberTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Conveys an optional sequence/item number to target this given transaction.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ItemNumberIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Goods identification for a specified source</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" minOccurs="0" type="AlphaNumericString_Length1To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys a document sequence number within the sales report.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Type of the number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemNumberTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an item number</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="itemNumberDetails" type="ItemNumberIdentificationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys the sequence number of a transaction within a sales report display.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a ticket number, type of ticket, and related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Document number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information related to a specific ticket.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="documentDetails" type="TicketNumberDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details on the document transaction.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 4.2 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B08000000000000009553C16EDB300CBDEB2B845E761892D84557600174709BA4DDB0A459E2619700816A31895059F244B9A857F4DF47D9CE9A9EB602864152D213F5DEE3CD74315D65F974B2BD5B88F3244D07C9397DFC27280BA864C3D38B717A394E3FF19B79FE3149C649C2B279169A0A70A60D585982A0C2F64AA22EF2581E3EA162F71261416B58C902C421846A3C1A3D9566284BA9A0C661E1CA112B0E503CACE95F4A117C0DAC700A10020AEB6CCCCA122C65FD5A5949DB4454616B63A850355EEF0F419C651D2A5F7A57790D41FA864BABF8B5B33BAD08434BC3BFD89DF3A50CDAD931AFADACC3C179FD1B14AF11DAED4A63611CD61E3806AF8B601A4E67EEB5228C212782123EE0C7CB702887187363F82AF6817C45DDFB4750C333A660276B136E7C15595162270D0253AEBE37B0865F35D80296321487EE7560AFFE8B32B0AF7B9EA30C2FDBE747F0488FA2C8830182A148EEE982E685ED48A4556D883217F56AF356B4F6708CFE01605C214DCFB8717BA5BD988C3753A577B208B9730637D37C3BD118A40DD7A41129479A6DE6D23F40D076DFEDC15665DC7C737B82B1FBB607ADEEAC6958097E0F3D416D3CD36014AE9D0F7F89A33723B5946164F36D6D427A6BD37BC6BE8B9DCA691B16104E84F0CE85137258D778A410E38424A324ED6B38733E339A107B8746ED75013821E7D08D64C28E362CA50F11ED87D5850E4DDF7EF0D2A269FD48AC082217473D729ECD47CF0A8CA6E62519E66548AB2C36A54EC785DC717D9C910E932A2D41ED806A5BB02734E1AE0E551D66CE28F02216181B0CE61D791F90EBD7B9180C58478D48337672BFC896D9764D3EC01554240B6ED3E482CC5C4A6DC5D76C7994824B0F525C5E1E7391AF57B7ABEFAC22D76B3C909A1DC79D1022A5E8514775286CE9902D73E2CD55E4ADCAC8267F5DBF25B739DF741BD851ABF79DEA6D2192CFEC0FFCB13D6006050000
+-->
+

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/POTLUQ_12_1_1A" xmlns="http://xml.amadeus.com/POTLUQ_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="PNR_OverrideTicketTimeLimitUpdate">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">PNR override ticket time limit entry query</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="airlineIdentifier" type="TransportIdentifierType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Segment is used to identify the airline</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="timelimit" type="StructuredDateTimeInformationType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This field is used to convey the time limit of airline segment by the agent</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CompanyIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code or name to identify a company and any associated companies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="marketingCompany" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Carrier code: the numerical one</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is designed to convey date/time in a structured way.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dateTime" type="StructuredDateTimeType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey date and/or time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Store date and time in a structured way</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="year" minOccurs="0" type="Year_YYYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Year number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="month" minOccurs="0" type="Month_mM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Month number in the year ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="day" minOccurs="0" type="Day_nN">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Day number in the month ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="hour" minOccurs="0" type="Hour_hH">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Hour between 0 and 23</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minutes" minOccurs="0" type="Minute_mM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Minutes between 0 and 59</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransportIdentifierType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the transport service(s) which is /are to be updated or cancelled</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyIdentification" type="CompanyIdentificationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Carrier identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Year_YYYY">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the year. Example: 2003</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Month_mM">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the month. Only significant digits are mandatory. Example: 7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0?[1-9]|1[0-2])" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Day_nN">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the day in the  month. Only significant digits are mandatory. Example: 7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0?[1-9]|[1-2][0-9]|3[0-1])" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Hour_hH">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the hours in the  time. Only significant digits are mandatory. Example: 7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-1]?[0-9]|2[0-3]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Minute_mM">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the minutes in the  time. Only significant digits are mandatory. Example: 7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="[0-5]?[0-9]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D6FDB3810BDF35710BDEC6161594AB75BC0000F6AECA40BC41F75949B018121C736518A543954106D90FFDEA1246FB3A7B6176166389A8FF7DEDCAE36AB7D59AD96F57623AEF2E2FD2CFF7B7695F3EADC05D4B2E745B1F8F07151E4FC765DFD99E78B3C67E5BA8C7D0B78632C38D980A040FD49A251550A67CFA8D9A344D8D01BB6528138C7D82EE6F3E7C666B2911A3ACC946FE6ECB173DAC2D204314788D1B813CEB551C8D419D4D77BFA3652C4D001535E03A5A070DE25AF69C09137BD35AD747D6A275C672D05DA3E98D3398A77E5D88EEF826F83812843CFA5D3FCDABBA3D154C348CBFF71471F1A198D770BDE39D9C5B30FE65FD0BC4318D2B541653D760138C66054B43DA77F1E8DA61A1927E0723EE3976698C90C936F2DDFA73990EF69FAF0043A7BC7341C6567E36D68135C5A1CA54560DA778F16EEE15B074EC14E46759E5EC07DFA2530C1FDC8794904BDD62F4F1090B6222B80052A43963C5187FE951D89BE7D6709339F981CFC81CEE1E764FDA480F54ADA0972EB4F9A685C2E0E9F57E5F2B0D2E62855ACBCB7785855F5D260942E5E1353C41F317758CBF01512E3630E0E5CE3E1CE9FA8963B0D8318BD75B6670D84134C600CF68D01ABF1DE87F81F7CB438D25C25264CFF1F5B12EBC64ECA71BF0551EB8D8B1B88231D83D882F7F10D42839F049CB171858428A64BCAE77931C5F0C687D21AAA3D293669C128C02529897A93284714B19121A6BA0FCE2813FB699118A4433BE893F0118435CEA7CA55B99EBF68B086D69024A0D78C5E591A4FBF3D1F12CBF5E566C69A1419A01A2ED938C59ED1C66D17DB2EDE78AB218814606C365B8F30FE81DCFCB893D98C8D2089A2646FFA8B7257D6BBCDBE2EDEFF6548D48D344E90CFE0B925BE6A89F572752BAAFDC3EAC20F9701A4283E5C7CB1DB56770F5F584B0761F04C148FC08FEC8882AC2793281357233272003175A9B73446A0BBAE8C227555A6813BD398F8D06A19815D58FB85D44915A2B862DF01682C457723050000
+-->
+

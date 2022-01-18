@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/PNMDRQ_12_1_1A" xmlns="http://xml.amadeus.com/PNMDRQ_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="PNR_DisplayNameDiagnostic">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Detailed name diagnostic</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="recordLocator" type="ReservationControlInformationType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Amadeus PNR record Locator</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ReservationControlInformationDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="controlNumber" minOccurs="0" type="AlphaNumericString_Length1To20" />
+      <xs:element name="controlType" minOccurs="0" type="AMA_EDICodesetType_Length1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" type="ReservationControlInformationDetailsType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To20">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..20</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AMA_EDICodesetType_Length1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used for codes in the AMADEUS code tables. Code Length is one alphanumeric character.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095544B6F133110BEFB57585C38A0ECA3052122F9B06DD20A89A4250DE282B472ED4962E1B5178FB774A9FADF19EF6E68B9F0B84433E3D9797CDF37B95CAE979B6ABB5CD4576B715294A7B3E2CDECE41DFF0CDA016AD9F3E2EDFCF5DB7959F2CBD5F65551CC8B8255AB2AF62DE085B1E064038202F59944A3B6299CDDA366B712614D6FD84A05E210633BCFF3FBC666B2911A3ACC946F7276DB396D616182C81162346E8FB9360A993A80FA7A43BF8D143174C094D74029289C77C96B1A70E44D6F4D2B5D9FDA09D7594B81B60F667F88E24535B6E3D7C1B7C14094A1E7D2697EEEDDCE68AA61A4E5EFDDCE874646E3DD9C774E76F1E083F9019A770843BA36A8ACC72E00C7188C8AB6E7F4CDADD15423E3845CC167FCD80C339961F2ADE59B3407F20D4D1FEE40672F98869DEC6CBC0C6D824B8B9DB4084CFBEED6C20D7CEBC029B896511DA6177067FF0426B8A79C8744D063FD700701692BB20258A03264C93D75E81FD98EE8DB749630F389C9C11FE81C3E4ED65F0A58AFA49D20B77EAF138D011A1F216FBEE7B4ACD949156B0D77F972B4B7DE5BCC97DB7A61304A17CF8939E29398CC57327C85A480310707EEF1CB07BFA7DA6E3F0C66F495B33D6B20EC610267B02F0C588D373EC45F7012104873569830FE3DB62015183B29C9FD1764AD372EAE218EF40CE20BDEC767880D7E1274C6C61512C2984EABC88B728AE1850F9535547B5270D28651800B5216F526918EA86223434C753F39A34CECA74562900EEDA057C24710F6BF00DB56ABFC418335B48624413D66F4CAD278FAF9399178CE8F3734D6A4C800D570D9C629768F365E75B1EDE285B71A824801C666B3D508E34BE4E6E96E6633368224CA8A3DEB2FAAEBAABE5E6FEAF2F49434DE48E304B90CEE5BA2AB96582F969762BBF9B43CD2C3650029CA37479FD2578BCD47D6D27D183C10C323EE2339A224EBCE24C6C81C80910386A94B92596BE5F0CFB03072EF3C46A3D891AC3FA44C2210E509FB09700B6E7423050000
+-->
+

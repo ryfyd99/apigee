@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/ConnectionServices_v1" xmlns:ama_ct="http://xml.amadeus.com/2010/06/Types_v2" targetNamespace="http://xml.amadeus.com/2010/06/ConnectionServices_v1" elementFormDefault="qualified" version="1.000" id="AMA2013D">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="../2012E/AMA_CommonTypes_Proxy.xsd" />
+  <xs:element name="AMA_AppMdw_KeepAliveRS">
+    <xs:annotation>
+      <xs:documentation>KeepAlive response</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Acknowledgment" type="ama_ct:ReplyType">
+          <xs:annotation>
+            <xs:documentation>Returns Success if the KeepAlive was properly processed, and Failure with an error message if the KeepAlive was rejected.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

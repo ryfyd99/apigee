@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:fare_convertcurrency_8_1="http://xml.amadeus.com/FCUQCQ_08_1_1A" xmlns:fare_convertcurrencyreply_8_1="http://xml.amadeus.com/FCUQCR_08_1_1A" xmlns:fare_checkrules_7_1="http://xml.amadeus.com/FARQNQ_07_1_1A" xmlns:fare_checkrulesreply_7_1="http://xml.amadeus.com/FARQNR_07_1_1A" xmlns:fare_calculatemileage_8_2="http://xml.amadeus.com/FARQMQ_08_2_1A" xmlns:fare_calculatemileagereply_8_2="http://xml.amadeus.com/FARQMR_08_2_1A"  xmlns:fare_pricepnrwithbookingclass_13_2="http://xml.amadeus.com/TPCBRQ_13_2_1A" xmlns:fare_pricepnrwithbookingclassreply_13_2="http://xml.amadeus.com/TPCBRR_13_2_1A" xmlns:fare_quoteitinerary_12_2="http://xml.amadeus.com/FITQPQ_12_2_1A" xmlns:fare_quoteitineraryreply_12_2="http://xml.amadeus.com/FITQPR_12_2_1A" xmlns:fare_pricepnrwithlowerfares_13_2="http://xml.amadeus.com/TPLFRQ_13_2_1A" xmlns:fare_pricepnrwithlowerfaresreply_13_2="http://xml.amadeus.com/TPLFRR_13_2_1A" 
+xmlns:fare_informativepricingwithoutpnr_13_2="http://xml.amadeus.com/TIPNRQ_13_2_1A" 
+xmlns:fare_informativepricingwithoutpnrreply_13_2="http://xml.amadeus.com/TIPNRR_13_2_1A"
+xmlns:fare_checkmileage_8_2="http://xml.amadeus.com/FARRMQ_08_2_1A" 
+xmlns:fare_checkmileagereply_8_2="http://xml.amadeus.com/FARRMR_08_2_1A"
+targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/FCUQCQ_08_1_1A" schemaLocation="Fare_ConvertCurrency_08_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FCUQCR_08_1_1A" schemaLocation="Fare_ConvertCurrencyReply_08_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQNQ_07_1_1A" schemaLocation="Fare_CheckRules_07_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQNR_07_1_1A" schemaLocation="Fare_CheckRulesReply_07_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQMQ_08_2_1A" schemaLocation="Fare_CalculateMileage_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQMR_08_2_1A" schemaLocation="Fare_CalculateMileageReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TPCBRQ_13_2_1A" schemaLocation="Fare_PricePNRWithBookingClass_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TPCBRR_13_2_1A" schemaLocation="Fare_PricePNRWithBookingClassReply_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TPLFRQ_13_2_1A" schemaLocation="Fare_PricePNRWithLowerFares_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TPLFRR_13_2_1A" schemaLocation="Fare_PricePNRWithLowerFaresReply_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FITQPQ_12_2_1A" schemaLocation="Fare_QuoteItinerary_12_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FITQPR_12_2_1A" schemaLocation="Fare_QuoteItineraryReply_12_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TIPNRQ_13_2_1A" schemaLocation="Fare_InformativePricingWithoutPNR_13_2_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TIPNRR_13_2_1A" schemaLocation="Fare_InformativePricingWithoutPNRReply_13_2_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/FARRMQ_08_2_1A" schemaLocation="Fare_CheckMileage_08_2_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/FARRMR_08_2_1A" schemaLocation="Fare_CheckMileageReply_08_2_1A.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Fare_ConvertCurrency_8_1">
+    <wsdl:part name="Fare_ConvertCurrency_8_1" element="fare_convertcurrency_8_1:Fare_ConvertCurrency"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_ConvertCurrencyReply_8_1">
+    <wsdl:part name="Fare_ConvertCurrencyReply_8_1" element="fare_convertcurrencyreply_8_1:Fare_ConvertCurrencyReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_CheckRules_7_1">
+    <wsdl:part name="Fare_CheckRules_7_1" element="fare_checkrules_7_1:Fare_CheckRules"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_CheckRulesReply_7_1">
+    <wsdl:part name="Fare_CheckRulesReply_7_1" element="fare_checkrulesreply_7_1:Fare_CheckRulesReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_CalculateMileage_8_2">
+    <wsdl:part name="Fare_CalculateMileage_8_2" element="fare_calculatemileage_8_2:Fare_CalculateMileage"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_CalculateMileageReply_8_2">
+    <wsdl:part name="Fare_CalculateMileageReply_8_2" element="fare_calculatemileagereply_8_2:Fare_CalculateMileageReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_PricePNRWithBookingClass_13_2">
+    <wsdl:part name="Fare_PricePNRWithBookingClass_13_2" element="fare_pricepnrwithbookingclass_13_2:Fare_PricePNRWithBookingClass"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_PricePNRWithBookingClassReply_13_2">
+    <wsdl:part name="Fare_PricePNRWithBookingClassReply_13_2" element="fare_pricepnrwithbookingclassreply_13_2:Fare_PricePNRWithBookingClassReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_PricePNRWithLowerFares_13_2">
+    <wsdl:part name="Fare_PricePNRWithLowerFares_13_2" element="fare_pricepnrwithlowerfares_13_2:Fare_PricePNRWithLowerFares" />
+  </wsdl:message>
+  <wsdl:message name="Fare_PricePNRWithLowerFaresReply_13_2">
+    <wsdl:part name="Fare_PricePNRWithLowerFaresReply_13_2" element="fare_pricepnrwithlowerfaresreply_13_2:Fare_PricePNRWithLowerFaresReply" />
+  </wsdl:message>
+  <wsdl:message name="Fare_QuoteItinerary_12_2">
+    <wsdl:part name="Fare_QuoteItinerary_12_2" element="fare_quoteitinerary_12_2:Fare_QuoteItinerary"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_QuoteItineraryReply_12_2">
+    <wsdl:part name="Fare_QuoteItineraryReply_12_2" element="fare_quoteitineraryreply_12_2:Fare_QuoteItineraryReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_InformativePricingWithoutPNR_13_2">
+    <wsdl:part name="Fare_InformativePricingWithoutPNR_13_2" element="fare_informativepricingwithoutpnr_13_2:Fare_InformativePricingWithoutPNR" />
+  </wsdl:message>
+  <wsdl:message name="Fare_InformativePricingWithoutPNRReply_13_2">
+    <wsdl:part name="Fare_InformativePricingWithoutPNRReply_13_2" element="fare_informativepricingwithoutpnrreply_13_2:Fare_InformativePricingWithoutPNRReply" />
+  </wsdl:message>
+  <wsdl:message name="Fare_CheckMileage_8_2">
+    <wsdl:part name="Fare_CheckMileage_8_2" element="fare_checkmileage_8_2:Fare_CheckMileage" />
+  </wsdl:message>  
+  <wsdl:message name="Fare_CheckMileageReply_8_2">
+    <wsdl:part name="Fare_CheckMileageReply_8_2" element="fare_checkmileagereply_8_2:Fare_CheckMileageReply" />
+  </wsdl:message>  
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Fare_ConvertCurrency">
+      <wsdl:input message="pipa:Fare_ConvertCurrency_8_1"/>
+      <wsdl:output message="pipa:Fare_ConvertCurrencyReply_8_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_CheckRules">
+      <wsdl:input message="pipa:Fare_CheckRules_7_1"/>
+      <wsdl:output message="pipa:Fare_CheckRulesReply_7_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_CalculateMileage">
+      <wsdl:input message="pipa:Fare_CalculateMileage_8_2"/>
+      <wsdl:output message="pipa:Fare_CalculateMileageReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_PricePNRWithBookingClass">
+      <wsdl:input message="pipa:Fare_PricePNRWithBookingClass_13_2"/>
+      <wsdl:output message="pipa:Fare_PricePNRWithBookingClassReply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_PricePNRWithLowerFares">
+      <wsdl:input message="pipa:Fare_PricePNRWithLowerFares_13_2"/>
+      <wsdl:output message="pipa:Fare_PricePNRWithLowerFaresReply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_QuoteItinerary">
+      <wsdl:input message="pipa:Fare_QuoteItinerary_12_2"/>
+      <wsdl:output message="pipa:Fare_QuoteItineraryReply_12_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_InformativePricingWithoutPNR">
+      <wsdl:input message="pipa:Fare_InformativePricingWithoutPNR_13_2"/>
+      <wsdl:output message="pipa:Fare_InformativePricingWithoutPNRReply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_CheckMileage">
+      <wsdl:input message="pipa:Fare_CheckMileage_8_2"/>
+      <wsdl:output message="pipa:Fare_CheckMileageReply_8_2"/>
+    </wsdl:operation>	
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Fare_ConvertCurrency">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_ConvertCurrency_08_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_CheckRules">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_CheckRules_07_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_CalculateMileage">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_CalculateMileage_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_PricePNRWithBookingClass">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_PricePNRWithBookingClass_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_PricePNRWithLowerFares">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_PricePNRWithLowerFares_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_QuoteItinerary">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_QuoteItinerary_12_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_InformativePricingWithoutPNR">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_InformativePricingWithoutPNR_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_CheckMileage">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_CheckMileage_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+	
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_FARE_CIPQPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

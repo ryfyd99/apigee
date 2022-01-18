@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:queue_counttotal_3_1="http://xml.amadeus.com/QCSDRQ_03_1_1A" xmlns:queue_counttotalreply_3_1="http://xml.amadeus.com/QCSDRR_03_1_1A" xmlns:queue_placepnr_3_1="http://xml.amadeus.com/QUQPCQ_03_1_1A" xmlns:queue_placepnrreply_3_1="http://xml.amadeus.com/QUQPCR_03_1_1A" xmlns:queue_moveitem_3_1="http://xml.amadeus.com/QUQMUQ_03_1_1A" xmlns:queue_moveitemreply_3_1="http://xml.amadeus.com/QUQMUR_03_1_1A" xmlns:queue_removeitem_3_1="http://xml.amadeus.com/QUQMDQ_03_1_1A" xmlns:queue_removeitemreply_3_1="http://xml.amadeus.com/QUQMDR_03_1_1A" xmlns:queue_list_11_1="http://xml.amadeus.com/QDQLRQ_11_1_1A" xmlns:queue_listreply_11_1="http://xml.amadeus.com/QDQLRR_11_1_1A" xmlns:queuemode_processitemsonqueue_13_2="http://xml.amadeus.com/QMODCQ_13_2_1A" xmlns:queuemode_processitemsonqueuereply_13_2="http://xml.amadeus.com/QMODCR_13_2_1A" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/QCSDRQ_03_1_1A" schemaLocation="Queue_CountTotal_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QCSDRR_03_1_1A" schemaLocation="Queue_CountTotalReply_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QUQPCQ_03_1_1A" schemaLocation="Queue_PlacePNR_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QUQPCR_03_1_1A" schemaLocation="Queue_PlacePNRReply_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QUQMUQ_03_1_1A" schemaLocation="Queue_MoveItem_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QUQMUR_03_1_1A" schemaLocation="Queue_MoveItemReply_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QUQMDQ_03_1_1A" schemaLocation="Queue_RemoveItem_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QUQMDR_03_1_1A" schemaLocation="Queue_RemoveItemReply_03_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QDQLRQ_11_1_1A" schemaLocation="Queue_List_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QDQLRR_11_1_1A" schemaLocation="Queue_ListReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/QMODCQ_13_2_1A" schemaLocation="QueueMode_ProcessItemsOnQueue_13_2_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/QMODCR_13_2_1A" schemaLocation="QueueMode_ProcessItemsOnQueueReply_13_2_1A.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Queue_CountTotal_3_1">
+    <wsdl:part name="Queue_CountTotal_3_1" element="queue_counttotal_3_1:Queue_CountTotal"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_CountTotalReply_3_1">
+    <wsdl:part name="Queue_CountTotalReply_3_1" element="queue_counttotalreply_3_1:Queue_CountTotalReply"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_PlacePNR_3_1">
+    <wsdl:part name="Queue_PlacePNR_3_1" element="queue_placepnr_3_1:Queue_PlacePNR"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_PlacePNRReply_3_1">
+    <wsdl:part name="Queue_PlacePNRReply_3_1" element="queue_placepnrreply_3_1:Queue_PlacePNRReply"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_MoveItem_3_1">
+    <wsdl:part name="Queue_MoveItem_3_1" element="queue_moveitem_3_1:Queue_MoveItem"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_MoveItemReply_3_1">
+    <wsdl:part name="Queue_MoveItemReply_3_1" element="queue_moveitemreply_3_1:Queue_MoveItemReply"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_RemoveItem_3_1">
+    <wsdl:part name="Queue_RemoveItem_3_1" element="queue_removeitem_3_1:Queue_RemoveItem"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_RemoveItemReply_3_1">
+    <wsdl:part name="Queue_RemoveItemReply_3_1" element="queue_removeitemreply_3_1:Queue_RemoveItemReply"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_List_11_1">
+    <wsdl:part name="Queue_List_11_1" element="queue_list_11_1:Queue_List"/>
+  </wsdl:message>
+  <wsdl:message name="Queue_ListReply_11_1">
+    <wsdl:part name="Queue_ListReply_11_1" element="queue_listreply_11_1:Queue_ListReply"/>
+  </wsdl:message>
+  <wsdl:message name="QueueMode_ProcessItemsOnQueue_13_2">
+    <wsdl:part name="QueueMode_ProcessItemsOnQueue_13_2" element="queuemode_processitemsonqueue_13_2:QueueMode_ProcessItemsOnQueue"/>
+  </wsdl:message>
+  <wsdl:message name="QueueMode_ProcessItemsOnQueueReply_13_2">
+    <wsdl:part name="QueueMode_ProcessItemsOnQueueReply_13_2" element="queuemode_processitemsonqueuereply_13_2:QueueMode_ProcessItemsOnQueueReply"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Queue_CountTotal">
+      <wsdl:input message="pipa:Queue_CountTotal_3_1"/>
+      <wsdl:output message="pipa:Queue_CountTotalReply_3_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_PlacePNR">
+      <wsdl:input message="pipa:Queue_PlacePNR_3_1"/>
+      <wsdl:output message="pipa:Queue_PlacePNRReply_3_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_MoveItem">
+      <wsdl:input message="pipa:Queue_MoveItem_3_1"/>
+      <wsdl:output message="pipa:Queue_MoveItemReply_3_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_RemoveItem">
+      <wsdl:input message="pipa:Queue_RemoveItem_3_1"/>
+      <wsdl:output message="pipa:Queue_RemoveItemReply_3_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_List">
+      <wsdl:input message="pipa:Queue_List_11_1"/>
+      <wsdl:output message="pipa:Queue_ListReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="QueueMode_ProcessItemsOnQueue">
+      <wsdl:input message="pipa:QueueMode_ProcessItemsOnQueue_13_2"/>
+      <wsdl:output message="pipa:QueueMode_ProcessItemsOnQueueReply_13_2"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Queue_CountTotal">
+      <soap:operation soapAction="http://pip.koreanair.com/Queue_CountTotal_03_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_PlacePNR">
+      <soap:operation soapAction="http://pip.koreanair.com/Queue_PlacePNR_03_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_MoveItem">
+      <soap:operation soapAction="http://pip.koreanair.com/Queue_MoveItem_03_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_RemoveItem">
+      <soap:operation soapAction="http://pip.koreanair.com/Queue_RemoveItem_03_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Queue_List">
+      <soap:operation soapAction="http://pip.koreanair.com/Queue_List_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueueMode_ProcessItemsOnQueue">
+      <soap:operation soapAction="http://pip.koreanair.com/QueueMode_ProcessItemsOnQueue_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_QUEUEPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

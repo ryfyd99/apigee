@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:ticket_createtstfrompricing_4_1="http://xml.amadeus.com/TAUTCQ_04_1_1A" xmlns:ticket_createtstfrompricingreply_4_1="http://xml.amadeus.com/TAUTCR_04_1_1A" xmlns:ticket_createtsmfareelement_10_1="http://xml.amadeus.com/TFRECQ_10_1_1A" xmlns:ticket_createtsmfareelementreply_10_1="http://xml.amadeus.com/TFRECR_10_1_1A" xmlns:ticket_altertstsegmentassociation_13_2="http://xml.amadeus.com/TASAUQ_13_2_1A" xmlns:ticket_altertstsegmentassociationreply_13_2="http://xml.amadeus.com/TASAUR_13_2_1A" xmlns:ticket_adddocnumber_9_1="http://xml.amadeus.com/TFHXCQ_09_1_1A" xmlns:ticket_adddocnumberreply_9_1="http://xml.amadeus.com/TFHXCR_09_1_1A" xmlns:ticket_canceldocument_11_1="http://xml.amadeus.com/TRCANQ_11_1_1A" xmlns:ticket_canceldocumentreply_11_1="http://xml.amadeus.com/TRCANR_11_1_1A" xmlns:ticket_createmanualtsmp_9_1="http://xml.amadeus.com/TTSMCQ_09_1_1A" xmlns:ticket_createmanualtsmpreply_9_1="http://xml.amadeus.com/TTSMCR_09_1_1A" xmlns:ticket_createmanualtst_13_1="http://xml.amadeus.com/TMATCQ_13_1_1A" xmlns:ticket_createmanualtstreply_13_1="http://xml.amadeus.com/TMATCR_13_1_1A" xmlns:ticket_getdocumentreceipt_12_3="http://xml.amadeus.com/TRECSQ_12_3_1A" xmlns:ticket_getdocumentreceiptreply_12_3="http://xml.amadeus.com/TRECSR_12_3_1A" xmlns:ticket_createtsmfrompricing_9_1="http://xml.amadeus.com/TAUSCQ_09_1_1A" xmlns:ticket_createtsmfrompricingreply_9_1="http://xml.amadeus.com/TAUSCR_09_1_1A" xmlns:ticket_automaticupdate_12_1="http://xml.amadeus.com/TARUPQ_12_1_1A" xmlns:ticket_automaticupdatereply_12_1="http://xml.amadeus.com/TARUPR_12_1_1A" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/TAUTCQ_04_1_1A" schemaLocation="Ticket_CreateTSTFromPricing_04_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TAUTCR_04_1_1A" schemaLocation="Ticket_CreateTSTFromPricingReply_04_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TFRECQ_10_1_1A" schemaLocation="Ticket_CreateTSMFareElement_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TFRECR_10_1_1A" schemaLocation="Ticket_CreateTSMFareElementReply_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TASAUQ_13_2_1A" schemaLocation="Ticket_AlterTSTSegmentAssociation_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TASAUR_13_2_1A" schemaLocation="Ticket_AlterTSTSegmentAssociationReply_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TFHXCQ_09_1_1A" schemaLocation="Ticket_AddDocNumber_09_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TFHXCR_09_1_1A" schemaLocation="Ticket_AddDocNumberReply_09_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TRCANQ_11_1_1A" schemaLocation="Ticket_CancelDocument_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TRCANR_11_1_1A" schemaLocation="Ticket_CancelDocumentReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TTSMCQ_09_1_1A" schemaLocation="Ticket_CreateManualTSMP_09_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TTSMCR_09_1_1A" schemaLocation="Ticket_CreateManualTSMPReply_09_1_1A.xsd" />
+      <xsd:import schemaLocation="Ticket_CreateManualTST_13_1_1A.xsd" namespace="http://xml.amadeus.com/TMATCQ_13_1_1A" />
+      <xsd:import schemaLocation="Ticket_CreateManualTSTReply_13_1_1A.xsd" namespace="http://xml.amadeus.com/TMATCR_13_1_1A" />
+      <xsd:import schemaLocation="Ticket_GetDocumentReceipt_12_3_1A.xsd" namespace="http://xml.amadeus.com/TRECSQ_12_3_1A" />
+      <xsd:import schemaLocation="Ticket_GetDocumentReceiptReply_12_3_1A.xsd" namespace="http://xml.amadeus.com/TRECSR_12_3_1A" />
+      <xsd:import namespace="http://xml.amadeus.com/TAUSCQ_09_1_1A" schemaLocation="Ticket_CreateTSMFromPricing_09_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TAUSCR_09_1_1A" schemaLocation="Ticket_CreateTSMFromPricingReply_09_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TARUPQ_12_1_1A" schemaLocation="Ticket_AutomaticUpdate_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TARUPR_12_1_1A" schemaLocation="Ticket_AutomaticUpdateReply_12_1_1A.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Ticket_CreateTSTFromPricing_4_1">
+    <wsdl:part name="Ticket_CreateTSTFromPricing_4_1" element="ticket_createtstfrompricing_4_1:Ticket_CreateTSTFromPricing"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateTSTFromPricingReply_4_1">
+    <wsdl:part name="Ticket_CreateTSTFromPricingReply_4_1" element="ticket_createtstfrompricingreply_4_1:Ticket_CreateTSTFromPricingReply"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateTSMFareElement_10_1">
+    <wsdl:part name="Ticket_CreateTSMFareElement_10_1" element="ticket_createtsmfareelement_10_1:Ticket_CreateTSMFareElement"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateTSMFareElementReply_10_1">
+    <wsdl:part name="Ticket_CreateTSMFareElementReply_10_1" element="ticket_createtsmfareelementreply_10_1:Ticket_CreateTSMFareElementReply"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_AlterTSTSegmentAssociation_13_2">
+    <wsdl:part name="Ticket_AlterTSTSegmentAssociation_13_2" element="ticket_altertstsegmentassociation_13_2:Ticket_AlterTSTSegmentAssociation"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_AlterTSTSegmentAssociationReply_13_2">
+    <wsdl:part name="Ticket_AlterTSTSegmentAssociationReply_13_2" element="ticket_altertstsegmentassociationreply_13_2:Ticket_AlterTSTSegmentAssociationReply"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_AddDocNumber_9_1">
+    <wsdl:part name="Ticket_AddDocNumber_9_1" element="ticket_adddocnumber_9_1:Ticket_AddDocNumber"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_AddDocNumberReply_9_1">
+    <wsdl:part name="Ticket_AddDocNumberReply_9_1" element="ticket_adddocnumberreply_9_1:Ticket_AddDocNumberReply"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_CancelDocument_11_1">
+    <wsdl:part name="Ticket_CancelDocument_11_1" element="ticket_canceldocument_11_1:Ticket_CancelDocument"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_CancelDocumentReply_11_1">
+    <wsdl:part name="Ticket_CancelDocumentReply_11_1" element="ticket_canceldocumentreply_11_1:Ticket_CancelDocumentReply"/>
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateManualTSMP_9_1">
+    <wsdl:part element="ticket_createmanualtsmp_9_1:Ticket_CreateManualTSMP" name="Ticket_CreateManualTSMP_9_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateManualTSMPReply_9_1">
+    <wsdl:part element="ticket_createmanualtsmpreply_9_1:Ticket_CreateManualTSMPReply" name="Ticket_CreateManualTSMPReply_9_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateManualTST_13_1">
+    <wsdl:part element="ticket_createmanualtst_13_1:Ticket_CreateManualTST" name="Ticket_CreateManualTST_13_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateManualTSTReply_13_1">
+    <wsdl:part element="ticket_createmanualtstreply_13_1:Ticket_CreateManualTSTReply" name="Ticket_CreateManualTSTReply_13_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_GetDocumentReceipt_12_3">
+    <wsdl:part element="ticket_getdocumentreceipt_12_3:Ticket_GetDocumentReceipt" name="Ticket_GetDocumentReceipt_12_3" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_GetDocumentReceiptReply_12_3">
+    <wsdl:part element="ticket_getdocumentreceiptreply_12_3:Ticket_GetDocumentReceiptReply" name="Ticket_GetDocumentReceiptReply_12_3" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateTSMFromPricing_9_1">
+    <wsdl:part element="ticket_createtsmfrompricing_9_1:Ticket_CreateTSMFromPricing" name="Ticket_CreateTSMFromPricing_9_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_CreateTSMFromPricingReply_9_1">
+    <wsdl:part element="ticket_createtsmfrompricingreply_9_1:Ticket_CreateTSMFromPricingReply" name="Ticket_CreateTSMFromPricingReply_9_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_AutomaticUpdate_12_1">
+    <wsdl:part element="ticket_automaticupdate_12_1:Ticket_AutomaticUpdate" name="Ticket_AutomaticUpdate_12_1" />
+  </wsdl:message>
+  <wsdl:message name="Ticket_AutomaticUpdateReply_12_1">
+    <wsdl:part element="ticket_automaticupdatereply_12_1:Ticket_AutomaticUpdateReply" name="Ticket_AutomaticUpdateReply_12_1" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Ticket_CreateTSTFromPricing">
+      <wsdl:input message="pipa:Ticket_CreateTSTFromPricing_4_1"/>
+      <wsdl:output message="pipa:Ticket_CreateTSTFromPricingReply_4_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateTSMFareElement">
+      <wsdl:input message="pipa:Ticket_CreateTSMFareElement_10_1"/>
+      <wsdl:output message="pipa:Ticket_CreateTSMFareElementReply_10_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_AlterTSTSegmentAssociation">
+      <wsdl:input message="pipa:Ticket_AlterTSTSegmentAssociation_13_2"/>
+      <wsdl:output message="pipa:Ticket_AlterTSTSegmentAssociationReply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_AddDocNumber">
+      <wsdl:input message="pipa:Ticket_AddDocNumber_9_1"/>
+      <wsdl:output message="pipa:Ticket_AddDocNumberReply_9_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CancelDocument">
+      <wsdl:input message="pipa:Ticket_CancelDocument_11_1"/>
+      <wsdl:output message="pipa:Ticket_CancelDocumentReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateManualTSMP">
+      <wsdl:input message="pipa:Ticket_CreateManualTSMP_9_1" />
+      <wsdl:output message="pipa:Ticket_CreateManualTSMPReply_9_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateManualTST">
+      <wsdl:input message="pipa:Ticket_CreateManualTST_13_1" />
+      <wsdl:output message="pipa:Ticket_CreateManualTSTReply_13_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_GetDocumentReceipt">
+      <wsdl:input message="pipa:Ticket_GetDocumentReceipt_12_3" />
+      <wsdl:output message="pipa:Ticket_GetDocumentReceiptReply_12_3" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateTSMFromPricing">
+      <wsdl:input message="pipa:Ticket_CreateTSMFromPricing_9_1" />
+      <wsdl:output message="pipa:Ticket_CreateTSMFromPricingReply_9_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_AutomaticUpdate">
+      <wsdl:input message="pipa:Ticket_AutomaticUpdate_12_1" />
+      <wsdl:output message="pipa:Ticket_AutomaticUpdateReply_12_1" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Ticket_CreateTSTFromPricing">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_CreateTSTFromPricing_04_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateTSMFareElement">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_CreateTSMFareElement_10_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_AlterTSTSegmentAssociation">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_AlterTSTSegmentAssociation_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_AddDocNumber">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_AddDocNumber_09_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CancelDocument">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_CancelDocument_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateManualTSMP">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_CreateManualTSMP_09_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateManualTST">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_CreateManualTST_13_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_GetDocumentReceipt">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_GetDocumentReceipt_12_3" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_CreateTSMFromPricing">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_CreateTSMFromPricing_09_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_AutomaticUpdate">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_AutomaticUpdate_12_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_TICKET_ACGPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

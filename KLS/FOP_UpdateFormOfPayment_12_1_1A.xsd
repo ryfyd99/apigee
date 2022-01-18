@@ -1,0 +1,1619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/TFOPUQ_12_1_1A" xmlns="http://xml.amadeus.com/TFOPUQ_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="FOP_UpdateFormOfPayment">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Update form of payment</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="fopGroup" maxOccurs="127">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">The group can contain up to 127 different FOPs</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fopReference" type="ElementManagementSegmentType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Indicates the number of the FOP</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="passengerAssociation" minOccurs="0" maxOccurs="99" type="ReferenceInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">will list all the passengers associated to the FOP element</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="pnrElementAssociation" minOccurs="0" maxOccurs="99" type="ReferenceInfoType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">will list the various links of the FOP element.  it can be MCO, Segment... (pax reference is conveyed within PXR)</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="mopDescription" minOccurs="0">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">This group conveys Mean of payment information</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="fopSequenceNumber" type="SequenceDetailsTypeU">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Conveys the sequence number of the Form of Payment in the FP Line. It must be set to 1 if there is only 1 FOP in the FOP</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="paymentModule" minOccurs="0" maxOccurs="4" type="PaymentGroupType">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">will contain all the data related to the payment transaction</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationErrorDetailType">
+    <xs:sequence>
+      <xs:element name="errorCode" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the data validation error condition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCategory" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorDetails" type="ApplicationErrorDetailType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Application error details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttributeInformationTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of attribute and the attribute</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeType" type="AlphaNumericString_Length1To25">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Contains the account holder name key: holdername</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="attributeDescription" minOccurs="0" type="AlphaNumericString_Length1To256">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Contains the value of the account holder name.  Ex: holdername=martin</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttributeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="criteriaSetType" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Type of Data related to FOP account, ex: ACC = account info</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="criteriaDetails" maxOccurs="999" type="AttributeInformationTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details for the message criteria (name, value).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttributeType_130700S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="criteriaSetType" minOccurs="0" type="AMA_EDICodesetType_Length1to3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Determines if the set of criteria corresponds to the message identification criteria or to normal criteria.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="criteriaDetails" type="AttributeInformationTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">List of attributes and status linked to credit card process. Most of them are link dependant.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AuthenticationDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Conveys CC authentication data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="veres" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">VERes status (enrollment) Values : Y : authentication available N : cardholder not participating U : Unable to authenticate E : error message</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pares" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">PARes status (authentication). Values : Y : authentication successful N : authentication failed U : authentication could not be performed A : attempts processing performed</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="creditCardCompany" minOccurs="0" type="AlphaNumericString_Length4To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">CC Directory Server performing the enrollment process: VISA, MasterCard</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="authenticationIndicator" minOccurs="0" type="AlphaNumericString_Length2To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">To indicate whether the transaction was successful, different indicators for Visa/MasterCard. - ECI for VISA - UCAF collection indicator for Matercard</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="caavAlgorithm" minOccurs="0" type="NumericInteger_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicates the algorithm used to generate the Cardholder Authentication Verification Value (CAAV = authentication code)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AuthorizationApprovalDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey the approval data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="approvalCode" type="AlphaNumericString_Length1To12">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the value of the approval code of the payment authorisation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="sourceOfApproval" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Source of approval for the payment authorisation. A Automatically obtained by the system. M Manually entered by an agent.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AuthorizationApprovalDataType_189989C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey the approval data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="approvalCode" type="AlphaNumericString_Length1To20">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the value of the approval code of the payment authorisation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="sourceOfApproval" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Source of approval for the payment authorisation. A Automatically obtained by the system. M Manually entered by an agent.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AynchronousPaymentTypeGroupStatus">
+    <xs:sequence>
+      <xs:element name="approvalReferenceNumber" type="GenericAuthorisationResultType_68631S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Asynchronous Payment approval reference number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BinaryDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">to carry binary data within an Edifact segment</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dataLength" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Length of the BLB</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dataType" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">type of the data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="binaryData" type="AlphaNumericString_Length1To99999">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">used to store binary data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BinaryDataType_130758S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">to carry binary data within an Edifact segment</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dataLength" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Length of data stored in DataElem 114Z</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dataType" minOccurs="0" type="AMA_EDICodesetType_Length1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">type of the data B: Binary</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="binaryData" type="AlphaNumericString_Length1To99999">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">used to store binary data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey coded key and corresponding value</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeType" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the following QF data:  ONOD onoData     Order Number(Qantas specific)  GWTD gwtData     Government Warrant number(Qantas specific)  HOLDN ccHolderName    Conveys the CN (company name) (Qantas specific).This has sense only in case of automatic creation of attribute record (cards is a bets card). In the other cases this information cannot be filled.  ONOR onoRequired    This ONO indicator indicates whether or not ONO data is mandatory.(Information provided by Qantas IGW link) This has sense only in case of automatic creation of attribute record (cards is a bets card)  GWTR gwtRequired     This GWT indicator indicates whether or not GWT data is mandatory.(Information provided by Qantas IGW link) This has sense only in case of automatic creation of attribute record (cards is a bets card)  CIND cind     Conveys CIND indicator : - MANU - AUTO This indicates whether attributes records have been created manually (no bets card) or automatically (bets card).  BFAREC bestFareCandidate     Conveys best fare indicator: - Yes - No This indicates whether or not the card is best fare candidate. (this implies card is a bets card)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="attributeDescription" minOccurs="0" type="AlphaNumericString_Length1To256">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">onoData   Order Number(Qantas specific)  gwtData   Government Warrant number  ccHolderName  Conveys the CN   onoRequired  YES - NO  gwtRequired   YES - NO  cind    MANU - AUTO  bestFareCandidate   YES - NO</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeInformationType_189969C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey coded key and corresponding value</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeType" minOccurs="0" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides the attribute Type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeFunction" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Usage of this element will be the transport of the DescriptiveBilingInformation first value will be QF</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="attributeDetails" maxOccurs="99" type="CodedAttributeInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides details for the Attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeType_130681S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeDetails" minOccurs="0" type="CodedAttributeInformationType_189969C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides details for the Attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is used to convey the merchant information</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyCode" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This data element is used to convey the company code of a company  Ex:  AF for Air France MIL for millenium foundation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="companyNumericCode" minOccurs="0" type="AlphaNumericString_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This data element is used to convey the numeric merchant ID.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditCardDataGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey all credit card data needed for payment</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="creditCardDetails" type="CreditCardDataType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey all the data related to the credit card</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditCardDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">specify credit card data for credit card authorization - USED IN CCVRQT</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ccInfo" minOccurs="0" type="CreditCardInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Credit Card information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditCardInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">credit card info</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="startDate" minOccurs="0" type="NumericInteger_Length4To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field indicates the date the Credit Card was issued. This data is present in case of (UK) maestro cards.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ccHolderName" minOccurs="0" type="AlphaNumericString_Length1To99">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys Credit card holder's name, as written on the card</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="issueNumber" minOccurs="0" type="NumericInteger_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This is the Credit Card Issue number. This represents the number of time a card has been issued.  1 is for the first time then in case of card renewal or card loss this issue number will be increased Today this is applicable to maestro cards.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditCardSecurityType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Conveys data of the credit card authentication</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="authenticationDataDetails" minOccurs="0" type="AuthenticationDataType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys all data of authentication process. Only used today for "Verified by Visa" process</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditCardStatusGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey all the detailed payment status related to credit Card</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="authorisationSupplementaryData" type="SpecificVisaLinkCreditCardInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This segment is used to store specific data of links following ISO8583 standard.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="approvalDetails" minOccurs="0" type="GenericAuthorisationResultType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the approval code/source</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="localDateTime" minOccurs="0" maxOccurs="3" type="StructuredDateTimeInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This segment conveys date and time information.  You can specify the time mode used (GMT, UTC or Local)and what for it refers.  - Transmission date and time This contains the date and time the request was submitted to the link (Visa, Nedbank...field 7). GMT can be used.  - Local transaction date and time Date and time when Amadeus builds the authorization message (local according to the point of sale)(Visa, Nedbank...field 12/13)  - Transaction receipt date and time date and time when amadeus receives the authorization message.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="authorisationInformation" minOccurs="0" type="TransactionInformationForTicketingType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Transaction Information: - type of authorization message submit for the given FOP - bulk, superbulk, no bulk process - STAN number (identifying a pair of Credit Card authorization request/response).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="tdsInformation" minOccurs="0" type="ThreeDomainSecureGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">this group will convey all the 3DS related data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cardSupplementaryData" minOccurs="0" maxOccurs="99" type="AttributeType_130700S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This will allow the transmission of credit card data.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="transactionStatus" minOccurs="0" maxOccurs="7" type="ErrorGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the various sub status that can be associated to a credit card payment CVV, AVS, AUT, ATN....</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DetailedPaymentDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey the Detailed Payment Data associated to a MOP</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fopInformation" type="FormOfPaymentTypeI_130697S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This segment will convey the type of the FOP. Exple : CC credit card CA cash CH cheque WW web</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="asyncDetailledDataGroup" minOccurs="0" type="AynchronousPaymentTypeGroupStatus">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the references of the payment done in the customer/airline accounts.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dummy" type="DummySegmentTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will allow the usage of FOP segment as trigger for GASS and GIVR groups</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="invoiceDetailedDataGroup" minOccurs="0" type="InvoiceValidationGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the references of the payment done in the customer/airline accounts.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="creditCardDetailedData" minOccurs="0" type="CreditCardStatusGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This group will convey the detailed status of the credit card payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DummySegmentTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To serve the purpose of a mandatory segment at the beginning of a group and to avoid segment collision.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="ElementManagementSegmentType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the PNR segments/elements references and action to apply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference" minOccurs="0" type="ReferencingDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Conveys a potential error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorOrWarningCodeDetails" type="ApplicationErrorInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The details of error/warning code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the form of payment type, amounts, approval codes, and other related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">FOP code taken from the FP elem in PNR (ie for PRISA : INV, INVAGT, INVIDA, INVBARTER, INVNAGT, INVGSA)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="indicator" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Issue indicator : 'C' -) collective invoice</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="merchantCode" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline code in case of IRU FOP</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="customerAccount" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Contains the account number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pinCode" minOccurs="0" type="AlphaNumericString_Length1To100">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">stores a pin code attached to the account (IRU MOP)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pinCodeType" minOccurs="0" type="AlphaNumericString_Length1To8">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details pin code type (in case of encrypted pin code)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentDetailsTypeI_189985C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the form of payment type, amounts, approval codes, and other related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Generic type of the Mean of Payment used : CC credit Card CA cash CH cheque WW web payment... INV invoice</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the form of payment type, amounts, approval codes, and other related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="AlphaNumericString_Length1To10" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey details describing the form of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="formOfPayment" type="FormOfPaymentDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Contains the Account data, the transaction data and financial data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentTypeI_130697S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey details describing the form of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="formOfPayment" type="FormOfPaymentDetailsTypeI_189985C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Generic status(new/old) and type(cash, cheque, card...) of the MOP</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FormOfPaymentType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey details describing the form of payment.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="formOfPayment" type="FormOfPaymentDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details on the form of payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FraudScreeningGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey all data needed to prevent the fraud on the payment</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fraudScreening" type="StatusType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This data element is used to indicate if risk management must be performed at authorization time: - Y means risk management data will be appended to author; - N means risk management data will not be appended;</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="payerDateOfBirth" minOccurs="0" type="StructuredDateTimeInformationType_130753S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">stores the payer date of birth</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="formOfIdDetails" minOccurs="0" maxOccurs="3" type="ReferenceInfoType_130752S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to store reference information on the payer for fraud screening purpose: social security number driving license information frequent flyer information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="securityCode" minOccurs="0" maxOccurs="9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Provide the security details: type and key for the fraud screening  In case, a fraud partner uses different keys for its fraud screening, the group can be repeated 9 times.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="securityType" type="SecurityScreeningType">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">Type of security used by the airline for the fraud screening. e.g.: Device Finger Print (DFP)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="securityKey" type="BinaryDataType_130758S">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">Security key provided for the fraud screening to Retail Decision, for example.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequencyDetailsTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a frequency and the time window in which              it applies</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="instalmentsNumber" type="NumericInteger_Length1To9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicates number of instalments for the payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="instalmentsFrequency" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicates frequency of instalments for the payment D daily M monthly W weekly</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="instalmentsStartDate" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicates when first instalment should take place</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="instalmentsDatrDateFormat" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">indicates extended payment start date format</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequencyTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a frequency and the time window in which it applies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="extendedPaymentDetails" type="FrequencyDetailsTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">extended payment characteristics</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericAuthorisationResultType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey the approval data of the transaction</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="approvalCodeData" type="AuthorizationApprovalDataType_189989C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">transaction authorization approval data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericAuthorisationResultType_68631S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey the approval data of the transaction</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="approvalCodeData" type="AuthorizationApprovalDataType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">transaction authorization approval data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InvoiceFopGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Represents Invoice fop to validate.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="invoiceInformation" type="FormOfPaymentTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Account, Transaction and Financial data.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="accountSupplementaryData" minOccurs="0" maxOccurs="99" type="AttributeType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to add data related to FOP Account</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InvoiceValidationGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">References validation data of a INV Fop</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="approvalCodeDetails" type="GenericAuthorisationResultType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the approval code/status of the transaction</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemReferencesAndVersionsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Payment record unique identifier</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">qualifies the type of the reference used. Here it will be: PRI Payment Record Id APP Application Correlator Id EXT Third party Record Id</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="uniqueReference" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The value of the payment record/correlator Id</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MeanOfPaymentDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey Mean Of Payment specific data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fopInformation" type="FormOfPaymentType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">his segment will convey the type of the FOP. Exple : CC credit card CA cash CH cheque SWI swipe card WA web account WB web bank(fund tranfer)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dummy" type="DummySegmentTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will allow the usage of FOP segment as trigger for GASY and GINV groups</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="invoiceDataGroup" minOccurs="0" type="InvoiceFopGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Group containing one Invoice FOP to validate.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="creditCardData" minOccurs="0" type="CreditCardDataGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey all credit card data needed for the payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageReferenceType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">INFORMATION SPECIFIC TO VISA</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="retrievalReferenceNumber" minOccurs="0" type="AlphaNumericString_Length1To12">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This number is used to identify and track ALL messages related to a given cardholder transaction (author, retry, reversal ...). It is usually composed of: - the date when the message was formatted followed by - the message number   Field 37  Official definition of Retrieval Reference Number from ISO8583: Field 37 contains a number used with other key data elements to identify and track all messages related to a given cardholder transaction (referred to as a transaction set). It is usually assigned by the acquirer, but it may be assigned by a merchant or by an individual electronic terminal. V.I.P. will also generate the retrieval reference number for transactions it initiates. This field contains two parts. The first four digits are usually a yddd date (Julian date format). The date is defined to be the same day as the date in Field 7_Transmission Date and Time, of the original request. The last eight digits are a numeric transaction identification number. The value in field 37 can be based on the content of fields 7 and 11 in the original request or advice as shown in the recommendation below: . Positions 1_4: the yddd equivalent of the field 7 date . Positions 5_6: the hours from the time in field 7 . Positions 7_12: the value from field 11</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="authorCharacteristicIndicator" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Authorization characteristics indicator   Field 62.1 Possible values: A C E F K M S U V W R I P N T</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="authorResponseCode" minOccurs="0" type="AlphaNumericString_Length2To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Authorization response code   Field 39</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="terminalType" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Additional POS Information - Terminal Type  Field 60.1 - Position 1  CAT (Cardholder-Activated Terminal indicator) or UAT (Unattended Acceptance Terminal)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the type of monetary amount, the amount, and the currency code.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="typeQualifier" type="AMA_EDICodesetType_Length1to3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Here is the list and the purpose of each amount today stored in the FP: I Transaction total amount  Total amount authorized in authorization transaction  IPC Transaction total amount in PNR currency Total amount authorized is also stored in PNR currency. Indeed, reversal must be done with the rate of exchange valid at time of authorization and therefore this avoids storing the rate of exchange and performing amount conversion at reversal time.  IT Initial TST total amount  Amount of TST multiplied by the number of passengers associated to the TST  ITC Initial TST total amount in PNR currency   IT amount in PNR currency for same reason as IPC amount  R Total amount / Remaining amount  Current authorized amount. Originally it is the total amount authorized and then this amount  may decrease in case of total/partial reversal.  T Initial Tst Individual amount  Amount of TST  TPC Initial Tst Individual amount in PNR currency  Amount of TST in PNR currency for same reason as IPC amount  AUT Authorized Amount Maybe different from the one given in input(for exple, if on input we have 2pax and the amount per pax. In case of bulk, we will authorize the sum of both amounts) It can also be used for:  Total Fare Amount 712 or additional collection amount A</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="amount" minOccurs="0" type="NumericDecimal_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Value of the amount.  This is conveyed as a 'string' and therefore several strings can stand for the  same amount (eg. 14 , 1400, 14.00... could potentially stand for 14.00 EUR). This  means that sender/receiver of this message will need to come to an agreement  concerning the way the amount is transferred in this segment.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="currency" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">IATA alphabetic currency code.  Eg: USD,GBP,EUR...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey monetary amounts, rates and percentages.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="monetaryDetails" type="MonetaryInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Contains the currencies and the various amounts</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherMonetaryDetails" minOccurs="0" maxOccurs="7" type="MonetaryInformationDetailsTypeI" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentDataGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">it will conveys all payment data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="merchantInformation" type="CompanyInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Contains merchant information (Entity selling a product/service for wich payment is requested: airline, insurance provider...).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="monetaryInformation" minOccurs="0" maxOccurs="999" type="MonetaryInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey all the monetary informations related to the payment : amount, currency, sub-amounts</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="paymentId" minOccurs="0" maxOccurs="3" type="ItemReferencesAndVersionsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys Payment Record ID (used by Payment Manager) to identify payment in a unique manner.  May convey also a "correlator Id" used by the calling application to reconciliate its payment data.  And also the "transaction Id" generated by the third party system (bank/PSP/PAyPAL...)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="extendedPaymentInfo" minOccurs="0" type="FrequencyTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">It will describe the content of the extended payment : when it will start, the frequency and how many times it should occur</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="transactionDateTime" minOccurs="0" type="StructuredDateTimeInformationType_130745S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The segment conveys the date/time of the transaction</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="fraudScreeningData" minOccurs="0" type="FraudScreeningGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey all information needed to perform the checks requested by the banks/PSPs regarding the prevention of fraud.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">is the generic group to convey payment related data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="groupUsage" type="CodedAttributeType_130681S">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to describe the element on which the action is performed : FP/FC/PAY and in which context integrated/non integrated</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="paymentData" type="PaymentDataGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey all data necessary for the paiment and not dependant from the Mean Of Payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="paymentSupplementaryData" minOccurs="0" maxOccurs="99" type="CodedAttributeType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">it will convey the Descriptive Billing Information: ONO, GWT, best Fare indicator....</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="mopInformation" minOccurs="0" type="MeanOfPaymentDataType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey all the specificities of the Mean of Payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dummy" type="DummySegmentTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will allow the usage of FOP segment as trigger for MOPD and MOPS groups</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="mopDetailedData" minOccurs="0" type="DetailedPaymentDataType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the result of the payment and related to the detailed Mean Of Payment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInfoType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an association between references given to travellers, to products, to services</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceDetails" minOccurs="0" type="ReferencingDetailsTypeI_189963C" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInfoType_130710S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an association between references given to travellers, to products, to services</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceDetails" minOccurs="0" type="ReferencingDetailsTypeI_190001C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">REFERENCING DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInfoType_130752S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an association between references given to travellers, to products, to services</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceDetails" minOccurs="0" type="ReferencingDetailsTypeI_190048C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">REFERENCING DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to convey the passenger references.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="passengerReference" type="ReferencingDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to convey the passenger tatoo.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">type of the passenger : INF infant PAX adult</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" type="NumericInteger_Length1To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys the value of PAX association</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsTypeI_189963C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will define the element to which the FP/FC/PAY element is linked INS SEG TSM...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">tattoo number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsTypeI_190001C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="value" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will have the following values: XID  Transaction identifier of the 3DS process CAAV authentication verification code for Visa AAV  authentication verification code for MasterCard PAREQ authentication message PARES authentication response message</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsTypeI_190048C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">FOID document type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">FOID document number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsType">
+    <xs:sequence>
+      <xs:element name="qualifier" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Form of payment way of identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="number" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number attributed by the Server to reference the PNR segment/element Limited to the time the PNR is worked (First retrieve - End of Transaction)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseIdentificationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">RESPONSE IDENTIFICATION</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="transacIdentifier" minOccurs="0" type="AlphaNumericString_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Transaction identifier   Field 62.2  Official definition: Visa-generated identifier that is unique for each original transaction. The transaction identifier (TID) is a key element that links original authorization requests to subsequent messages, such as reversals.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="validationCode" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Validation code    Field 62.3</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="banknetRefNumber" minOccurs="0" type="AlphaNumericString_Length6To9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Gateway Transaction Identifier - Banknet reference number   Field 62.17 - Position 8-13</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="banknetDate" minOccurs="0" type="AlphaNumericString_Length4To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Gateway Transaction Identifier - Banknet date in mmdd format  Field 62.17 - Position 1-4</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SecurityScreeningType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify Screening and Security details</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="screeningInstructions" minOccurs="0" type="AMA_EDICodesetType_Length1to3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Security used for the fraud screening; e.g.: Device Finger Print</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SequenceDetailsTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide details relating to the sequence.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sequenceDetails" minOccurs="0" type="SequenceInformationTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Sequence Information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SequenceInformationTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of a sequence and source for sequencing.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Sequence number of the Mean Of Payment in the FOP line. There can be up to 3 New MOP and 3 Old MOP in a FOP line.  Old Fops are considered as freeflow text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpecificVisaLinkCreditCardInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify specific credit card information returned by VISA link only</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="msgRef" minOccurs="0" type="MessageReferenceType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ISO8583 specific info</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="respIdentification" minOccurs="0" type="ResponseIdentificationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Response identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To advise the requester system the status of the reply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is designed to convey date/time in a structured way.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="businessSemantic" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This data element can be used to provide the semantic of the information provided. Examples : - LT : date and time corresponding to Authorization message built - T : date and time corresponding to Authorization message sent - AR : date and time corresponding to Authorization message receipt</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="timeMode" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicate if the time is expressed in UTC or in local time mode ( Codes U and L ). In the last case, the time zone information can be provided in the composite C89K.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dateTime" type="StructuredDateTimeType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey date and/or time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="timeZoneInfo" minOccurs="0" type="TimeZoneIinformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference : IATA SSIM Appendix F If it is not provided, the time is considered to be given in UTC.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeInformationType_130745S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is designed to convey date/time in a structured way.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="businessSemantic" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This data element is used to provide the semantic of the date information provided.  Examples : - GMT Transaction date - Local Transaction date ... Default being L local date and time</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dateTime" type="StructuredDateTimeType_190041C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey date and/or time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeInformationType_130753S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is designed to convey date/time in a structured way.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dateTime" minOccurs="0" type="StructuredDateTimeType_190049C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey date and/or time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Store date and time in a structured way</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="year" type="NumericInteger_Length4To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Year number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="month" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Month number in the year ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="day" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Day number in the month ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="hour" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Hour between 0 and 23</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minutes" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Minutes between 0 and 59</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="seconds" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Seconds between 0 and 59</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="milliseconds" minOccurs="0" type="NumericInteger_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Milliseconds between 0 and 999.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeType_190041C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Store date and time in a structured way</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="year" minOccurs="0" type="NumericInteger_Length4To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Year number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="month" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Month number in the year ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="day" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Day number in the month ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="hour" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Hour between 0 and 23</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minutes" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Minutes between 0 and 59</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="seconds" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Seconds between 0 and 59</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="milliseconds" minOccurs="0" type="NumericInteger_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Milliseconds between 0 and 999.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeType_190049C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Store date and time in a structured way</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="year" minOccurs="0" type="NumericInteger_Length4To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Year number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="month" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Month number in the year ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="day" minOccurs="0" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Day number in the month ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ThreeDomainSecureGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">will convey various 3DS data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="authenticationData" type="CreditCardSecurityType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This segment conveys a set of data resulting from the 3DS authentication process</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="tdsBlobData" minOccurs="0" maxOccurs="4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">will convey the various messages/encrypted data used during the 3DS authentication processes</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="tdsBlbIdentifier" type="ReferenceInfoType_130710S">
+              <xs:annotation>
+                <xs:documentation xml:lang="en">will identify the content of the BLB that follows</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="tdsBlbData" minOccurs="0" type="BinaryDataType" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TimeZoneIinformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Specify in which time zone, the information is provided</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="countryCode" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ISO country Code See SSIM appendix F</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="code" minOccurs="0" type="NumericInteger_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Time zone code. See SSIM appendix F.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="suffix" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Time zone suffix to complete the time zone code when necessary. See SSIM appendix F.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionInformationForTicketingType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">to specify details relating to the transaction</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="transactionDetails" type="TransactionInformationsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Authorisation transaction details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionInformationsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey details related to the transaction</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="code" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Authorization message type  Eg 110: author according standard ISO8583 210: settlement according standard ISO858 ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Credit Card link used to perform authorization.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="issueIndicator" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Process indicator (bulkIndicator): - bulk - superbulk - no bulk.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="transmissionControlNumber" minOccurs="0" type="AlphaNumericString_Length1To25">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This is a message number that uniquely identifies a cardholder transaction.  According to the link this info can have various names:  - STAN number(Systems Trace Audit Number) - ISO8583 (VISA,Nedbank, Credit Mutuel...)  - Message number - APACS70 (Barclays,Euroline...)  ...   Official definition: This is a number assigned by the message initiator that uniquely identifies a cardholder transaction and all the message types (also known as system transactions) that it comprises, according to individual program rules. The trace number remains unchanged for all messages throughout the life of the transaction. For example, the same trace number is used in an authorization request and response, and in a subsequent reversal request and response, and in any advices of authorization or reversal.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,15}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To99999">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..99999</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="99999" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To10">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..10</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,6}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,5}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,9}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length4To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{4,4}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To2">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,2}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,3}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To256">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..256</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="256" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To100">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..100</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To8">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..8</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="8" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To25">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..25</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To99">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..99</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="99" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To12">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..12</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="12" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To20">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..20</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length2To2">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length6To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an6..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="6" />
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length4To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="4" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,1}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AMA_EDICodesetType_Length1to3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used for codes in the AMADEUS code tables. Code Length is three alphanumeric characters.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Z]{1,3}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AMA_EDICodesetType_Length1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used for codes in the AMADEUS code tables. Code Length is one alphanumeric character.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!--DRAFT: This document is under development and is not approved for 
+publication or reference. The Amadeus IT Group SA assumes no 
+responsibility for the application of the information contained 
+in this document or consequences arising from its application.-->
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D6FE33610BDF357107BE9A1B02C3B8B456B80076D6CA705EAD8751CF462409888639B588A543954106D90FFDEA124EFA687A2ED4598198EE6E3BD3777ABFBD5BE38AC96E5F65ECDF3D97C927F9ACC6EE41FA81D92864EE63F2DE69F161F7F96779BC38F79BEC873516C8AD835486B63D1418D8A03E56720531D52387B212D9E80F09EDFA8810AD525C666319DBED436831A34B69455BE9E8AA7D6698B4B13D4943046E3CE34D5A622515DB0FAF2C0DF1A540C2D8ACA6BE41452CEBBE4D5353AF6C6B7BA01D7A576CAB5D672A0E982395FA2FA500CEDE42EF826188C103A094ECB5BEF4E46730D0356FEEA4E3ED4108D770BD93A68E3C507F315B56C09FB746DA8B29EDA8092623055B49DE47F9E8CE61A9964E4723991D766944146C9B756EED31C24F73C7D78469D7D101A4FD0DA78179A04975627B08442FBF6C9E203FED9A2AB7007B1BA8C2FE83EFF2730D17DCF794D04BD95AFCF1888B7622BA0452EC3169CB943F7264E4CDFBEB58C994F4CF67E4F67FF73B2FEA580F515D81172EBCF9A695C2E8EBFAC8AE571A5CD09AA78F0DED2717528978622B878CB4C317FCCDC7103E10B26C6871CEAB9A6E36FFECCB5DCB91FC4E8ADB39DA8319C7104A3B7D706ADA6071FE237F87871E2B90A4A98FE3DB664D68D1D95E3FE17448D372EDE631CE8E8C516BC8FEF10EAFD24E04C0C2B2444299D523ECD67638CD63E14D670ED51B1490BA6425AB292B8378B7240916A0831D57D74A632B11B1789011CD95E9F8C8F62AC693A563E149BE9AB466B780D6001BD65FC2AD278FAFDF9B0586EAF3733D4E4480F557FC9C655E2856CDCB6B169E3DA5B8D41A5801093C96680F10792E6FB9D4C26620049CD0AF1AEBF2A7645B9DEEECAD97CAE59D43518A7D817F8D2305F2550B95CDDA9C3FE7175E547424050F38F37D7803AF00F8FBF8B862FC2D0E51BC7233F6AC6D6B349A4A99B011BE8614C7DCAC746434406BCDE9E76D0A595C595AD7F4C1835A06673F117EEA33D4512050000
+-->
+

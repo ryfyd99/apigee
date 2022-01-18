@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+xmlns:pipa="http://xml.amadeus.com" 
+xmlns:pip="http://PIP_Service_Library/PIP_Processing" 
+xmlns:pips="http://PIP_Service_Library/PIP_Session" 
+xmlns:pipe="http://PIP_Service_Library/PIP_Error" 
+xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+xmlns:pnr_reply_13_2="http://xml.amadeus.com/PNRACC_13_2_1A" 
+xmlns:pnr_addmultielements_13_2="http://xml.amadeus.com/PNRADD_13_2_1A" 
+xmlns:pnr_cancel_13_2="http://xml.amadeus.com/PNRXCL_13_2_1A" 
+xmlns:pnr_displayhistory_12_2="http://xml.amadeus.com/PHIDRQ_12_2_1A" 
+xmlns:pnr_displayhistoryreply_12_2="http://xml.amadeus.com/PHIDRR_12_2_1A" 
+xmlns:pnr_displaymissingssrdocx_12_1="http://xml.amadeus.com/PMSDRQ_12_1_1A" 
+xmlns:pnr_displaymissingssrdocxreply_12_1="http://xml.amadeus.com/PMSDRR_12_1_1A" 
+xmlns:pnr_changeelement_13_2="http://xml.amadeus.com/PNRCHG_13_2_1A" 
+xmlns:pnr_addfrequentflyer_12_1="http://xml.amadeus.com/FFAREQ_12_1_1A" 
+xmlns:pnr_addfrequentflyerreply_12_1="http://xml.amadeus.com/FFARES_12_1_1A" 
+xmlns:pnr_createauxiliarysegment_9_1="http://xml.amadeus.com/PAUXCQ_09_1_1A" 
+xmlns:pnr_createauxiliarysegmentreply_9_1="http://xml.amadeus.com/PAUXCR_09_1_1A" 
+xmlns:pnr_addredemption_5_1="http://xml.amadeus.com/FFRREQ_05_1_1A" 
+xmlns:pnr_addredemptionreply_5_1="http://xml.amadeus.com/FFRRES_05_1_1A" 
+xmlns:pnr_displaynamediagnostic_12_1="http://xml.amadeus.com/PNMDRQ_12_1_1A" 
+xmlns:pnr_displaynamediagnosticreply_12_1="http://xml.amadeus.com/PNMDRR_12_1_1A" 
+targetNamespace="http://xml.amadeus.com">  
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/PNRADD_13_2_1A" schemaLocation="PNR_AddMultiElements_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PNRACC_13_2_1A" schemaLocation="PNR_Reply_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PNRXCL_13_2_1A" schemaLocation="PNR_Cancel_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PHIDRQ_12_2_1A" schemaLocation="PNR_DisplayHistory_12_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PHIDRR_12_2_1A" schemaLocation="PNR_DisplayHistoryReply_12_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PMSDRQ_12_1_1A" schemaLocation="PNR_DisplayMissingSSRdocx_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PMSDRR_12_1_1A" schemaLocation="PNR_DisplayMissingSSRdocxReply_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PNRCHG_13_2_1A" schemaLocation="PNR_ChangeElement_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FFAREQ_12_1_1A" schemaLocation="PNR_AddFrequentFlyer_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FFARES_12_1_1A" schemaLocation="PNR_AddFrequentFlyerReply_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PAUXCQ_09_1_1A" schemaLocation="PNR_CreateAuxiliarySegment_09_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/PAUXCR_09_1_1A" schemaLocation="PNR_CreateAuxiliarySegmentReply_09_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/FFRREQ_05_1_1A" schemaLocation="PNR_AddRedemption_05_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/FFRRES_05_1_1A" schemaLocation="PNR_AddRedemptionReply_05_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/PNMDRQ_12_1_1A" schemaLocation="PNR_DisplayNameDiagnostic_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/PNMDRR_12_1_1A" schemaLocation="PNR_DisplayNameDiagnosticReply_12_1_1A.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="PNR_Reply_13_2">
+    <wsdl:part name="PNR_Reply_13_2" element="pnr_reply_13_2:PNR_Reply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_AddMultiElements_13_2">
+    <wsdl:part name="PNR_AddMultiElements_13_2" element="pnr_addmultielements_13_2:PNR_AddMultiElements"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_Cancel_13_2">
+    <wsdl:part name="PNR_Cancel_13_2" element="pnr_cancel_13_2:PNR_Cancel"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_DisplayHistory_12_2">
+    <wsdl:part name="PNR_DisplayHistory_12_2" element="pnr_displayhistory_12_2:PNR_DisplayHistory"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_DisplayHistoryReply_12_2">
+    <wsdl:part name="PNR_DisplayHistoryReply_12_2" element="pnr_displayhistoryreply_12_2:PNR_DisplayHistoryReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_DisplayMissingSSRdocx_12_1">
+    <wsdl:part name="PNR_DisplayMissingSSRdocx_12_1" element="pnr_displaymissingssrdocx_12_1:PNR_DisplayMissingSSRdocx"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_DisplayMissingSSRdocxReply_12_1">
+    <wsdl:part name="PNR_DisplayMissingSSRdocxReply_12_1" element="pnr_displaymissingssrdocxreply_12_1:PNR_DisplayMissingSSRdocxReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ChangeElement_13_2">
+    <wsdl:part name="PNR_ChangeElement_13_2" element="pnr_changeelement_13_2:PNR_ChangeElement"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_AddFrequentFlyer_12_1">
+    <wsdl:part name="PNR_AddFrequentFlyer_12_1" element="pnr_addfrequentflyer_12_1:PNR_AddFrequentFlyer"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_AddFrequentFlyerReply_12_1">
+    <wsdl:part name="PNR_AddFrequentFlyerReply_12_1" element="pnr_addfrequentflyerreply_12_1:PNR_AddFrequentFlyerReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_CreateAuxiliarySegment_9_1">
+    <wsdl:part name="PNR_CreateAuxiliarySegment_9_1" element="pnr_createauxiliarysegment_9_1:PNR_CreateAuxiliarySegment" />
+  </wsdl:message>
+  <wsdl:message name="PNR_CreateAuxiliarySegmentReply_9_1">
+    <wsdl:part name="PNR_CreateAuxiliarySegmentReply_9_1" element="pnr_createauxiliarysegmentreply_9_1:PNR_CreateAuxiliarySegmentReply" />
+  </wsdl:message>
+  <wsdl:message name="PNR_AddRedemption_5_1">
+    <wsdl:part name="PNR_AddRedemption_5_1" element="pnr_addredemption_5_1:PNR_AddRedemption" />
+  </wsdl:message>
+  <wsdl:message name="PNR_AddRedemptionReply_5_1">
+    <wsdl:part name="PNR_AddRedemptionReply_5_1" element="pnr_addredemptionreply_5_1:PNR_AddRedemptionReply" />
+  </wsdl:message>
+  <wsdl:message name="PNR_DisplayNameDiagnostic_12_1">
+    <wsdl:part name="PNR_DisplayNameDiagnostic_12_1" element="pnr_displaynamediagnostic_12_1:PNR_DisplayNameDiagnostic" />
+  </wsdl:message>
+  <wsdl:message name="PNR_DisplayNameDiagnosticReply_12_1">
+    <wsdl:part name="PNR_DisplayNameDiagnosticReply_12_1" element="pnr_displaynamediagnosticreply_12_1:PNR_DisplayNameDiagnosticReply" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="PNR_AddMultiElements">
+      <wsdl:input message="pipa:PNR_AddMultiElements_13_2"/>
+      <wsdl:output message="pipa:PNR_Reply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Cancel">
+      <wsdl:input message="pipa:PNR_Cancel_13_2"/>
+      <wsdl:output message="pipa:PNR_Reply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_DisplayHistory">
+      <wsdl:input message="pipa:PNR_DisplayHistory_12_2"/>
+      <wsdl:output message="pipa:PNR_DisplayHistoryReply_12_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_DisplayMissingSSRdocx">
+      <wsdl:input message="pipa:PNR_DisplayMissingSSRdocx_12_1"/>
+      <wsdl:output message="pipa:PNR_DisplayMissingSSRdocxReply_12_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ChangeElement">
+      <wsdl:input message="pipa:PNR_ChangeElement_13_2"/>
+      <wsdl:output message="pipa:PNR_Reply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_AddFrequentFlyer">
+      <wsdl:input message="pipa:PNR_AddFrequentFlyer_12_1"/>
+      <wsdl:output message="pipa:PNR_AddFrequentFlyerReply_12_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_CreateAuxiliarySegment">
+      <wsdl:input message="pipa:PNR_CreateAuxiliarySegment_9_1" />
+      <wsdl:output message="pipa:PNR_CreateAuxiliarySegmentReply_9_1" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_AddRedemption">
+      <wsdl:input message="pipa:PNR_AddRedemption_5_1" />
+      <wsdl:output message="pipa:PNR_AddRedemptionReply_5_1" />
+    </wsdl:operation>
+    <wsdl:operation name="PNR_DisplayNameDiagnostic">
+      <wsdl:input message="pipa:PNR_DisplayNameDiagnostic_12_1" />
+      <wsdl:output message="pipa:PNR_DisplayNameDiagnosticReply_12_1" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="PNR_AddMultiElements">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_AddMultiElements_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_Cancel">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_Cancel_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_DisplayHistory">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_DisplayHistory_12_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_DisplayMissingSSRdocx">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_DisplayMissingSSRdocx_12_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ChangeElement">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_ChangeElement_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_AddFrequentFlyer">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_AddFrequentFlyer_12_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_CreateAuxiliarySegment">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_CreateAuxiliarySegment_09_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_AddRedemption">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_AddRedemption_05_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_DisplayNameDiagnostic">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_DisplayNameDiagnostic_12_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_PNR_ACDPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

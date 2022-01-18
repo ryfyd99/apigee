@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/TFOPRQ_12_1_1A" xmlns="http://xml.amadeus.com/TFOPRQ_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="FOP_ReadFormOfPaymentData">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Read FOP Query
+performs the query for FOP reading
+T     ticketing FOP   Form Of Payment R     Read Q     Query</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="messageUsage" type="CodedAttributeType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This segment is used to detail if all Form of payment (or some of them) have to be read.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="fopDescription" minOccurs="0" maxOccurs="127">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">will convey Form of payment data</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fopReference" type="ElementManagementSegmentType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Conveys the association of the PNR Form of Payment to be updated.  The guideline is to provide the line number (display number of the FOP), or the tattoo number</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="fopSequenceNumber" minOccurs="0" maxOccurs="4" type="SequenceDetailsTypeU">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Conveys the sequence number of the Form of Payment in the FP Line. It must be set to 1 if there is only 1 FOP in the FOP</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CodedAttributeInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey coded key and corresponding value</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeType" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides the attribute Type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeFunction" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides the function of the attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="attributeDetails" type="CodedAttributeInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides details for the Attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ElementManagementSegmentType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the PNR segments/elements references and action to apply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference" minOccurs="0" type="ReferencingDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsType">
+    <xs:sequence>
+      <xs:element name="qualifier" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Form of payment way of identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="number" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number attributed by the Server to reference the PNR segment/element Limited to the time the PNR is worked (First retrieve - End of Transaction)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SequenceDetailsTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide details relating to the sequence.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sequenceDetails" minOccurs="0" type="SequenceInformationTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Sequence Information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SequenceInformationTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of a sequence and source for sequencing.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Sequence number of the Mean Of Payment in the FOP line. There can be up to 3 New MOP and 3 Old MOP in a FOP line.  Old Fops are considered as freeflow text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To10">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..10</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534B6FDB3810BEF35710BDECA1B02D3BDD070CF0A0467650601DBB8EBA270306438E6DA214A9E59041D420FF7D8792BCCD9EDABD08F3A0E6F17DDFDCADEE57FBB25E55C7EDBD5814F39B49F1C764B1E0F52505D4B2E3F3C5F2E6D7E587DFF9DDA67E5F14CBA260E5A68C5D0BB836169C6C4050E0F851A251750E4F9F51B34789704F396CA5027189B15DCE66CF8D9DCA466A483855BE99B1C7E4B485CA04314388D1B833CEB451C8D405D4D707FA3652C4908029AF819EA070DE65AF69C09137E69A56BA2EB7132E594B81B60BE67C89E25D39B4E3BBE0DB6020CAD071E934BFF5EE6434D530D2F24FEEE44323A3F16EC99393295E7C30DF40F384D03FD70695F59802708CC1A8683B4EFF3C1A4D35A69C802BF8845F9BE1544E31FBD6F27D9E03F99EA60F4FA0A7EF9886934C36DE8536C3A5C5495A04A67D7AB4F0007F27700A7632AACB9801F7F1A7C004F7FDCD4B26E8F5F8F20401692BB20258A03264C93375E85ED989E8DB274B98F9CC64EFF774F63F67EB0705AC57D28E905B7FD64463B53C545EA59E9C43054F607D9B9D03FA14141CFE3298A43DACB43949156BEF2D1E56F5B13218A58BB74424D19BFFDDC8F015B2208637D84B010F7FFA33B572E77E4EA3B7CE76AC81708611ABDE5E1BB01A1F7C88FFA24BB8208D5D6286FCBFB18A4461EC282CF7BF106CBD71F11EE2C056AFC5E07D7C0360EF677D4FD9B042061CF3A115B3623EC670ED43690DD51E059DA56214604542A3DEA4D901646C6488B9EE17679489DDB8480CD2A1EDE54BF808A2026763E5BADCCC5E3458436B48D2D7EB94B22C8FA7DF5E1769E9F67A52434D8AF450F5876E9C62CF68E336C536C5B5B71A82C801C62693CD00E32FC8CDF7339A4CD800929897EC4D7F51EECAE37ABB3BCE17BF19D27C238D13D5EA76CBE0B925C28E128FD5EA4ED4FB2FAB2B415C069062F1E1E61A103555D87F662D5D8CC10B913C403FF023E6643D994C1A993D36B28751E4BE7B909AE06EB6A79DECF2C2958C925DF91243BAFD9C20746CA45ECC0BF60F689A3DEA27050000
+-->
+

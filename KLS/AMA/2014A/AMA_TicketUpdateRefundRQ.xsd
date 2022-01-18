@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/TicketGTP_v1" xmlns:att="http://xml.amadeus.com/2010/06/TicketTypes_v1" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2010B" xmlns:ama="http://xml.amadeus.com/2010/06/Types_v2" targetNamespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.000" id="AMA2014A">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/TicketTypes_v1" schemaLocation="AMA_Ticket_GTP_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2010B" schemaLocation="../../OTA/2010B/OTA_Proxy.xsd" />
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="../2012F/AMA_CommonTypes_Proxy.xsd" />
+  <xs:element name="AMA_TicketUpdateRefundRQ">
+    <xs:annotation>
+      <xs:documentation>To update an ongoing refund</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ContractBundle" maxOccurs="99">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Contracts" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Contract" maxOccurs="99">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="MonetaryInformations" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="MonetaryInformation" maxOccurs="199">
+                                  <xs:annotation>
+                                    <xs:documentation>To update Net fare amount</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:complexContent>
+                                      <xs:extension base="att:MonetaryInformationType">
+                                        <xs:attribute name="ToDelete" type="xs:boolean">
+                                          <xs:annotation>
+                                            <xs:documentation>If true, the element should be deleted from refund panel. Otherwise it will be ignored.</xs:documentation>
+                                          </xs:annotation>
+                                        </xs:attribute>
+                                      </xs:extension>
+                                    </xs:complexContent>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:nonNegativeInteger" use="required">
+                          <xs:annotation>
+                            <xs:documentation>ID of the contract concerned by the update</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="FormOfPayments" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FormOfPayment" maxOccurs="99">
+                      <xs:complexType>
+                        <xs:complexContent>
+                          <xs:extension base="att:FormOfPayment">
+                            <xs:attribute name="ToDelete" type="xs:boolean">
+                              <xs:annotation>
+                                <xs:documentation>If true, the element should be deleted from refund panel. Otherwise it will be ignored.</xs:documentation>
+                              </xs:annotation>
+                            </xs:attribute>
+                          </xs:extension>
+                        </xs:complexContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ID" type="xs:nonNegativeInteger" use="required">
+              <xs:annotation>
+                <xs:documentation>Identifies ContractBundle concerned by the update</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="ota:OTA_PayloadStdAttributes" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

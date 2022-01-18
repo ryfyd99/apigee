@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:PNR_ListCancelledPassengersByFlight_13_1="http://xml.amadeus.com/PALXRQ_13_1_1A" xmlns:PNR_ListCancelledPassengersByFlightReply_13_1="http://xml.amadeus.com/PALXRR_13_1_1A" xmlns:PNR_ListPassengersByFlight_13_1="http://xml.amadeus.com/PALPRQ_13_1_1A" xmlns:PNR_ListPassengersByFlightReply_13_1="http://xml.amadeus.com/PALPRR_13_1_1A" xmlns:pnr_reply_13_2="http://xml.amadeus.com/PNRACC_13_2_1A" xmlns:pnr_namechange_12_1="http://xml.amadeus.com/NMEREQ_12_1_1A" xmlns:pnr_namechangereply_12_1="http://xml.amadeus.com/NMERES_12_1_1A" xmlns:pnr_overridetickettimelimitupdate_12_1="http://xml.amadeus.com/POTLUQ_12_1_1A" xmlns:pnr_overridetickettimelimitupdatereply_12_1="http://xml.amadeus.com/POTLUR_12_1_1A" xmlns:pnr_retrieve_13_2="http://xml.amadeus.com/PNRRET_13_2_1A" xmlns:pnr_listreservationnumber_11_1="http://xml.amadeus.com/PRSNRQ_11_1_1A" xmlns:pnr_listreservationnumberreply_11_1="http://xml.amadeus.com/PRSNRR_11_1_1A" xmlns:pnr_reducenip_4_1="http://xml.amadeus.com/PRNPUQ_04_1_1A" xmlns:pnr_reducenipreply_4_1="http://xml.amadeus.com/PRNPUR_04_1_1A" 
+targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+    	<xsd:import namespace="http://xml.amadeus.com/PALXRQ_13_1_1A" schemaLocation="PNR_ListCancelledPassengersByFlight_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PALXRR_13_1_1A" schemaLocation="PNR_ListCancelledPassengersByFlightReply_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PALPRQ_13_1_1A" schemaLocation="PNR_ListPassengersByFlight_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PALPRR_13_1_1A" schemaLocation="PNR_ListPassengersByFlightReply_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/NMEREQ_12_1_1A" schemaLocation="PNR_NameChange_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/NMERES_12_1_1A" schemaLocation="PNR_NameChangeReply_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/POTLUQ_12_1_1A" schemaLocation="PNR_OverrideTicketTimeLimitUpdate_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/POTLUR_12_1_1A" schemaLocation="PNR_OverrideTicketTimeLimitUpdateReply_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PNRRET_13_2_1A" schemaLocation="PNR_Retrieve_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PNRACC_13_2_1A" schemaLocation="PNR_Reply_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PRSNRQ_11_1_1A" schemaLocation="PNR_ListReservationNumber_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PRSNRR_11_1_1A" schemaLocation="PNR_ListReservationNumberReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PRNPUQ_04_1_1A" schemaLocation="PNR_ReduceNIP_04_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/PRNPUR_04_1_1A" schemaLocation="PNR_ReduceNIPReply_04_1_1A.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  
+  <wsdl:message name="PNR_ListCancelledPassengersByFlight_13_1">
+    <wsdl:part name="PNR_ListCancelledPassengersByFlight_13_1" element="PNR_ListCancelledPassengersByFlight_13_1:PNR_ListCancelledPassengersByFlight"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ListCancelledPassengersByFlightReply_13_1">
+    <wsdl:part name="PNR_ListCancelledPassengersByFlightReply_13_1" element="PNR_ListCancelledPassengersByFlightReply_13_1:PNR_ListCancelledPassengersByFlightReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ListPassengersByFlight_13_1">
+    <wsdl:part name="PNR_ListPassengersByFlight_13_1" element="PNR_ListPassengersByFlight_13_1:PNR_ListPassengersByFlight"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ListPassengersByFlightReply_13_1">
+    <wsdl:part name="PNR_ListPassengersByFlightReply_13_1" element="PNR_ListPassengersByFlightReply_13_1:PNR_ListPassengersByFlightReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_NameChange_12_1">
+    <wsdl:part name="PNR_NameChange_12_1" element="pnr_namechange_12_1:PNR_NameChange"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_NameChangeReply_12_1">
+    <wsdl:part name="PNR_NameChangeReply_12_1" element="pnr_namechangereply_12_1:PNR_NameChangeReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_OverrideTicketTimeLimitUpdate_12_1">
+    <wsdl:part element="pnr_overridetickettimelimitupdate_12_1:PNR_OverrideTicketTimeLimitUpdate" name="PNR_OverrideTicketTimeLimitUpdate_12_1" />
+  </wsdl:message>
+  <wsdl:message name="PNR_OverrideTicketTimeLimitUpdateReply_12_1">
+    <wsdl:part element="pnr_overridetickettimelimitupdatereply_12_1:PNR_OverrideTicketTimeLimitUpdateReply" name="PNR_OverrideTicketTimeLimitUpdateReply_12_1" />
+  </wsdl:message>  
+  <wsdl:message name="PNR_Retrieve_13_2">
+    <wsdl:part name="PNR_Retrieve_13_2" element="pnr_retrieve_13_2:PNR_Retrieve"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_Reply_13_2">
+    <wsdl:part name="PNR_Reply_13_2" element="pnr_reply_13_2:PNR_Reply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ListReservationNumber_11_1">
+    <wsdl:part name="PNR_ListReservationNumber_11_1" element="pnr_listreservationnumber_11_1:PNR_ListReservationNumber"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ListReservationNumberReply_11_1">
+    <wsdl:part name="PNR_ListReservationNumberReply_11_1" element="pnr_listreservationnumberreply_11_1:PNR_ListReservationNumberReply"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ReduceNIP_4_1">
+    <wsdl:part name="PNR_ReduceNIP_4_1" element="pnr_reducenip_4_1:PNR_ReduceNIP"/>
+  </wsdl:message>
+  <wsdl:message name="PNR_ReduceNIPReply_4_1">
+    <wsdl:part name="PNR_ReduceNIPReply_4_1" element="pnr_reducenipreply_4_1:PNR_ReduceNIPReply"/>
+  </wsdl:message>  
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+
+  <wsdl:portType name="PAP1AWKLS01PT">
+  	<wsdl:operation name="PNR_ListCancelledPassengersByFlight">
+      <wsdl:input message="pipa:PNR_ListCancelledPassengersByFlight_13_1"/>
+      <wsdl:output message="pipa:PNR_ListCancelledPassengersByFlightReply_13_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ListPassengersByFlight">
+      <wsdl:input message="pipa:PNR_ListPassengersByFlight_13_1"/>
+      <wsdl:output message="pipa:PNR_ListPassengersByFlightReply_13_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_NameChange">
+      <wsdl:input message="pipa:PNR_NameChange_12_1"/>
+      <wsdl:output message="pipa:PNR_NameChangeReply_12_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_OverrideTicketTimeLimitUpdate">
+      <wsdl:input message="pipa:PNR_OverrideTicketTimeLimitUpdate_12_1" />
+      <wsdl:output message="pipa:PNR_OverrideTicketTimeLimitUpdateReply_12_1" />
+    </wsdl:operation>    
+    <wsdl:operation name="PNR_Retrieve">
+      <wsdl:input message="pipa:PNR_Retrieve_13_2"/>
+      <wsdl:output message="pipa:PNR_Reply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ListReservationNumber">
+      <wsdl:input message="pipa:PNR_ListReservationNumber_11_1"/>
+      <wsdl:output message="pipa:PNR_ListReservationNumberReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ReduceNIP">
+      <wsdl:input message="pipa:PNR_ReduceNIP_4_1"/>
+      <wsdl:output message="pipa:PNR_ReduceNIPReply_4_1"/>
+    </wsdl:operation>  
+  </wsdl:portType>
+  
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="PNR_ListCancelledPassengersByFlight">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_ListCancelledPassengersByFlight_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ListPassengersByFlight">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_ListPassengersByFlight_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_NameChange">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_NameChange_12_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_OverrideTicketTimeLimitUpdate">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_OverrideTicketTimeLimitUpdate_12_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>    
+    <wsdl:operation name="PNR_Retrieve">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_Retrieve_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ListReservationNumber">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_ListReservationNumber_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PNR_ReduceNIP">
+      <soap:operation soapAction="http://pip.koreanair.com/PNR_ReduceNIP_04_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>   
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_PNR_LNORPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

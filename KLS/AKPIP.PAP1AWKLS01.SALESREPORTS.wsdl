@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+xmlns:pipa="http://xml.amadeus.com" 
+xmlns:pip="http://PIP_Service_Library/PIP_Processing" 
+xmlns:pips="http://PIP_Service_Library/PIP_Session" 
+xmlns:pipe="http://PIP_Service_Library/PIP_Error" 
+xmlns:salesreports_displayformofpaymentreport_11_1="http://xml.amadeus.com/TSRFRQ_11_1_1A" 
+xmlns:salesreports_displayformofpaymentreportreply_11_1="http://xml.amadeus.com/TSRFRR_11_1_1A" 
+xmlns:salesreports_displaynetremitreport_10_1="http://xml.amadeus.com/TSRNRQ_10_1_1A" 
+xmlns:salesreports_displaynetremitreportreply_10_1="http://xml.amadeus.com/TSRNRR_10_1_1A" 
+xmlns:salesreports_displayqueryreport_10_1="http://xml.amadeus.com/TSRQRQ_10_1_1A" 
+xmlns:salesreports_displayqueryreportreply_10_1="http://xml.amadeus.com/TSRQRR_10_1_1A" 
+xmlns:salesreports_displaytransactionhistoryreport_9_1="http://xml.amadeus.com/TSRHRQ_09_1_1A" 
+xmlns:salesreports_displaytransactionhistoryreportreply_9_1="http://xml.amadeus.com/TSRHRR_09_1_1A" 
+xmlns:salesreports_displaytransactionreport_13_2="http://xml.amadeus.com/TSRTRQ_13_2_1A" 
+xmlns:salesreports_displaytransactionreportreply_13_2="http://xml.amadeus.com/TSRTRR_13_2_1A" 
+xmlns:salesreports_displaydailyorsummarizedreport_11_1="http://xml.amadeus.com/TSRSRQ_11_1_1A" 
+xmlns:salesreports_displaydailyorsummarizedreportreply_11_1="http://xml.amadeus.com/TSRSRR_11_1_1A" 
+xmlns:salesreports_displayclosedsalesreportlist_10_1="http://xml.amadeus.com/TSRLRQ_10_1_1A" 
+xmlns:salesreports_displayclosedsalesreportlistreply_10_1="http://xml.amadeus.com/TSRLRR_10_1_1A" 
+xmlns:salesreports_displaycashreport_13_1="http://xml.amadeus.com/TSRCRQ_13_1_1A" 
+xmlns:salesreports_displaycashreportreply_13_1="http://xml.amadeus.com/TSRCRR_13_1_1A" 
+xmlns:salesreports_displayitemizedreport_11_1="http://xml.amadeus.com/TSRIRQ_11_1_1A" 
+xmlns:salesreports_displayitemizedreportreply_11_1="http://xml.amadeus.com/TSRIRR_11_1_1A" 
+xmlns:salesreports_displaycrossreferencereport_11_1="http://xml.amadeus.com/TSRXRQ_11_1_1A" 
+xmlns:salesreports_displaycrossreferencereportreply_11_1="http://xml.amadeus.com/TSRXRR_11_1_1A"
+targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/TSRFRQ_11_1_1A" schemaLocation="SalesReports_DisplayFormOfPaymentReport_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRFRR_11_1_1A" schemaLocation="SalesReports_DisplayFormOfPaymentReportReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRNRQ_10_1_1A" schemaLocation="SalesReports_DisplayNetRemitReport_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRNRR_10_1_1A" schemaLocation="SalesReports_DisplayNetRemitReportReply_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRQRQ_10_1_1A" schemaLocation="SalesReports_DisplayQueryReport_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRQRR_10_1_1A" schemaLocation="SalesReports_DisplayQueryReportReply_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRHRQ_09_1_1A" schemaLocation="SalesReports_DisplayTransactionHistoryReport_09_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRHRR_09_1_1A" schemaLocation="SalesReports_DisplayTransactionHistoryReportReply_09_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRTRQ_13_2_1A" schemaLocation="SalesReports_DisplayTransactionReport_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRTRR_13_2_1A" schemaLocation="SalesReports_DisplayTransactionReportReply_13_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRSRQ_11_1_1A" schemaLocation="SalesReports_DisplayDailyOrSummarizedReport_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRSRR_11_1_1A" schemaLocation="SalesReports_DisplayDailyOrSummarizedReportReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRLRQ_10_1_1A" schemaLocation="SalesReports_DisplayClosedSalesReportList_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRLRR_10_1_1A" schemaLocation="SalesReports_DisplayClosedSalesReportListReply_10_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRCRQ_13_1_1A" schemaLocation="SalesReports_DisplayCashReport_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRCRR_13_1_1A" schemaLocation="SalesReports_DisplayCashReportReply_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRIRQ_11_1_1A" schemaLocation="SalesReports_DisplayItemizedReport_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRIRR_11_1_1A" schemaLocation="SalesReports_DisplayItemizedReportReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRIRQ_11_1_1A" schemaLocation="SalesReports_DisplayItemizedReport_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TSRIRR_11_1_1A" schemaLocation="SalesReports_DisplayItemizedReportReply_11_1_1A.xsd"/>
+	  <xsd:import namespace="http://xml.amadeus.com/TSRXRQ_11_1_1A" schemaLocation="SalesReports_DisplayCrossReferenceReport_11_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TSRXRR_11_1_1A" schemaLocation="SalesReports_DisplayCrossReferenceReportReply_11_1_1A.xsd" />      
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SalesReports_DisplayFormOfPaymentReport_11_1">
+    <wsdl:part name="SalesReports_DisplayFormOfPaymentReport_11_1" element="salesreports_displayformofpaymentreport_11_1:SalesReports_DisplayFormOfPaymentReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayFormOfPaymentReportReply_11_1">
+    <wsdl:part name="SalesReports_DisplayFormOfPaymentReportReply_11_1" element="salesreports_displayformofpaymentreportreply_11_1:SalesReports_DisplayFormOfPaymentReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayNetRemitReport_10_1">
+    <wsdl:part name="SalesReports_DisplayNetRemitReport_10_1" element="salesreports_displaynetremitreport_10_1:SalesReports_DisplayNetRemitReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayNetRemitReportReply_10_1">
+    <wsdl:part name="SalesReports_DisplayNetRemitReportReply_10_1" element="salesreports_displaynetremitreportreply_10_1:SalesReports_DisplayNetRemitReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayQueryReport_10_1">
+    <wsdl:part name="SalesReports_DisplayQueryReport_10_1" element="salesreports_displayqueryreport_10_1:SalesReports_DisplayQueryReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayQueryReportReply_10_1">
+    <wsdl:part name="SalesReports_DisplayQueryReportReply_10_1" element="salesreports_displayqueryreportreply_10_1:SalesReports_DisplayQueryReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayTransactionHistoryReport_9_1">
+    <wsdl:part name="SalesReports_DisplayTransactionHistoryReport_9_1" element="salesreports_displaytransactionhistoryreport_9_1:SalesReports_DisplayTransactionHistoryReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayTransactionHistoryReportReply_9_1">
+    <wsdl:part name="SalesReports_DisplayTransactionHistoryReportReply_9_1" element="salesreports_displaytransactionhistoryreportreply_9_1:SalesReports_DisplayTransactionHistoryReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayTransactionReport_13_2">
+    <wsdl:part name="SalesReports_DisplayTransactionReport_13_2" element="salesreports_displaytransactionreport_13_2:SalesReports_DisplayTransactionReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayTransactionReportReply_13_2">
+    <wsdl:part name="SalesReports_DisplayTransactionReportReply_13_2" element="salesreports_displaytransactionreportreply_13_2:SalesReports_DisplayTransactionReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayDailyOrSummarizedReport_11_1">
+    <wsdl:part name="SalesReports_DisplayDailyOrSummarizedReport_11_1" element="salesreports_displaydailyorsummarizedreport_11_1:SalesReports_DisplayDailyOrSummarizedReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayDailyOrSummarizedReportReply_11_1">
+    <wsdl:part name="SalesReports_DisplayDailyOrSummarizedReportReply_11_1" element="salesreports_displaydailyorsummarizedreportreply_11_1:SalesReports_DisplayDailyOrSummarizedReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayClosedSalesReportList_10_1">
+    <wsdl:part name="SalesReports_DisplayClosedSalesReportList_10_1" element="salesreports_displayclosedsalesreportlist_10_1:SalesReports_DisplayClosedSalesReportList"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayClosedSalesReportListReply_10_1">
+    <wsdl:part name="SalesReports_DisplayClosedSalesReportListReply_10_1" element="salesreports_displayclosedsalesreportlistreply_10_1:SalesReports_DisplayClosedSalesReportListReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayCashReport_13_1">
+    <wsdl:part name="SalesReports_DisplayCashReport_13_1" element="salesreports_displaycashreport_13_1:SalesReports_DisplayCashReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayCashReportReply_13_1">
+    <wsdl:part name="SalesReports_DisplayCashReportReply_13_1" element="salesreports_displaycashreportreply_13_1:SalesReports_DisplayCashReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayItemizedReport_11_1">
+    <wsdl:part name="SalesReports_DisplayItemizedReport_11_1" element="salesreports_displayitemizedreport_11_1:SalesReports_DisplayItemizedReport"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayItemizedReportReply_11_1">
+    <wsdl:part name="SalesReports_DisplayItemizedReportReply_11_1" element="salesreports_displayitemizedreportreply_11_1:SalesReports_DisplayItemizedReportReply"/>
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayCrossReferenceReport_11_1">
+    <wsdl:part name="SalesReports_DisplayCrossReferenceReport_11_1" element="salesreports_displaycrossreferencereport_11_1:SalesReports_DisplayCrossReferenceReport" />
+  </wsdl:message>
+  <wsdl:message name="SalesReports_DisplayCrossReferenceReportReply_11_1">
+    <wsdl:part name="SalesReports_DisplayCrossReferenceReportReply_11_1" element="salesreports_displaycrossreferencereportreply_11_1:SalesReports_DisplayCrossReferenceReportReply" />
+  </wsdl:message>  
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="SalesReports_DisplayFormOfPaymentReport">
+      <wsdl:input message="pipa:SalesReports_DisplayFormOfPaymentReport_11_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayFormOfPaymentReportReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayNetRemitReport">
+      <wsdl:input message="pipa:SalesReports_DisplayNetRemitReport_10_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayNetRemitReportReply_10_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayQueryReport">
+      <wsdl:input message="pipa:SalesReports_DisplayQueryReport_10_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayQueryReportReply_10_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayTransactionHistoryReport">
+      <wsdl:input message="pipa:SalesReports_DisplayTransactionHistoryReport_9_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayTransactionHistoryReportReply_9_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayTransactionReport">
+      <wsdl:input message="pipa:SalesReports_DisplayTransactionReport_13_2"/>
+      <wsdl:output message="pipa:SalesReports_DisplayTransactionReportReply_13_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayDailyOrSummarizedReport">
+      <wsdl:input message="pipa:SalesReports_DisplayDailyOrSummarizedReport_11_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayDailyOrSummarizedReportReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayClosedSalesReportList">
+      <wsdl:input message="pipa:SalesReports_DisplayClosedSalesReportList_10_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayClosedSalesReportListReply_10_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayCashReport">
+      <wsdl:input message="pipa:SalesReports_DisplayCashReport_13_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayCashReportReply_13_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayItemizedReport">
+      <wsdl:input message="pipa:SalesReports_DisplayItemizedReport_11_1"/>
+      <wsdl:output message="pipa:SalesReports_DisplayItemizedReportReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayCrossReferenceReport">
+      <wsdl:input message="pipa:SalesReports_DisplayCrossReferenceReport_11_1" />
+      <wsdl:output message="pipa:SalesReports_DisplayCrossReferenceReportReply_11_1" />
+    </wsdl:operation>	
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SalesReports_DisplayFormOfPaymentReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayFormOfPaymentReport_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayNetRemitReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayNetRemitReport_10_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayQueryReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayQueryReport_10_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayTransactionHistoryReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayTransactionHistoryReport_09_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayTransactionReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayTransactionReport_13_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayDailyOrSummarizedReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayDailyOrSummarizedReport_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayClosedSalesReportList">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayClosedSalesReportList_10_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayCashReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayCashReport_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayItemizedReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayItemizedReport_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SalesReports_DisplayCrossReferenceReport">
+      <soap:operation soapAction="http://pip.koreanair.com/SalesReports_DisplayCrossReferenceReport_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>	
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_SALESREPORTSPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

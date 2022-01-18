@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:fop_createformofpayment_11_1="http://xml.amadeus.com/TFOPCQ_11_1_1A" xmlns:fop_createformofpaymentreply_11_1="http://xml.amadeus.com/TFOPCR_11_1_1A" xmlns:fop_readformofpaymentdata_12_1="http://xml.amadeus.com/TFOPRQ_12_1_1A" xmlns:fop_readformofpaymentdatareply_12_1="http://xml.amadeus.com/TFOPRR_12_1_1A" xmlns:fop_updateformofpayment_12_1="http://xml.amadeus.com/TFOPUQ_12_1_1A" xmlns:fop_updateformofpaymentreply_12_1="http://xml.amadeus.com/TFOPUR_12_1_1A" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/TFOPCQ_11_1_1A" schemaLocation="FOP_CreateFormOfPayment_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TFOPCR_11_1_1A" schemaLocation="FOP_CreateFormOfPaymentReply_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TFOPRQ_12_1_1A" schemaLocation="FOP_ReadFormOfPaymentData_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TFOPRR_12_1_1A" schemaLocation="FOP_ReadFormOfPaymentDataReply_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TFOPUQ_12_1_1A" schemaLocation="FOP_UpdateFormOfPayment_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TFOPUR_12_1_1A" schemaLocation="FOP_UpdateFormOfPaymentReply_12_1_1A.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="FOP_CreateFormOfPayment_11_1">
+    <wsdl:part name="FOP_CreateFormOfPayment_11_1" element="fop_createformofpayment_11_1:FOP_CreateFormOfPayment"/>
+  </wsdl:message>
+  <wsdl:message name="FOP_CreateFormOfPaymentReply_11_1">
+    <wsdl:part name="FOP_CreateFormOfPaymentReply_11_1" element="fop_createformofpaymentreply_11_1:FOP_CreateFormOfPaymentReply"/>
+  </wsdl:message>
+  <wsdl:message name="FOP_ReadFormOfPaymentData_12_1">
+    <wsdl:part name="FOP_ReadFormOfPaymentData_12_1" element="fop_readformofpaymentdata_12_1:FOP_ReadFormOfPaymentData" />
+  </wsdl:message>
+  <wsdl:message name="FOP_ReadFormOfPaymentDataReply_12_1">
+    <wsdl:part name="FOP_ReadFormOfPaymentDataReply_12_1" element="fop_readformofpaymentdatareply_12_1:FOP_ReadFormOfPaymentDataReply" />
+  </wsdl:message>
+  <wsdl:message name="FOP_UpdateFormOfPayment_12_1">
+    <wsdl:part name="FOP_UpdateFormOfPayment_12_1" element="fop_updateformofpayment_12_1:FOP_UpdateFormOfPayment" />
+  </wsdl:message>
+  <wsdl:message name="FOP_UpdateFormOfPaymentReply_12_1">
+    <wsdl:part name="FOP_UpdateFormOfPaymentReply_12_1" element="fop_updateformofpaymentreply_12_1:FOP_UpdateFormOfPaymentReply" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="FOP_CreateFormOfPayment">
+      <wsdl:input message="pipa:FOP_CreateFormOfPayment_11_1"/>
+      <wsdl:output message="pipa:FOP_CreateFormOfPaymentReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="FOP_ReadFormOfPaymentData">
+      <wsdl:input message="pipa:FOP_ReadFormOfPaymentData_12_1" />
+      <wsdl:output message="pipa:FOP_ReadFormOfPaymentDataReply_12_1" />
+    </wsdl:operation>
+    <wsdl:operation name="FOP_UpdateFormOfPayment">
+      <wsdl:input message="pipa:FOP_UpdateFormOfPayment_12_1" />
+      <wsdl:output message="pipa:FOP_UpdateFormOfPaymentReply_12_1" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="FOP_CreateFormOfPayment">
+      <soap:operation soapAction="http://pip.koreanair.com/FOP_CreateFormOfPayment_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FOP_ReadFormOfPaymentData">
+      <soap:operation soapAction="http://pip.koreanair.com/FOP_ReadFormOfPaymentData_12_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FOP_UpdateFormOfPayment">
+      <soap:operation soapAction="http://pip.koreanair.com/FOP_UpdateFormOfPayment_12_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_FOPPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

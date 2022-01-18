@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/DocManagementDelivery_v3" xmlns:ama_ct="http://xml.amadeus.com/2010/06/Types_v2" xmlns:ama_appmdw_ct="http://xml.amadeus.com/2010/06/AppMdw_CommonTypes_v3" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2010B" targetNamespace="http://xml.amadeus.com/2010/06/DocManagementDelivery_v3" elementFormDefault="qualified" version="1.000" id="AMA2012F">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/AppMdw_CommonTypes_v3" schemaLocation="AMA_AppMdw_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="AMA_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2010B" schemaLocation="../../OTA/2010B/OTA_Proxy.xsd" />
+  <xs:element name="AMA_AppMdw_UpdatePrintContextRQ">
+    <xs:annotation>
+      <xs:documentation>Update Print Context Query</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Workstation" type="ama_appmdw_ct:WorkstationType" />
+        <xs:element name="FullLocation" type="ama_appmdw_ct:AddressType" minOccurs="0" />
+        <xs:element name="CRT" type="ama_appmdw_ct:AddressType" minOccurs="0" />
+        <xs:element name="DefaultPrint">
+          <xs:complexType>
+            <xs:attribute name="Target" type="ama_ct:CodePatternType" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="ota:OTA_PayloadStdAttributes" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

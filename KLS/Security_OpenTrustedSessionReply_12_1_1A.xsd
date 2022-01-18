@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/VTRSAR_12_1_1A" xmlns="http://xml.amadeus.com/VTRSAR_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="Security_OpenTrustedSessionReply">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Trusted authentication reply (Hybrid user)
+
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="processStatus" type="ResponseAnalysisDetailsTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Authentication response status</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="errorGroup" minOccurs="0" type="ErrorGroupType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">The details of error/warning code.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationErrorDetailType">
+    <xs:sequence>
+      <xs:element name="errorCode" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the data validation error condition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCategory" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCodeOwner" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the agency responsible for a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorDetails" type="ApplicationErrorDetailType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Application error details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Conveys a potential error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorOrWarningCodeDetails" type="ApplicationErrorInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The details of error/warning code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorWarningDescription" minOccurs="0" type="FreeTextInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The desciption of warning or error.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextDetailsType">
+    <xs:sequence>
+      <xs:element name="textSubjectQualifier" type="AlphaNumericString_Length1To3" />
+      <xs:element name="informationType" minOccurs="0" type="AlphaNumericString_Length1To4" />
+      <xs:element name="language" minOccurs="0" type="AlphaNumericString_Length1To3" />
+      <xs:element name="source" type="AlphaNumericString_Length1To3" />
+      <xs:element name="encoding" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to convey the free text and associated language, encoding.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeTextDetails" type="FreeTextDetailsType" />
+      <xs:element name="freeText" maxOccurs="99" type="AlphaNumericString_Length1To199">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text and message sequence numbers of the remarks.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseAnalysisDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the type of query and the processing status associated with this response.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="responseType" type="AlphaString_Length1To1" />
+      <xs:element name="statusCode" type="AlphaString_Length1To1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To199">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..199</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="199" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095544D8FD33010BDFB57585C38A0A6490F202AF91036DD82B4DD5DB5052E952AD79EB6168E1D3CCE6AC36AFF3BE32485E5045CAAF970E6E3BD375D2E6E17EB72BBA8F677B7629617B349514C6605FF0ADA016AD9F1FCFD7CF66E3E7BCB97ABED9B3C9FE7392B5765EC1AC06B63C1C91A0405F61F241AB54DE1EC11353B48845BCA61231588738CCD7C3A7DAC6D266BA9A1C54CF97ACA0EADD3162A13C4142146E34E38D54621536750DF36F45B4B11430B4C790DF40485F32E79750D8EBC315737D275A99D70ADB51468BA604EE7285E95433B7E1F7C130C44193A2E9DE657DE1D8DA61A465AFEC91D7DA86534DECD79EB641BCF3E981FA0798BD03FD70695F5D806E0188351D1769CBE39184D35324EC8E57CC22FCD30931926DF5ABE4E73205FD3F4E10174F68A6938CAD6C66568125C5A1CA54560DAB7070B1BF8DE8253702FA33A8F19701FFE094C70BFDF3C25829EF74F0F1090B6222B80052A43963C5187EE991D89BE756B09339F98ECFD9ECEFEE364FDA580F54ADA1172EB4F9A68ACE6BB8F8BB2DA2DB4394A15B7DE5BDC2DB6FBCA60942E5E1153C41F31B75BC9F00D12E3C31BECB9C6DD8D3F512D77EA0731FACED98ED5104E3082D1DBD706ACC68D0FF1177CB438D25C25264CFF8C55C4BAB1A372DC7F41D478E3E22DC4818E5E6CC1FBF802A1DE4F02CED8B0424214D329E5D3BC186378ED43690DD51E159BB4601460454AA2DE24CA0145AC6588A9EE67679489DDB8480CD2A1EDF549F808C21AA763E56DB99A3E69B086D69024A0E78CB22C8DA75F9E0F89E5EA7233434D8AF450F5976C9C628F68E35D1B9B365E7BAB218814606C32590D30BE466E7EDFC964C206904451B217FD45795FEE37A0DA40E3EF8BD95B12762D8D13379BCDC7EE108C66F0D810737B89FB6AB114DBF5E7C585292E0348F13EBFF8E24B75B32CD7ACA1D3307826B2070A069E4441D68349E491D963247B38C5AFFE77C4D236B4483AD95049CAB10B73A2A22A27499992CE3DFD11A87EB1353424B95114A298B19F6A94034323050000
+-->
+

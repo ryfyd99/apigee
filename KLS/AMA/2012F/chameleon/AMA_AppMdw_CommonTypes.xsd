@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 (http://www.altova.com) by AMADEUS SAS (AMADEUS SAS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ama_ct="http://xml.amadeus.com/2010/06/Types_v2" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2010B" xmlns:iata="http://www.iata.org/IATA/2007/00/IATA2010.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="qualified" version="3.001" id="AMA2012F">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="../AMA_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2010B" schemaLocation="../../../OTA/2010B/OTA_CommonTypes_Proxy.xsd" />
+  <xs:simpleType name="AlphaNumericString_Length1">
+    <xs:restriction base="xs:string">
+      <xs:length value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length2">
+    <xs:restriction base="xs:string">
+      <xs:length value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length3">
+    <xs:restriction base="xs:string">
+      <xs:length value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length5">
+    <xs:restriction base="xs:string">
+      <xs:length value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length6">
+    <xs:restriction base="xs:string">
+      <xs:length value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length9">
+    <xs:restriction base="xs:string">
+      <xs:length value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length10">
+    <xs:restriction base="xs:string">
+      <xs:length value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length17">
+    <xs:restriction base="xs:string">
+      <xs:length value="17" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length20">
+    <xs:restriction base="xs:string">
+      <xs:length value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length30">
+    <xs:restriction base="xs:string">
+      <xs:length value="30" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length35">
+    <xs:restriction base="xs:string">
+      <xs:length value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length50">
+    <xs:restriction base="xs:string">
+      <xs:length value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length100">
+    <xs:restriction base="xs:string">
+      <xs:length value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length199">
+    <xs:restriction base="xs:string">
+      <xs:length value="199" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length200">
+    <xs:restriction base="xs:string">
+      <xs:length value="200" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length256">
+    <xs:restriction base="xs:string">
+      <xs:length value="256" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length500">
+    <xs:restriction base="xs:string">
+      <xs:length value="500" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To2">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To3">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To4">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To5">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To6">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To9">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To10">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To17">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="17" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To20">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To25">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To30">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="30" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To35">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To50">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To100">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="100" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To199">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="199" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To200">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="200" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To256">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="256" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length1To500">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="500" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Lenght1ToN">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="String_Length3To20">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AddressType">
+    <xs:annotation>
+      <xs:documentation>Address is a generic type to convey a phone number,
+				an email address...</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Format" type="String_Length1To3" use="required">
+      <xs:annotation>
+        <xs:documentation>format of the recipient address</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Value" type="String_Length1To500" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="AddressWithModeType">
+    <xs:complexContent>
+      <xs:extension base="AddressType">
+        <xs:attribute name="Mode" type="String_Length1To3" use="optional">
+          <xs:annotation>
+            <xs:documentation>CRT or PNT when a TID is used. TO, CC, or BCC
+							when an EML address is used.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OwnershipType">
+    <xs:annotation>
+      <xs:documentation>Owner of the Query, containing: organization
+				(mandatory), application (mandatory)</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="OrganizationCode" type="String_Length1To10" use="required" />
+    <xs:attribute name="ApplicationLabel" type="String_Length1To10" use="required" />
+    <xs:attribute name="CompanyCode" type="String_Length1To10" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="TextType">
+    <xs:attribute name="Encoding" type="String_Length1To10" use="required" />
+    <xs:attribute name="Value" type="String_Length1To199" use="required" />
+  </xs:complexType>
+  <xs:complexType name="FTP_Type">
+    <xs:attribute name="Filename" type="String_Length1To199" use="required" />
+    <xs:attribute name="Path" type="String_Length1To199" use="required" />
+    <xs:attribute name="FileHash" type="String_Length1To100" use="optional" />
+    <xs:attribute name="FTPID" type="String_Length1To25" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="FTP_TypeWithLayoutType">
+    <xs:complexContent>
+      <xs:extension base="FTP_Type">
+        <xs:attribute name="LayoutType" type="String_Length1To5" use="optional" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LocationType">
+    <xs:annotation>
+      <xs:documentation>Location of a device</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Location">
+        <xs:annotation>
+          <xs:documentation>Global location of the device (airport, city, etc.)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="Airport">
+              <xs:annotation>
+                <xs:documentation>Airport location description</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attributeGroup ref="ota:AirportLocationGroup" />
+                <xs:attribute ref="BuildingCode">
+                  <xs:annotation>
+                    <xs:documentation>Code used to identify a building</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="City">
+              <xs:annotation>
+                <xs:documentation>City location description</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attributeGroup ref="ota:LocationGroup" />
+                <xs:attribute ref="BuildingCode">
+                  <xs:annotation>
+                    <xs:documentation>Code used to identify a building</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LocationCategory" type="CategoryType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Detailed description of the location</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:attribute name="BuildingCode" type="ota:StringLength1to8" />
+  <xs:complexType name="CategoryType">
+    <xs:attributeGroup ref="ama_ct:CodeGroup" />
+    <xs:attribute name="IndexNumber" type="ota:StringLength1to8" />
+  </xs:complexType>
+  <xs:complexType name="ApplicationType">
+    <xs:annotation>
+      <xs:documentation>Application identification</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="ApplicationLabel" type="ota:StringLength1to64" use="required" />
+    <xs:attribute name="IndexNumber" type="ota:NumericStringLength1to8" />
+  </xs:complexType>
+  <xs:complexType name="DocumentType">
+    <xs:sequence>
+      <xs:element name="OriginalDocument">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="DocumentAttributes" type="ama_ct:CriteriaSetType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Used to convey any data needed at document level. This part can also be used for short term fixes</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="TextType" minOccurs="0" />
+            <xs:element name="LayoutParameters" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Layout related data</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:choice>
+                  <xs:element name="LayoutCode">
+                    <xs:annotation>
+                      <xs:documentation>Layout identifier on Server side. It requires the layout to be uploaded previously</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To10" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="LayoutCriteria" type="ama_ct:CriteriaSetType">
+                    <xs:annotation>
+                      <xs:documentation>Criteria used to resolve a Layout code</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="FTP_Layout" type="FTP_TypeWithLayoutType">
+                    <xs:annotation>
+                      <xs:documentation>address used to retrieve the Layout file</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="DataReference" type="String_Length1To10" use="optional" />
+          <xs:attribute name="LanguageCode" type="String_Length1To10" use="optional">
+            <xs:annotation>
+              <xs:documentation>Requested output language for the document</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="OtherFlavor" minOccurs="0" maxOccurs="10">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="OverlayLayout">
+              <xs:complexType>
+                <xs:choice>
+                  <xs:element name="OverlayLayoutCode">
+                    <xs:annotation>
+                      <xs:documentation>Layout identifier on Server side. It requires the layout to be uploaded previously</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To10" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="OverlayLayoutCriteria" type="ama_ct:CriteriaSetType">
+                    <xs:annotation>
+                      <xs:documentation>Criteria used to resolve a Layout code</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="FTP_Overlay" type="FTP_Type">
+              <xs:annotation>
+                <xs:documentation>address used to retrieve the Layout file</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="OverlayResource">
+              <xs:complexType>
+                <xs:choice>
+                  <xs:element name="ResourceAddress">
+                    <xs:annotation>
+                      <xs:documentation>Resource identifier to retrieve a pdf
+												document</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To199" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="ResourceCriteria" type="ama_ct:CriteriaSetType">
+                    <xs:annotation>
+                      <xs:documentation>Resource criteria to retrieve a pdf
+												document</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="DataReference">
+              <xs:annotation>
+                <xs:documentation>reference the file provided by an external application and linked to the original document</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="Value" type="String_Length1To10" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="FlavorType" type="String_Length1To20" use="required">
+            <xs:annotation>
+              <xs:documentation>Copy or Infobeleg or Certification</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="LanguageCode" type="String_Length1To10" use="optional">
+            <xs:annotation>
+              <xs:documentation>Requested output language for the document</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="DocumentID" type="String_Length1To10" use="required">
+      <xs:annotation>
+        <xs:documentation>Identifies the document in the query</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="DocType" type="String_Length3" use="required" />
+    <xs:attribute name="DocSubType" type="String_Length3To20" use="optional" />
+    <xs:attribute name="Redeliver" type="xs:boolean" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="FormatAndDeliverRequestType">
+    <xs:annotation>
+      <xs:documentation>Contains the recipients lists and their association with a document list</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Recipients">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Recipient" maxOccurs="99">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="RecipientAddress" type="AddressWithModeType" maxOccurs="99" />
+                  <xs:element name="RecipientParameters" minOccurs="0">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="PackageType" minOccurs="0">
+                          <xs:complexType>
+                            <xs:attribute name="Value" type="String_Length1To4" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PackageName" type="TextType" minOccurs="0" />
+                        <xs:element name="FTP_Path" minOccurs="0">
+                          <xs:complexType>
+                            <xs:attribute name="Value" type="String_Length1To199" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="DocumentParameters" maxOccurs="99">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element name="DocumentID" minOccurs="0" maxOccurs="99">
+                                <xs:complexType>
+                                  <xs:attribute name="Value" type="String_Length1To10" use="required" />
+                                  <xs:attribute name="Body" type="xs:boolean" />
+                                </xs:complexType>
+                              </xs:element>
+                              <xs:element name="DocumentFlavor" minOccurs="0" maxOccurs="99">
+                                <xs:annotation>
+                                  <xs:documentation>Original, Copy,...</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                  <xs:attribute name="Value" type="String_Length1To199" use="required" />
+                                </xs:complexType>
+                              </xs:element>
+                              <xs:element name="DocumentAlias" type="TextType" minOccurs="0" />
+                              <xs:element name="PackageType" minOccurs="0">
+                                <xs:complexType>
+                                  <xs:attribute name="Value" type="String_Length1To4" use="required" />
+                                </xs:complexType>
+                              </xs:element>
+                              <xs:element name="PackageName" type="TextType" minOccurs="0" />
+                            </xs:sequence>
+                            <xs:attribute name="NumberOfIssuance" type="xs:nonNegativeInteger">
+                              <xs:annotation>
+                                <xs:documentation>Number of document that should be delivered</xs:documentation>
+                              </xs:annotation>
+                            </xs:attribute>
+                            <xs:attribute name="RequestedContentType" type="String_Length1To100">
+                              <xs:annotation>
+                                <xs:documentation>Requested output content type for the document</xs:documentation>
+                              </xs:annotation>
+                            </xs:attribute>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute name="RecipientAddressBestEffort" type="xs:boolean">
+                  <xs:annotation>
+                    <xs:documentation>used to deliver to all the valid recipients, even if one or more adresses in the recipient adress list is invalid</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NotificationAddress" type="AddressWithModeType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>"Address where a notification should be sent in case of error"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OriginalRequestId" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>"ID of the original request, in case of republication"</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="Value" type="String_Length1To50" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PrintingParameters" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ValidatingParameter" type="AddressWithModeType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Only an Office ID or a CRT TID can be used for a validation</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="Valuable" type="xs:boolean" />
+          <xs:attribute name="FeedType" type="String_Length2">
+            <xs:annotation>
+              <xs:documentation>Continuous Feed (CF) of Front Feed (FF)</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="Broadcast" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>used to send the documents to all the resolved recipients</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EmailParameters" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="From" type="AddressType" minOccurs="0" />
+            <xs:element name="ReplyTo" type="AddressType" minOccurs="0" />
+            <xs:element name="Subject">
+              <xs:complexType>
+                <xs:complexContent>
+                  <xs:extension base="TextType">
+                    <xs:attribute name="ForceValue" type="xs:boolean" use="optional">
+                      <xs:annotation>
+                        <xs:documentation>force the subject</xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SMS_Parameters" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Sender" type="AddressType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>phone number to display for the sender of the SMS</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SMS_ReplyExpected" minOccurs="0">
+              <xs:complexType>
+                <xs:attribute name="Value" type="xs:boolean" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PluginInhibitors" minOccurs="0" maxOccurs="99">
+        <xs:annotation>
+          <xs:documentation>Allows to prevent the usage of a plugin for this request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Plugin">
+              <xs:annotation>
+                <xs:documentation>The available Plug-ins are the Billing Plug-in (BIL), the Archiving Plug-in (ARC), the EDI Notif Plug-in (EDI), the Event Plug-in (EVT) and the RequestParameters Plug-in
+									(REQ)</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="Value" type="String_Length1To3" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RequestAttributes" type="ama_ct:CriteriaSetType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WorkstationType">
+    <xs:sequence>
+      <xs:element name="Application" type="ApplicationType" minOccurs="0" />
+    </xs:sequence>
+    <xs:attribute name="Organization" type="ota:StringLength1to16" use="required" />
+    <xs:attribute name="WorkstationId" type="ota:StringLength1to64" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="ParametersType">
+    <xs:annotation>
+      <xs:documentation>Contains parameters related to the whole Query</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SendAllRequests" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>"Indicates if the system should process all Requests on all recipients or if it should stop as soon as a recipient is found for one of the Requests. Defaults to Yes (process all
+						Requests on all recipients independently"</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="Value" type="xs:boolean" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentDataType">
+    <xs:choice>
+      <xs:element name="FTP" type="FTP_Type" />
+      <xs:element name="ResourceAddress">
+        <xs:complexType>
+          <xs:attribute name="Value" type="String_Length1To199" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ResourceCriteria" type="ama_ct:CriteriaSetType" />
+      <xs:element name="RawData" type="ama_ct:RawDataType" />
+      <xs:element name="ArchiveID">
+        <xs:complexType>
+          <xs:attribute name="Value" type="String_Length1To35" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ArchiveCriteria" type="ama_ct:CriteriaSetType" />
+    </xs:choice>
+    <xs:attribute name="DataReference" type="String_Length1To10" use="required" />
+    <xs:attribute name="ContentType" type="String_Length1To100" use="optional">
+      <xs:annotation>
+        <xs:documentation>The content type is mandatory for a preformatted document</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Encoding" type="String_Length1To6" use="optional" />
+  </xs:complexType>
+  <xs:complexType name="DocumentStatusType">
+    <xs:annotation>
+      <xs:documentation>Status for the output document</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ErrorOrWarning" type="ama_ct:ErrorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Error/Warning at Document Level</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OriginalLayoutStatus" minOccurs="0">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="ResolvedLayoutCode">
+              <xs:annotation>
+                <xs:documentation>Contains the layout code resolved from business rules, or the layout code from the input</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="Value" type="String_Length1To50" use="required" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="FTPLayoutName">
+              <xs:annotation>
+                <xs:documentation>Contains the layout name retrieved from the FTP</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="Value" type="String_Length1To50" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DataStatus" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="RawData" type="ama_ct:RawDataType" minOccurs="0" />
+            <xs:element name="ResolvedResource" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Contains the ID of the resource retrieved on Resource Server</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="Value" type="String_Length1To50" use="required" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ResolvedFTPFilename" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Contains the file name of the file retrieved on the FTP</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:attribute name="Value" type="String_Length1To50" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="OverlayStatus" minOccurs="0" maxOccurs="10">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ErrorOrWarning" type="ama_ct:ErrorType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Error/Warning at Overlay Level</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="OverlayLayoutStatus" minOccurs="0">
+              <xs:complexType>
+                <xs:choice>
+                  <xs:element name="ResolvedLayoutCode">
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To50" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="FTPLayoutName">
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To50" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="ResolvedResource">
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To50" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="ResolvedFTPFilename">
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To50" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                </xs:choice>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="OverlayStatusCode" type="String_Length1To6" use="required" />
+          <xs:attribute name="OverlayType" type="String_Length1To20" use="required" />
+          <xs:attribute name="ResolvedOverlayID" type="String_Length1To50" use="optional" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DocumentAttributes" type="ama_ct:CriteriaSetType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Conveys different information linked to the document</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="DocumentStatusCode" type="String_Length1To6" use="required">
+      <xs:annotation>
+        <xs:documentation>O=OK X=KO W=Warning</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="InputDocId" type="String_Length1To10" use="required">
+      <xs:annotation>
+        <xs:documentation>ID from the query Document</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OutputDocId" type="String_Length1To20" use="required">
+      <xs:annotation>
+        <xs:documentation>ID for the output Document. The InputDoId is
+					concatenated to another ID to create this one</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="DocType" type="String_Length3" use="required" />
+    <xs:attribute name="DocSubType" type="String_Length3" use="optional" />
+    <xs:attribute name="ContentType" type="String_Length1To100" />
+    <xs:attribute name="ArchiveStatus" type="String_Length1To6">
+      <xs:annotation>
+        <xs:documentation>O=OK X=KO</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="RequestStatusType">
+    <xs:annotation>
+      <xs:documentation>Status for the Request</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ErrorOrWarning" type="ama_ct:ErrorType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Error/Warning at Request Level</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OutputStatusList" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="OutputStatus" maxOccurs="99">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ErrorOrWarning" type="ama_ct:ErrorType" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Error/Warning at OutputStatus Level</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="OriginalRecipient" type="AddressWithModeType" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Recipient given in input and used to
+												retrieved the resolved recipients. Only used if a resolution
+												has been done</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ResolvedRecipientList">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="ResolvedRecipient" type="AddressWithModeType" maxOccurs="99">
+                          <xs:annotation>
+                            <xs:documentation>Resolved recipient address(for indirect
+															addressing mode) or input recipient address</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="OutputDocId" minOccurs="0" maxOccurs="99">
+                    <xs:annotation>
+                      <xs:documentation>ID for the output Document</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="Value" type="String_Length1To20" use="required" />
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element name="RequestAttributes" type="ama_ct:CriteriaSetType" minOccurs="0">
+                    <xs:annotation>
+                      <xs:documentation>Conveys different information linked to the
+												request</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+                <xs:attribute name="SentStatusCode" type="String_Length1To6" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="RequestStatusCode" type="String_Length1To6" use="required" />
+    <xs:attribute name="RequestID" type="String_Length1To50" use="optional" />
+    <xs:attribute name="ArchiveStatus" type="String_Length1To6">
+      <xs:annotation>
+        <xs:documentation>O=OK X=KO</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>
+

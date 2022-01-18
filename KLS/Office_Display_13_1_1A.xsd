@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/OIDREQ_13_1_1A" xmlns="http://xml.amadeus.com/OIDREQ_13_1_1A" elementFormDefault="qualified">
+  <xs:element name="Office_Display">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This message let the requester to display the Office Profile of a given office.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="requestType" type="MessageActionDetailsType" />
+        <xs:element name="officeIdentification" minOccurs="0" type="OfficeProfileIdentificationType" />
+        <xs:element name="displayOptions" minOccurs="0" type="OfficeProfileFieldsDetailsType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="MessageActionDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the message type and business function.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="messageFunctionDetails" type="MessageFunctionBusinessDetailsType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageFunctionBusinessDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To indicate the type and function of a message or part of a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="messageFunction" type="AlphaNumericString_Length1To3" />
+      <xs:element name="responsibleAgency" type="AlphaNumericString_Length1To3" />
+      <xs:element name="additionalMessageFunction" minOccurs="0" maxOccurs="20" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OfficeProfileFieldsDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the option : Note that if option is V20, it is not possible to request specific fields to be displayed.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="oidField" minOccurs="0" maxOccurs="10" type="AlphaNumericString_Length3To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">OFFICE PROFILE FIELDS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="oidSection" minOccurs="0" maxOccurs="10" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">SUBSECTIONS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OfficeProfileIdentificationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the office to display. If the message type is V10, only an office name or an Amid number can be specified. If the message type is V20, either an office name or an Amid or even a IATA number can be passed.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="inhouseIdentification" minOccurs="0" type="AlphaNumericString_Length9To9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">OFFICE NAME</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="officeAmid" minOccurs="0" type="NumericInteger_Length1To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">AMID OF OFFICE</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="iataNumber" minOccurs="0" type="NumericInteger_Length7To8">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">IATA NUMBER</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length9To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="9" />
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,6}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length7To8">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n7..8</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{7,8}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length3To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D6FDB300CBDEB5708BDEC30C4715A141B02E8E0C66E576069BA24BD0508148B4984CA9227CA45BDA2FF7D94EDACDD2EDB00C32029891FEF3DDE1477C5325B17F9767127CED3C9C56892D2C7D7C7C6A3922D4F3F4D2F2FA6E729BF99AF3FA6E9344D5936CF425B035E6B0356562028B0BD92A8CB750C27CFA8D84E22DCD119D6B204710CA19E8EC7CF9549642515349894AE1AB35D6395815C7B31460841DB038E952E919547281F57F4AFA408BE01563A0574058575367A550596BCE1ACAAA56D6339611B632850B75E1F8E419C657D397EEF5DED3504E95B2EADE23367F75A510E2D0DBFB57BE72B19B4B353DE58D984A3F3FA0728DE2074D795C6D2386C3C700C5E97C1B49CDEECB4A21C0927E0523EE2A76298C804A36F0C5FC63E902FA97BFF042A39630AF6B231E1C6D7112E25F6D22030E59A9D81157C6FC096702F43791C4EC05EFD139860DFEEBC44825EB72F4FE091A622CB83014A43963C5085F695ED89BE656308331799ECFC8ECEEE71B4FE92C0B8529A0172E30E8A68CCA79B2F45966F0AA5F7B20C6BE70C6E8AF536D718A40D33628AF823E63673E91F2132DEDFC18E6BDC7C7507CA650F5D235A2DAC695905FE0003189D7DADC1285C391F7EC1478323F59561C4F4F7584EAC6B3328C7FE1744B5D336DC41E8E9E8C4E69D0BEF10EAFC28E084F5234444316E523A4E27430CAF9DCF8CA6DC8362A3167409989392A83689B247112BE943CCFB6075A9433B0C12BCB4683A7D123E82B0C6F190799DCDC72F0A8CA6312409E835A15316DB53EFD787C4323BED4C9F93221D54DD266B5BB2673461D184BA09D7CE28F02206181B8DE63D8C1F90EBB73D198D580F929864EC5D7D91DD67DBC57E4FD36D27179724EB4A6A2B56C58CC1734D8C6D256EF3E246AC970FC589212E3D4831F97CF2C5E2365F16DF584D2BA1F14824F7D0F7FC8809594F3A924666878DEC6014435D125B6D64CB4E24FD191F1817930BF6137418AF8BFF040000
+-->
+

@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/FFARES_12_1_1A" xmlns="http://xml.amadeus.com/FFARES_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="PNR_AddFrequentFlyerReply">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Frequent Traveller Card addition response</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pnrInfo" minOccurs="0" type="ReservationControlInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Record Locator</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="errorGroup" minOccurs="0" maxOccurs="2">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">General errors</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="errorInfo" type="ApplicationErrorInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Error details</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="errorText" minOccurs="0" type="InteractiveFreeTextTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Error text</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ssrGroup" minOccurs="0" maxOccurs="99">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Non Segment associated Frequent Traveller.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fqtvData" type="FrequentTravellerVerificationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Frequent Traveller data</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="actionCode" minOccurs="0" type="RelatedProductInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Status code of the SSR created</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="customerValue" minOccurs="0" type="FrequentTravellerIdentificationCodeType_6212S">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Airline customer value</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="errorGroup" minOccurs="0" maxOccurs="3">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Error group</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="errorInfo" type="ApplicationErrorInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Error info</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="errorText" minOccurs="0" type="InteractiveFreeTextTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Error text</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="paxInfoGroup" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Passenger info</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paxInfo" type="TravellerInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Passenger name and tattoo</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ssrGroup" minOccurs="0" maxOccurs="99">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Non Segment associated Frequent Traveller.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="fqtvData" type="FrequentTravellerVerificationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Frequent Traveller data</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="actionCode" minOccurs="0" type="RelatedProductInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Status code of the SSR created</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="customerValue" minOccurs="0" type="FrequentTravellerIdentificationCodeType_6212S">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Airline customer value</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="errorGroup" minOccurs="0" maxOccurs="3">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Error group</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="errorInfo" type="ApplicationErrorInformationTypeI">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Error info</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="errorText" minOccurs="0" type="InteractiveFreeTextTypeI">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Error text</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="enhancedPaxInfoGroup" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">enhanced pax information</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="enhancedPaxInfo" type="EnhancedTravellerInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">enhanced passenger name</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="ssrGroup" minOccurs="0" maxOccurs="99">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Non Segment associated Frequent Traveller.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="fqtvData" type="FrequentTravellerVerificationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Frequent Traveller data</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="actionCode" minOccurs="0" type="RelatedProductInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Status code of the SSR created</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="customerValue" minOccurs="0" type="FrequentTravellerIdentificationCodeType">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Airline customer value</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="errorGroup" minOccurs="0" maxOccurs="3">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Error group.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="errorInfo" type="ApplicationErrorInformationTypeI">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Error info</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="errorText" minOccurs="0" type="InteractiveFreeTextTypeI">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Error text</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationErrorDetailTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code assigned by the recipient of a message to indicate a data validation error condition.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorCode" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the Amadeus canned message number corresponding to the error.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCategory" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This filed indicates if the error is a warning or a real error.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCodeOwner" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field always contains '1A'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorDetails" type="ApplicationErrorDetailTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Error code and owner.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code or name to identify a company and any associated companies.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="marketingCompany" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Frequent Flyer Card owning airline</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="operatingCompany" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Target airline that will use the frequent flyer card</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnhancedTravellerInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify traveler and personal details relating to one traveler having rich name and/or multiple names</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="travellerNameInfo" minOccurs="0" type="TravellerNameInfoType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Name attributes unique for one passenger.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherPaxNamesDetails" maxOccurs="5" type="TravellerNameDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">5 possible types of names, for 1 passenger.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerIdentificationCodeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify frequent traveler information</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="frequentTravellerDetails" minOccurs="0" type="FrequentTravellerIdentificationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Frequent Traveller Info</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerIdentificationCodeType_6212S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify frequent traveler information</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fqtvInformationDetails" minOccurs="0" type="FrequentTravellerIdentificationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Frequent Traveller Info</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerIdentificationTypeI">
+    <xs:sequence>
+      <xs:element name="airlineCustomerValue" type="NumericInteger_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline customer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerIdentificationType">
+    <xs:sequence>
+      <xs:element name="customerValue" type="NumericInteger_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline customer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FrequentTravellerVerificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide frequent traveller information for mileage accrual and account updating.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="actionRequest" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Action performed on the PNR: contains O in case of FF card/redemtion addition, and P in case of FF card and name addition</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="tier" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Alliance tier description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="companyDetails" type="CompanyIdentificationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Owner and target airlines</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="accountDetails" type="ProductAccountDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Frequent traveller card details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InteractiveFreeTextTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide free text information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeText" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the freetext description of the error or warning.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductAccountDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify frequent traveller card information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="frequentTravellerId" type="AlphaNumericString_Length1To27">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Frequent traveller card number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="category" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">set to 'PAX' in case of FD element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="rateClass" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline priority code or tier level</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RelatedProductInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To indicate quantity and action required in relation to a product.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusCode" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Status code of SSR FQT (HK, SS or NN)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="controlNumber" type="AlphaNumericString_Length1To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Store PNR record locator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" type="ReservationControlInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">PNR identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the given/first name and the title of a traveller and the traveller type.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="givenName" type="AlphaNumericString_Length1To56">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger firstname + title + expandedname</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="uniqueCustomerIdentifier" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger tattoo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a traveler(s) and personal details relating to the traveler(s).</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="paxDetails" type="TravellerSurnameInformationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherPaxDetails" type="TravellerDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger firstname and tattoo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerNameDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify all the names in different alphabets associated to a same traveller</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="surname" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger surname</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="givenName" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger firstname</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="title" minOccurs="0" maxOccurs="2" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger title.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerNameInfoType">
+    <xs:sequence>
+      <xs:element name="uniqueCustomerIdentifier" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger tattoo in the PNR</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerSurnameInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of the surname of a traveller, the type of traveller, number of travellers per surname and the action to be taken.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="surname" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Parssenger Surname</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To70">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..70</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="70" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,5}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To27">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..27</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="27" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,4}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To56">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..56</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="56" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095535D6BDB30147DD7AF107BD9C388E3B41D2B013DB889D30D963424297B0904C5BA494465C9D3954BBDD2FFBE2BDB593B186C7B31F743BE1FE79C7B9B2FF255B6C9A7BBBB85B848479783F47A907EE2DF405940251B9E5E8F2FAEC6A34B7E3BDF7C48D3719AB26C9E85A6029C690356962028B0BB91A88B4D0C274FA8D85E222C2887952C409C42A8C6C3E1536912594A053526852B876C5F5B6560AABD182284A0ED11874A17C88A13140F6BFA9652045F032B9C027A82C23A1BBDB2044B5E9F2B2B699BD84ED8DA180A548DD7C75310EFB2AE1D5F7A57790D41FA864BABF8C4D9835654434BC3BFD883F3A50CDAD931AFADACC3C979FD0314AF11DAE74A63611CD61E3806AF8B601A4EFFECB5A21A0927E4523EE0E76698C804A36F0C5FC53990AF687AFF082A79C7141C646DC2ADAF225C4A1CA44160CAD57B036BF85E832D60294371EA33606FFE094CB0AF6F9E23412FBBE747F0485B91E5C10095214B1EA943F3C20E44DFAA3684998B4CB67E4B67FB73B4FE52C0B8429A1E72E38E8A689C8EB79FF36CBACD953EC8226C9C33B8CD37BBA9C6206D981053C41F31B79D4BFF0091F1EE0DB65CE3F6AB3B522D7B6C07D1EACE9A8695E08FD083D1DA330D46E1DAF9F00B3E5A1C69AE0C23A6BFC7A6C4BA36BD72EC7F4154396DC3024247472B36EF5C788350EB470127AC5B21228AF194D2613AEA6338733E339A6AF78A8D5AD005E0949444BD49941D8A584A1F62DD7BAB0B1D9A7E91E0A545D3EA93F01184350EFBCA9B6C3E7C566034AD2149402F0965591C4FBD3D1F12CBE47C335D4D8AB450B597AC6DC19ED084BB3A54759839A3C08B18606C30987730BE47AE5FEF6430601D486294B137FD45B6CC76CBC56A37BABC224D97525B31B95F3378AA88AE9DC4DD34BF159BD57D7EA6874B0F528CD28FE78098CDB255BE66151D84C61351DC01DFB12346643DEA4819992D32B20551C4AE995233DFDE509899063C3B13F5C7EC0A2A92572F0031BA603F019FB743090F050000
+-->
+

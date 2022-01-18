@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/NMEREQ_12_1_1A" xmlns="http://xml.amadeus.com/NMEREQ_12_1_1A" elementFormDefault="qualified">
+  <xs:element name="PNR_NameChange">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To request name changes</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="recordLocator" minOccurs="0" type="ReservationControlInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This segment conveys the Amadeus record locator information. There is no record locator if the PNR is in creation mode.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="passenger" minOccurs="0" maxOccurs="2">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This group contains passenger related information:  - name  - date of birth First repetition is usually for adult and second for related infant.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="passengerDetails" type="TravellerInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">This segment contains the passenger details.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="dateOfBirth" minOccurs="0" type="StructuredDateTimeInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Passenger date of birth (DDMMYYYY) If the passenger has an infant, not in a separate TIF, then the date is used for the infant date of birth.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="enhancedPassengerInformation" minOccurs="0" maxOccurs="2">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This group contains passenger related information:  - Enhanced passenger data (Native name, Roman name with separated title)  - date of birth First repetition is usually for adult and second for related infant.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="transactionCode" type="ActionIdentificationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Indicates the name update (UPD) or name change (CHG) transaction.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="enhancedTravellerNameInfo" type="EnhancedTravellerInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Rich name information for a given passenger.  To be imperatively used if name is UTF-8 encoded.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="dateOfBirthInEnhancedPaxData" minOccurs="0" type="StructuredDateTimeInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Passenger date of birth (DDMMYYYY) If the passenger has an infant, not in a separate TIF, then the date is used for the infant date of birth.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ActionIdentificationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide details of action required or taken, the flights to which this action refers, and reasons for action taken.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="actionRequestCode" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Action code, name change or name update.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnhancedTravellerInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify traveler and personal details relating to one traveler having rich name and/or multiple names</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="travellerNameInfo" type="TravellerNameInfoType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Name attributes unique for one passenger.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherPaxNamesDetails" minOccurs="0" maxOccurs="3" type="TravellerNameDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">3 possible types of names in input, for 1 passenger (adult OR infant)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="controlNumber" type="AlphaNumericString_Length6To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the Amadeus record locator.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" type="ReservationControlInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This composite conveys the details of the record locator.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is designed to convey date/time in a structured way.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dateTime" type="StructuredDateTimeType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey date and/or time.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredDateTimeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Store date and time in a structured way</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="year" type="Year_YYYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Year number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="month" type="Month_mM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Month number in the year ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="day" type="Day_nN">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Day number in the month ( begins to 1 )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the given/first name and the title of a traveller and the traveller type.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="givenName" type="AlphaNumericString_Length1To56">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the passenger firstname + title if applicable.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="uniqueCustomerIdentifier" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the tattoo number of the passenger that will be updated. The tattoo number is retrieved from a PNR structured image.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="infantIndicator" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">1. Infant (INF) No more info in Edifact. 2. Infant given name only (INF/BILL) Infant given name will be placed in a 2nd occurence of C324 of this (adult) passenger TIF. The 2nd C324/6353 element will contain INF. 3. Infant given and last name (INFGATES/BILL) Infant is treated as a separate TIF following immediately this (adult) passenger TIF. This following TIF C324/6353 element will contain INF.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="identificationCode" minOccurs="0" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification code, 2 cases: ID &lt; 1 to 51 char free text ) or CR &lt; 1 to 40 char free text )</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a traveler(s) and personal details relating to the traveler(s).</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="paxDetails" type="TravellerSurnameInformationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This composite contains the details of the passegner surname.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherPaxDetails" minOccurs="0" maxOccurs="2" type="TravellerDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Occurrence one relates to the traveler.  Occurrence 2 relates only to an infant accompanying the traveler for whom only the given name is present.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerNameDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify all the names in different alphabets associated to a same traveller</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="nameType" minOccurs="0" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Name type (Native name, Universal name...).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="referenceName" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference name. This field should not be filled except in case of referecne name change.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="surname" minOccurs="0" type="AlphaNumericString_Length1To57">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger surname</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="givenName" minOccurs="0" type="AlphaNumericString_Length1To56">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger firstname</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="title" minOccurs="0" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Title.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerNameInfoType">
+    <xs:sequence>
+      <xs:element name="quantity" type="NumericInteger_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Quantity. The quantity is always 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger type (PTC).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherType" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Passenger type (PTC).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="uniqueCustomerIdentifier" minOccurs="0" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the tattoo number of the passenger that will be updated. The tattoo number is retrieved from a PNR structured image.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="infantIndicator" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">1. Infant (INF) No more info in Edifact. 2. Infant given name only (INF/BILL) Infant given name will be placed in another occurence of C325 of this (adult) passenger ETI. This other C324/6353 element will contain INF. 3. Infant given and last name (INFGATES/BILL) Infant is treated as a separate ETI following immediately this (adult) passenger ETI. This following ETI element will contain INF.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="travellerIdentificationCode" minOccurs="0" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ID or CR code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TravellerSurnameInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of the surname of a traveller, the type of traveller, number of travellers per surname and the action to be taken.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="surname" type="AlphaNumericString_Length2To57">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This field contains the passenger surname.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="quantity" type="NumericInteger_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The quantity is always 1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="status" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Select name modification C for name update M for name change</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length6To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="6" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length2To57">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an2..57</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="57" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,1}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To56">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..56</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="56" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,5}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To70">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..70</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="70" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To57">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..57</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="57" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Year_YYYY">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the year. Example: 2003</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Month_mM">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the month. Only significant digits are mandatory. Example: 7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0?[1-9]|1[0-2])" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Day_nN">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Value of the day in the  month. Only significant digits are mandatory. Example: 7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0?[1-9]|[1-2][0-9]|3[0-1])" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B08000000000000009553CB6EDB3010BCF32B885C7A282C4B06D2A206785062D92D103BA9E3A017030623AE6D2214A972A9206A907FEF52929BB497B617611FD43E666617C5AA58E79B62B6BB5E89499A4D4659369A64FC1B280BA864CBD34FD3C9C76976CE17CBCDFB349DA629CB9779686BC0B9366065058202BB0B89BADCC470F2848ADD4B8415E5B09625886308F5743C7EAA4C222BA9A0C1A474D598DD37561998692FC60821687BC0B1D225B2F208E5C32D7D2B29826F80954E013D41619D8D5E5581256FC855B5B46D6C276C630C05EAD6EBC33188B3BC6FC76FBCABBD86207DCBA555FCD2D9BD5654434BC3BFD8BDF3950CDAD9296FAC6CC2D179FD03146F10BAE74A63691C361E3806AFCB605A4EFFDC6B4535124EC8A57CC44FCD30910946DF18BE8E73205FD3F4FE115472C614EC6563C2C2D7112E25F6D22030E59A7B03B7F0BD015BC28D0CE571C880BDF82730C1BEBE798E04BDEC9E1FC1236D4596070354862C79A00EED0BDB137DEBC610662E32D9F91D9DDDCFD1FA4B01E34A6906C88D3B28A27136DD7E2EF2D9B6507A2FCBB071CEE0B6D8EC661A83B4E1929822FE88B9ED52FA07888CF76FB0E31AB757EE40B5ECA11B44AB6B6B5A56813FC0004667CF351885B7CE875FF0D1E24873E51831FD3D3623D6B5199463FF0BA2DA691B56107A3A3AB179E7C21B843A3F0A3861FD0A11518CA7948ED36C88E1DCF9DC68AA3D28366A419780335212F52651F62862257D8875EFAC2E756887458297164DA74FC24710D6381E2A6FF2E5F85981D1B4862401BD249465713CF5F67C482C97A79BE96B52A483AABB646D4BF684265C37A16EC2DC19055EC40063A3D1B287F11D72FD7A27A311EB411259CEDEF417F94DBEBB59AD77D9E40369BA92DA8A22BF62F054135D3B89BB59B1109BF55D71A2874B0F529C67275FAC96C5BAF8CA6ABA078D4762B8C7BD274764643DEAC818991D30B2C350C4A6F1002E8FD21E809D18FA333ED02DB209FB09BC290E0FFD040000
+-->
+

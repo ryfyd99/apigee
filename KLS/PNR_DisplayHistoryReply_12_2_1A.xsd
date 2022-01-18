@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/PHIDRR_12_2_1A" xmlns="http://xml.amadeus.com/PHIDRR_12_2_1A" elementFormDefault="qualified">
+  <xs:element name="PNR_DisplayHistoryReply">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="generalErrorGroup" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This segment conveys the error details, if one occured during the processing of the query.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="errorNumber" type="ApplicationErrorInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">This segment conveys the error number.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="genrealErrorText" minOccurs="0" type="FreeTextInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">This segment conveys the error free text.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="pnrPurgeDate" minOccurs="0" type="ProfilePurgeDate">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This segment conveys the purge date of the PNR if applicable.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="actionDetails" minOccurs="0" type="ActionDetailsTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This segment is used to split the response in several messages (scrolling).</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="pnrRloc" minOccurs="0" maxOccurs="2" type="ReservationControlInformationType" />
+        <xs:element name="pnrHistory" minOccurs="0" maxOccurs="500">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This group conveys the information about a history item.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pnrHistoryData" type="PnrHistoryDataType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">This segment conveys a history line.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="associatedSecurity" minOccurs="0" maxOccurs="11" type="ExtendedOwnershipSecurityDetailsType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">For secured history element, and if required, the security details are provided.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ActionDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the action that should be taken on a selected reference number.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="lastItemsDetails" type="ReferenceTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This composite conveys the details needed to perfom the scrolling mechanism : indication of remaining items and last item retrieved.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorDetailTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Code assigned by the recipient of a message to indicate a data validation error condition.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorCode" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the data validation error or warning condition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCategory" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCodeOwner" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the agency responsible for a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorDetails" type="ApplicationErrorDetailTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This composite conveys the error details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedOwnershipSecurityDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify security between offices</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="securityDetails" type="ExtendedSecurityDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This composite contains security data between entities or related to one entity.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedSecurityDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This composite contains details on agreement and access mode between two entities</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="typeOfEntity" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to specify which kind of entities is specified. F - for family</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="accessMode" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to specify the access mode regarding agreement and entities</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="inhouseIdentification" minOccurs="0" type="AlphaNumericString_Length1To9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to specify entity on which the detailed security applied. Mask is specified useing *, for instance, corporate 1A0 is specified as follows : ***1A0***.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dutyCode" minOccurs="0" type="AlphaNumericString_Length2To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This element conveys the duty code of the requester.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextDetailsType">
+    <xs:sequence>
+      <xs:element name="textSubjectQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Type of freetext.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="source" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Generator of the error or warning.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="encoding" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Character code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is used to convey the free text</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeTextDetails" type="FreeTextDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details about the error or warning text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="freeText" type="AlphaNumericString_Length1To199">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text and message sequence numbers of the remarks.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PnrHistoryDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an Amadeus PNR History Data</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="previousRecord" minOccurs="0" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference to previous envelop It may not exist when we are on element creation case.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="currentRecord" type="NumericInteger_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Current envelop</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="actionType" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Specifies the type of action done on the history.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="elementType" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Specifies on which element an update has been done.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="textInformation" type="AlphaNumericString_Length1To1000">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Text used to detail the action done on the history.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProfilePurgeDate">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify purge dates of profiles</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="purgeDate" type="NumericInteger_Length8To8">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Purge Date</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify which number in a sequence of references and/or the reference number.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="numberOfItems" minOccurs="0" type="AlphaNumericString_Length1To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">In the query, this element conveys the maximum numbers of items to retrieve (0 if there is no limitation on client side). In the response, this element indicates if there are remaining items.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="lastItemIdentifier" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">This element indicates the reference number of the last retrieved item.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To35" />
+      <xs:element name="recordLocator" type="AlphaNumericString_Length1To20" />
+      <xs:element name="controlType" minOccurs="0" type="AMA_EDICodesetType_Length1" />
+      <xs:element name="creationDate" minOccurs="0" type="Date_YYYYMMDD" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="rlocInfo" type="ReservationControlInformationDetailsType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To199">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..199</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="199" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length8To8">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n8</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{8,8}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,5}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1000">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..1000</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1000" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To20">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..20</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length2To2">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AMA_EDICodesetType_Length1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used for codes in the AMADEUS code tables. Code Length is one alphanumeric character.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Date_YYYYMMDD">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Date format: YYYYMMDD</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D8FD33010BDFB57585C38A0A64911202AF91036D95D24DAADB2455C2A55DE78DA5A3876F038AB0DABFDEF8C9314160909B844F3E1CCC77B6FAECA7559E5DBB2D8DFACC522CD16B32C9B2D32FE05940554B2E7E9FBE5E2DD924257ABEDAB345DA629CB5779E85BC04B6DC0CA060405F61F24EA7A1BC3C9032A762711D694C356D6204E21B4CBF9FCA131896CA4820E93DA357376D75965A0D05ECC1142D0F68873A56B64F509EAAFB7F46DA408BE03563B05F4048575367A4D0396BC29D7B4D2F6B19DB09D3114687BAF8FA7205EE4633BBEF1AEF51A82F43D9756F10B670F5A510D2D0DFF680FCE3732686797BCB3B20B27E7F57750BC43189E2B8DB571D879E018BCAE83E939FD73A715D548382197F2193F37C34426187D637815E7405ED1F4FE1E54F2822938C8CE842BDF46B894384883C094EBEE0CDCC2B70E6C0D1B19EAD39401FBE19FC004FBEBCD6324E869FF780F1E692BB23C18A03264C92375E89FD881E8AB3A4398B9C8E4E00F740E3F47EB2F058CABA5992037EEA888C662B9BB2EF362572A7D9075D83A6770576EF785C6206DB820A6883F626EB792FE2B44C6C73738708DBB4FEE48B5EC711844AB1B6B7AD6803FC204C6605F6A300A6F9D0F3FE1A3C591E6CA3162FA7BAC20D6B5999463FF0BA2D6691BD610463A06B179E7C23384063F0A3861E30A11518CA794CED36C8AE1A5F3B9D1547B526CD482AE010B5212F526518E2862237D88753F5B5DEBD04F8B042F2D9A419F848F20AC713E55DEE6ABF9A302A3690D49027A4A28CBE278EAF9F990582ECE3733D6A4C800D570C9DAD6EC014DB8E942DB854B67147811038CCD66AB11C697C8F5AF3B99CDD80892C872F6ACBFC837F97EB3AEF6D9E22D69BA91DA8A32FFC4E0A125BAF612F7457925B6D5E7F24C0F971EA478939D7DB1B9FE5854156BE91E349E88E111F7911CB120EB5E47C6C4EB1118396028625392596B647F4D6A73BE676796FE90ABA025654DDC8B6CC17E00ECB742890A050000
+-->
+

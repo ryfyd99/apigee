@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2007 rel. 3 (http://www.altova.com) by AMADEUS SAS (AMADEUS SAS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/DocManagementDelivery_v3" xmlns:ama_appmdw_ct="http://xml.amadeus.com/2010/06/AppMdw_CommonTypes_v3" xmlns:ama_ct="http://xml.amadeus.com/2010/06/Types_v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://xml.amadeus.com/2010/06/DocManagementDelivery_v3" elementFormDefault="qualified" version="1.000" id="AMA2012F">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/AppMdw_CommonTypes_v3" schemaLocation="AMA_AppMdw_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="AMA_CommonTypes_Proxy.xsd" />
+  <xs:element name="AMA_AppMdw_ResolveTargetRS">
+    <xs:annotation>
+      <xs:documentation>Resolve Target Response</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ErrorOrWarning" type="ama_ct:ErrorType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Error/Warning at Query Level</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DocumentStatusList" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DocumentStatus" type="ama_appmdw_ct:DocumentStatusType" maxOccurs="99" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RequestStatusList" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RequestStatus" type="ama_appmdw_ct:RequestStatusType" maxOccurs="99" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

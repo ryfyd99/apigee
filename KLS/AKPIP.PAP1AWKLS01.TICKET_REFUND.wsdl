@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+xmlns:pipa="http://xml.amadeus.com" 
+xmlns:pip="http://PIP_Service_Library/PIP_Processing" 
+xmlns:pips="http://PIP_Service_Library/PIP_Session" 
+xmlns:pipe="http://PIP_Service_Library/PIP_Error" 
+xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+xmlns:ama_2010_06_TicketGTP_v1="http://xml.amadeus.com/2010/06/TicketGTP_v1" 
+targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2013N/AMA_TicketProcessRefundRQ.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2013N/AMA_TicketProcessRefundRS.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2013R/AMA_TicketIgnoreRefundRQ.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2013R/AMA_TicketIgnoreRefundRS.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2013R/AMA_TicketInitRefundRQ.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2013R/AMA_TicketInitRefundRS.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2014A/AMA_TicketUpdateRefundRQ.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v1" schemaLocation="AMA/2014A/AMA_TicketUpdateRefundRS.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="AMA_TicketIgnoreRefundRQ_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketIgnoreRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketIgnoreRefundRS_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketIgnoreRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketInitRefundRQ_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketInitRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketInitRefundRS_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketInitRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketProcessRefundRQ_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketProcessRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketProcessRefundRS_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketProcessRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketUpdateRefundRQ_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketUpdateRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketUpdateRefundRS_1.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v1:AMA_TicketUpdateRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Ticket_IgnoreRefund">
+      <wsdl:documentation>Version 1.0</wsdl:documentation>
+      <wsdl:input message="pipa:AMA_TicketIgnoreRefundRQ_1.000" />
+      <wsdl:output message="pipa:AMA_TicketIgnoreRefundRS_1.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_InitRefund">
+      <wsdl:documentation>Version 1.0</wsdl:documentation>
+      <wsdl:input message="pipa:AMA_TicketInitRefundRQ_1.000" />
+      <wsdl:output message="pipa:AMA_TicketInitRefundRS_1.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_ProcessRefund">
+      <wsdl:documentation>Version 1.0</wsdl:documentation>
+      <wsdl:input message="pipa:AMA_TicketProcessRefundRQ_1.000" />
+      <wsdl:output message="pipa:AMA_TicketProcessRefundRS_1.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_UpdateRefund">
+      <wsdl:documentation>Version 1.0</wsdl:documentation>
+      <wsdl:input message="pipa:AMA_TicketUpdateRefundRQ_1.000" />
+      <wsdl:output message="pipa:AMA_TicketUpdateRefundRS_1.000" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Ticket_IgnoreRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_IgnoreRefund_1.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_InitRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_InitRefund_1.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_ProcessRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_ProcessRefund_1.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_UpdateRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/Ticket_UpdateRefund_1.0" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_TICKET_REFUNDPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

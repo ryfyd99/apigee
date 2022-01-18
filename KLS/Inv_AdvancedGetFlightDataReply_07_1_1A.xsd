@@ -1,0 +1,2291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/IFLIRR_07_1_1A" xmlns="http://xml.amadeus.com/IFLIRR_07_1_1A" elementFormDefault="qualified">
+  <xs:element name="Inv_AdvancedGetFlightDataReply">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Provide complete data for a flight response message</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="errorInfo" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Error information group.  In BIF, this group is not encoded.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="applicationErrorInfo" type="ApplicationErrorInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Identify the type of application error within a message.  Possible values for codeListQualifierCode are: - EC: Error code - INF: Information code - WEC: Warning code  e.g : ERC+6732:WEC'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="interactiveFreeText" minOccurs="0" type="InteractiveFreeTextTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Provide free text information about the error.  e.g : IFT+ZZZ+Invalid airline code.'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="flightDateInformation" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Flight-date information group.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="flightDateDesignator" type="FlightDetailsResponseType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Flight-date for which information are provided.  boardPoint and offPoint are never encoded.  e.g the flight 6X 66 on May the 21th 2007: FDR+6X+66+210507'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="flightLevelInfo" type="FlightdateLevelDataType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Information at flight-date level.  Possible values for flightStatus are: -  : No special status - SO : Flight is cancelled - BRB: Flight is under inventory and seat rebuild  Possible values for flightCharacteristics are: - INT: International - DOM: Domestic - GRD: Ground handling - HID: Hidden - PSD: Pseudo  Flights are either INT or DOM.   In addition, they can have the other characteristics GRD, HID or PSD.  e.g : FDD++INT+PSD'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="lockId" type="ReferenceInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Lock information.  Possible values for qualifier are: -  : No lock - LID: GUI lock - ELC: Emergency lock  In Interactive IFLIRR, the REF segment is always encoded, even if no lock is set on the flight-date.  e.g no lock: REF'  e.g emergency lock: REF+ELC'  In case the flight-date is GUI-locked, the User Id of the user which is locking the flight-date is encoded in Interactive IFLIRR.  e.g GUI-lock: REF+LID:NCE1A0955/8235CN'  In BIF, the REF segment is always empty, as if no lock was set on the flight-date.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="dcsFlightStatus" type="StatusTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">DCS flight-date status.  actionRequest and type are never encoded.  Possible values for statusIndicator are: - ACT: Flight active in DCS - DCS: Flight sent to DCS - INA: Link broken between NGI and DCS - VMS: AutoVMS process triggered  Flight-date DCS status is either ACT or DCS or INA.  In addition, AutoVMS status can be added.  e.g flight active in DCS and AutoVMS triggered: STX+ACT+VMS'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="massComment" type="LongTextStringTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Mass comment from Amadeus Business Rule (ABR).  e.g : LTS+MASS COMMENT'  LTS is empty if there is no comment.  e.g empty: LTS'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="inventoryParametersFD" type="InventoryParametersForFlightdateType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Inventory parameters for the flight-date (leg revenue control type used in availability calculation, airline currency...).  isRevControlSetComplete is never encoded.  Possible values for controlType are: - R: Flight-date is revenue controlled - C: Flight-date is class controlled  Possible values for isUnderActiveRevControl are:  - Y: Flight-date is under active revenue control - N: Flight-date is not under active revenue control  e.g : IFD+++C+GBP++N'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="userComment" type="LongTextStringTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">User comment entered through the GUI or an IOPTAQ message.  e.g : LTS+USER COMMENT'  LTS is empty if there is no comment.  e.g empty: LTS'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="legs" maxOccurs="9">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Information on all the legs of the flight-date.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="leg" type="AdditionalProductDetailsTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Leg for which information are provided, identified by its board/off point.  terminal is never encoded.  e.g departure Berlin, arrival London: APD+:::::::TXL:LHR'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="scheduledTiming" type="DateAndTimeInformationTypeI_179654S">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Leg scheduled departure and arrival times (local time).  timeOffset, delayInformation, delayReason and involvedLocation are never encoded.  Possible values for qualifier are: - 708: Departure time - 707: Arrival time  e.g departure on May the 25th 2007 at 6h55 am, arrival on May the 25th 2007 at 8h00 am: DAT+708:250507:0655+707:250507:0800'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="dcsInformation" type="StatusTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Information provided by Departure Control System (DCS) about the leg.  type is never encoded.  Possible values for statusIndicator are: - INA: None (default status) - FD: Departed - SL: Boarding - ACT: Boarded figures received  - PNL: Passenger name list received  In case of ACT or PNL only, possible values for actionRequest are: - 1 : Yes  Leg are either INA or FD or SL.   In addition, they can have received boarded figures or the PNL.  e.g leg is boarding and has received the PNL: STX+SL+PNL:1'  In BIF, SL and ACT statuses are not conveyed.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="aircraftInformation" type="EquipmentInformationTypeS">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Aircraft type, service type and aircraft owner.  The aircraft owner is derived from Schedule DEI 3.  DEI 3 can be:  - Empty : In that case, the current airline is set as aircraft owner  - A 2-letter code : In that case, this code is set as aircraft owner  - X : In this case, aircraft owner is empty since it is specified in DEI 113 as free text  e.g : EQP+J+320+6X</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="acvInformation" type="AircraftConfigurationVersionType">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Information about the leg aircraft configuration version (ACV).  airlineDetails, cabinCode, cabinCapacity, qualifier are never encoded.  e.g ACV code 32U:  EQI+++++++:::32U'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="saleableConfiguration" type="EquipmentInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Leg saleable configuration information.  cabinCode, cabinCapacity, characteristic, cabinVersion, configurationDescription are never encoded.  e.g saleable configuration code 011: EQD++++++011'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flixType" minOccurs="0" type="ItemDescriptionTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Leg operational data information (FLIX).  Possible values for itemCharacteristic are: - FD : FLIX-Disruption (offPoint changed) - FX : FLIX-FX (flight cancelled) - LX : FLIX-LX (landing cancelled)  e.g FLIX-FX: IMD++FX'  In BIF, IMD is not encoded.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="flixTiming" minOccurs="0" type="DateAndTimeInformationTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Leg timing operational data information (FLIX).  DAT segment is never encoded.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ssr" minOccurs="0" maxOccurs="99">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Information on Special Service Requests (SSR).  e.g the SSR quota for animals is defined for leg-cabin M, 2 bookings for this SSR are already made, the SSR is part of family A: SSR+WCHC::3' EQN+2:PETC+1:AVL' SCI+M' SDT+A'  In BIF, the SSR group is provided only on explicit airline request.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ssrQuota" type="SpecialRequirementsDetailsType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">SSR quota.  e.g to accept 30 ski baggages: SSR+SKI::30'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="ssrCounter" minOccurs="0" type="NumberOfUnitsType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Number of SSR bookings done and SSR avaibility.  Possible values for nbOfUnitsQualifier: - SSR : SSR bookings, integer - AVL : SSR avaibility, integer  e.g 24 available SSRs and 6 SSR bookings: EQN+6:SSR+24:AVL'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="cabinCode" minOccurs="0" type="SegmentCabinIdentificationType_103436S">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Cabin code to which the SSR is related.  SSRs can be applied on a specific cabin.  e.g cabin M: SCI+M'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="nest" minOccurs="0" type="SelectionDetailsTypeU">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Nest code (family code) of the SSR.  SSRs can be nested. In this case, a given SSR booking can affect the avaibility of the other SSRs.  optionInformation is never encoded.  e.g nest is A: SDT+A'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="legData" type="LegDataType">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">List of parameters used by the cross cabin availability calculation (capacity sharing).  Possible values for crossCabinControls are: - NXC: No cross cabin - NCC: No configuration change allowed - CCA: Configuration change allowed - DGR: Protect for downgrades flag (in addition to CCA) - UGR: Protect for excess upgrades flag (in addition to CCA)  The current saleable configuration code is provided in crossCabinConfiguration.  The list of valid saleable configurations that can be considered in cross cabin is provided in crossCabinConfigList.  e.g : LEG+007:C24M120:C28M114:C32M108:C48M84:C52M78:C56M72:C60M66:C64M60+CCA+DGR+UGR'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="legCounters" minOccurs="0" type="NumberOfUnitsType_103417S">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Leg-date counters.  Possible values for unitQualifier are: - MEL : Maximum at equipment level, integer  e.g maximum of 4: EQN+4:MEL'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="legCabins" maxOccurs="26">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Information on all the cabins of the leg.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="legCabin" type="AircraftConfigurationVersionType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Leg-cabin capacity and AU.  airlineDetails and acvCode are never encoded.  Possible values for qualifier: -   : capacity - S  : Saleable capacity - A  : Autorisation level (AU)  S and A qualifiers are only used for arlines using AU availability calculation method (airline parameter USE_HYBRID_NESTING set to 'Y').  e.g with AU: EQI+C:31:S+C:32:A'  e.g without AU: EQI+F:14'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="legCabinDetails" type="LegcabinType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Leg-cabin details (notification level, regrades,...).  Details for each leg-cabin blockspace are provided in blockedSpaceDetails.  Possible values for blockSpaceType are: - S: Codeshare blockspace, integer - P: Protected seats (non commercial bookings/ZZ PNRs), integer - Z: Seats blocked for other reasons (broken seats, deadload,...), integer - A: Allotment (CTP/Customer Transfer Process is on-going), integer  e.g : CBL+0+0+0++Y++0+36.167++0+S:6X5141:175+Z::1'  In BIF, avsFlag is not encoded.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="legCabinCounters" minOccurs="0" type="NumberOfUnitsType_103417S">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Leg-cabin counters.  Possible values for unitQualifier are: - COF: Cabin overbooking factor, integer - MLC: Maximum at leg-cabin level, integer - BUB: Booking upper boundary, integer - BLB: Booking lower boundary, integer  e.g a cabin overbooking factor of 56% and a maximum at cabin level of 33: EQN+56:COF+33:MLC'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="cabinAvailabilities" type="LegCabinAvailabilitiesType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Leg-cabin availabilities.  The decimal values netAvaibility and grossAvaibility are rounded up to integers.  e.g : CBA+0+0+31+32+0+27+0'  In BIF, staffStandbyCounter, waitlistBookingsCounter and groupBookingCounter are not encoded and netAvaibility/grossAvaibility are not rounded to integers.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="optimiserRecommendations" minOccurs="0" type="BidpriceOptimiserRecommendationsType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Revenue Management System (RMS) recommendations for bid price.  Can only be filled for airlines using revenue buckets as leg revenue control type (airline parameter INV_LEG_CONTROL_TYPE set to 'B').  e.g : BPR+10+0+100+5+1000'  Otherwise, it is left empty.  e.g empty: BPR'  In BIF, BPR segment is not encoded.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="revenueBucket" minOccurs="0" maxOccurs="9999" type="RevenueBucketType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Revenue control value for the leg-cabin.  For airlines using bid-price vectors as leg revenue control type (airline parameter INV_LEG_CONTROL_TYPE set to 'V'), availabilityConstraint, deltaSeatsEquivalent, av1, av2, yieldRangeLowerValue, subclassId and numberOfSeatsTaken are never encoded.  e.g : BUC+500+++++18++++10'  For airlines using revenue buckets as leg revenue control type (airline parameter INV_LEG_CONTROL_TYPE set to 'B'), seatIndex is never encoded.  e.g : BUC+900+13+0+13+13+13+800'  For airlines using greedy revenue buckets as leg revenue control type (airline parameter INV_LEG_CONTROL_TYPE set to 'G'), deltaSeatsEquivalent, subclassId, numberOfSeatsTaken and seatIndex are never encoded.  e.g : BUC+400+4++7+7+7'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="dcsCounters" minOccurs="0" type="NumberOfUnitsType_103444S">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Counters for DCS adjustments.  Possible values for nbOfUnitsQualifier: - CSY: Accepted stand-by, integer - DAJ: DCS adjustements, integer  e.g : EQN+0:DAJ'  In BIF, EQN segment is not encoded.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="moveableCurtainInformation" minOccurs="0" type="CodedAttributeType_103427S">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Moveable curtain information.  Possible values for attributeType: - E  : Euroconcept - V  : Tempo Challenge - R  : Moveable curtain  e.g, a moveable curtain in Euroconcept version: ATC++R'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="segments" maxOccurs="45">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Information on all the segments of the flight-date.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="segment" type="OriginAndDestinationDetailsTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Segment for which information are provided, identified by its board point and its off point.  e.g : ODI+TXL+LHR'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="segmentTiming" minOccurs="0" type="DateAndTimeInformationTypeI_179654S">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Segment scheduled departure and arrival times (local time).  timeOffset, delayInformation, delayReason and involvedLocation are never encoded.  Possible values for qualifier are: - 708: Departure time - 707: Arrival time  e.g departure on 25 May 2007 at 6h55 am, arrival on 25 May 2007 at 8h00 am: DAT+708:250507:0655+707:250507:0800'  In BIF, DAT segment is never encoded.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="codeshareFlights" minOccurs="0" type="CommercialAgreementsType">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Information about codeshare partner at segment level.  Possible values for transportStageQualifier are: - O  : Operating partner information - D  : Marketing partner information  Possible value for codeshareType are: - BS : Blockspace - FF : Free-flow - CF : Capped Free-Flow  In Interactive IFLIRR, for an operating flight, CAR segment is completely filled with all marketing partners information; for a marketing flight, CAR segment is filled with operating partner information, and the codeshare type is given in STX segment.  e.g for an operating segment with flight ZZ 9999 as a marketing partner with a free-flow agreement: CAR++D:ZZ:9999::FF'  e.g for a marketing segment with flight ZZ 9999 as an operating partner with a free-flow agreement : CAR++O:ZZ:9999' STX+MAN:1+CFF:1+CCF:0+CBS:0+CBS:0'  In BIF, CAR segment is not encoded for operating flights; for marketing flights, only the codeshare type is encoded.  e.g in BIF, for a marketing segment with a free-flow agreement: CAR+::::FF'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="trafficRestriction" minOccurs="0" type="TrafficRestrictionInformationTypeS">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Traffic restriction at segment level. There can be until 9 traffic restriction codes by segment.  e.g. : TRF+A+I+L+E'</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="segmentFlags" type="StatusTypeI">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Segment statuses.  Possible value for statusIndicator: - MAN: UseManualStatus - CBS: Codeshare blockspace (first occurence) or true inventory codeshare (second occurence) - CFF: Codeshare free-flow - CCF: Codeshare capped free-flow - ACT: Flight active in DCS - CLS: Closure indicator  MAN is always encoded first.  In Interactive IFLIRR, for a marketing flight, the STX segment contains all the codeshare agreement types.   If applicable, ACT and CLS flags are also encoded.  e.g for a marketing flight with a blockspace agreement: STX+MAN:1+CFF:0+CCF:0+CBS:1+CBS:0'  e.g for a flight with a closed segment and active in DCS: STX+MAN:0+ACT:1+CLS:1'  In BIF, MAN and CLS are encoded.</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element name="segmentCabins" maxOccurs="26">
+                      <xs:annotation>
+                        <xs:documentation xml:lang="en">Information on all the cabins of the segment.</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="segCabin" type="SegmentCabinIdentificationType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Segment cabin information (cabin code, booking counter,...).  e.g segment-cabin C information: SCI+C++0+0+0+27+0'  In BIF, only the cabin code is encoded.  e.g segment-cabin C: SCI+C'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="boardingFiguresDcs" minOccurs="0" type="NumberOfUnitsType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Boarded figures sent by the Departure Control System (DCS), after the segment departure.  EQN is encoded only when boarded figures are defined at segment cabin level (airline parameter DCS_AT_CLASS_LEVEL set to 'N') and when boarding figures has been received.  Possible values for nbOfUnitsQualifier are: - BOA: Boarded passengers, integer - NOS: Noshow, integer - GNS: Group noshow, integer - OFF: Offloaded passengers, integer - GBO: Group boarded, integer - CBO: Commercial stand-by boarded, integer - CNB: Commercial stand-by not boarded, integer - UGI: Upgrades into, integer - UGO: Upgrades out, integer - DGI: Downgrades into, integer - DGO: Downgrades out, integer - GOS: Go-Show passengers, integer - SBO: Staff Stand-by boarded, integer - SNB: Staff Standby not boarded, integer - VOL: Voluntary offloaded, integer - DNB: Denied boarding, integer - NOR: No-Rec, integer  e.g 3 people boarded and 2 people did not show: EQN+3:BOA+2:NOS'</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="transientBucket" type="TransientBucketType">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Expert parameters for the segment-cabin (link class, link subclass, minimum group Yield,...).  Only used by airlines using revenue buckets as leg revenue control type (airline parameter INV_LEG_CONTROL_TYPE set to 'B').  e.g with values: TBU+16+I+0+19'  e.g empty:  TBU++++0'  In BIF, minimumGroupYield is not encoded.</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element name="bookingClasses" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Information on all the booking classes of the segment-cabin.  In Interactive IFLIRR, the booking classes appearing in this Group are ordered thanks to the content of the Schedule Booking Class rule.  In BIF, the booking classes appearing in this Group are ordered like in the Interactive IFLIRR only on explicit airline request.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="bookingClassID" type="ProductInformationTypeI">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Booking class identifier.  availabilityStatus is never encoded.  e.g booking class C:  PDI++C'</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="bkgClassDetails" type="BookingclassCompleteDataType">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Booking class details for AVS status.  flags is never encoded.  receivedAvsStatus always contains LA or a dummy value (technical arrangement).  e.g LA encoded: CLA+LA'  The real AVS status (received or computed) can be found in SBC segment at subclass level.  In BIF, a dummy value is encoded.</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="boardingFiguresDcs" minOccurs="0" type="NumberOfUnitsType">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Boarded figures sent by the Departure Control System (DCS), after the segment departure.  EQN is encoded only when boarded figures are defined at segment class level (airline parameter DCS_AT_CLASS_LEVEL set to 'Y') and when boarding figures has been received.  Possible values for nbOfUnitsQualifier are: - BOA: Boarded passengers, integer - NOS: Noshow, integer - GNS: Group noshow, integer - OFF: Offloaded passengers, integer - GBO: Group boarded, integer - CBO: Commercial stand-by boarded, integer - CNB: Commercial stand-by not boarded, integer - UGI: Upgrades into, integer - UGO: Upgrades out, integer - DGI: Downgrades into, integer - DGO: Downgrades out, integer - GOS: Go-Show passengers, integer - SBO: Staff Stand-by boarded, integer - SNB: Staff Standby not boarded, integer - VOL: Voluntary offloaded, integer - DNB: Denied boarding, integer - NOR: No-Rec, integer  e.g 3 people boarded and 2 people did not show: EQN+3:BOA+2:NOS'</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="partnerBoardingFiguresDcs" minOccurs="0" maxOccurs="99">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Boarding Figures of marketing partners sent by DCS.</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="codeshareFlight" type="CommercialAgreementsType">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Codeshare blockspace marketing partner information.  transportStageQualifier and codeshareType are never encoded.  e.g for blockspace codeshare partner 6X 66:  CAR+:6X:66:_'</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="boardingFiguresDcs" type="NumberOfUnitsType">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Boarded figures sent by the Departure Control System (DCS), after the segment departure.  EQN is encoded only when boarded figures are defined at segment class level (airline parameter DCS_AT_CLASS_LEVEL set to 'Y') and when boarding figures has been received.  Possible values for nbOfUnitsQualifier are: - BOA: Boarded passengers, integer - NOS: Noshow, integer - GNS: Group noshow, integer - OFF: Offloaded passengers, integer - GBO: Group boarded, integer - CBO: Commercial stand-by boarded, integer - CNB: Commercial stand-by not boarded, integer - UGI: Upgrades into, integer - UGO: Upgrades out, integer - DGI: Downgrades into, integer - DGO: Downgrades out, integer - GOS: Go-Show passengers, integer - SBO: Staff Stand-by boarded, integer - SNB: Staff Standby not boarded, integer - VOL: Voluntary offloaded, integer - DNB: Denied boarding, integer - NOR: No-Rec, integer  e.g 3 people boarded and 2 people did not show: EQN+3:BOA+2:NOS'</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="subclasses" maxOccurs="99">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Information on all the subclasses of the booking class.</xs:documentation>
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="subclass" type="SubclassIdentificationType">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Subclass identifier.  For airlines needing subclasses in IFLIRR, indicates the subclass number inside the booking class.  e.g subclass number 1:  SBI+1'  For airlines needing booking classes in IFLIRR, hardcoded to 0.  e.g :  SBI+0'</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="subclassCounters" minOccurs="0" type="NumberOfUnitsType_103417S">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Class counters.  Possible values for nbOfUnitsQualifier are: - SLM: Segment limit (airline parameter USE_SEGMENT_LIMITS set to 'Y'), integer - OWN: Own Availability, integer - BCA: Booking cancellation counter, integer - GBC: Group booking cancellation counter, integer - GAS: Assigned names in groups, integer - NEG: Total number of nego bookings, integer - TKP: Ticketed Bookings counter, integer. (airline parameter COM_TICKETED_BKG_COUNTER set to R)  e.g a segment limit of 3: EQN+3:SLM'</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="subclassDetails" type="SubclassDataType">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Class controls details (protections, max, min, AU...).  Possible values for flag are: - GR : Accept group bookings - RED: Accept redemption bookings - STA: Accept firm staff bookings - NPR: Not protected flag - WL : Allow waitlist - WLC: Allow waitlist clearance  Possible values for minNestType and maxNestType are: - A  : Stand alone - P  : Primary - S  : Secondary  Possible values for profileType are, when the airline is using overbooking profiles (airline parameter USE_OVERBOOKING_PROFILES set to 'Y'): - GO : global overbooking profile - OP : open cancellation profile - OV : override cancellation profile - AH : ad-hoc cancellation profile  Possible values for avsStatus are: - L0..9: Class open with avaibility of 0..9 (only used in Interactive IFLIRR) - LA   : Class open for sale - LC   : No space, waitlist closed - LL   : No space, only waitlist - LN   : Flight cancelled - LR   : Avaibility request needed  displayOrder is never encoded.  e.g : SBC+0++++GR:WL:WLC+:::32:::::::27+::7:117.21+0:0:0:0:0:26:0++32:32:0'  In BIF, waitlistMax and waitlistMaxPercentageOfAU are not encoded.</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="subclassYield" minOccurs="0" type="MonetaryInformationTypeI">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Class yield.  Possible values for amountTypeQualifier are: - GBL: Global yield - FLD: Flightdate segment yield - SDR: Segment yield  If not encoded, no yield associated to this class was found.  The currency encoded in valueCurrency is the airline's currency, which comes from the System Settings.  e.g a global yield of 100 euros:  MON+GBL:100:EUR'  In BIF, MON is not encoded.</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="subclassFlags" minOccurs="0" type="CodedAttributeType">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Class flags.  Possible values for attributeType are:  - SLS: Segment limit (apply for standalone segment)  - SLC: Segment limit (apply for connecting segment)  - NCO: Nego control parameter  - EDC: Effective date for connecting segments  - DDC: Discontinue date for connecting segments  - GRO: Accept group bookings only (airline parameter COM_USE_GR_BKG_ACCEPTANCE_RULE set to Y)  In case attributeType is SLS or SLC, possible values for attributeDescription are:  - 'Y': Yes  - 'N': No  In case attributeType is NCO, possible values for attributeDescription are:  - 'C': Confirm  - 'D': Deny  - 'A': Check availability  In case attributeType are EDC or DDC, possible value for attributeDescription is a date, in format DDMMYY.</xs:documentation>
+                                        </xs:annotation>
+                                      </xs:element>
+                                      <xs:element name="negoBlockDetails" minOccurs="0" maxOccurs="99">
+                                        <xs:annotation>
+                                          <xs:documentation xml:lang="en">Details about the nego blocks for this class.  This group can be filled only for airlines using negotiated space (airline parameter COM_USE_NEGOTIATED_SPACE set to 'Y').  In the BIF, this group is not encoded.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element name="negoSizeDetails" type="NumberOfUnitsType_103417S">
+                                              <xs:annotation>
+                                                <xs:documentation xml:lang="en">Details on the size and the number of booked seats in the nego block.  Possible values for nbOfUnitsQualifier are: - ALO: number of allotted seats, integer - SLD: number of sold seats in the allottement, integer  e.g 3 seats are alloted, and 2 bookings are already made: EQN+3:ALO+2:SLD'  In BIF, EQN segment is not encoded.</xs:documentation>
+                                              </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="tourName" minOccurs="0" type="TourInformationTypeI">
+                                              <xs:annotation>
+                                                <xs:documentation xml:lang="en">Tour name of the nego block.  e.g TESTTOUR: ATI+:TESTTOUR'  In BIF, ATI segment is not encoded.</xs:documentation>
+                                              </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="allotmentReference" minOccurs="0" type="ReservationControlInformationTypeI">
+                                              <xs:annotation>
+                                                <xs:documentation xml:lang="en">DBID of the nego block.  e.g XXXXXX: RCI+:XXXXXX'  In BIF, RCI segment is not encoded.</xs:documentation>
+                                              </xs:annotation>
+                                            </xs:element>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="segmentCabinBlockSpace" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                              <xs:documentation xml:lang="en">Information on all the codeshare blockspaces at segment-cabin level.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="codeshareFlight" type="CommercialAgreementsType">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Codeshare blockspace marketing partner information.  transportStageQualifier and codeshareType are never encoded.  e.g for blockspace codeshare partner 6X 66:  CAR+:6X:66:_'</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                                <xs:element name="blockSpaceCounters" type="NumberOfUnitsType">
+                                  <xs:annotation>
+                                    <xs:documentation xml:lang="en">Codeshare blockspace size and booking counter.  Possible values for counter type nbOfUnitsQualifier are: - BLK: Blockspace size, integer - BKG: Booking counter, integer  e.g blocksize of 8, and 0 bookings:  EQN+BLK:8+BKG:0'</xs:documentation>
+                                  </xs:annotation>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="recommendationFlag" type="StatusTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Indicate special information about the flight-date.  type is never encoded.  Possible values for statusIndicator are: - OR : Pending recommendation indicator - FF : Frequent flyer rule applied  Possible values for actionRequest are: - 1 : Yes - 0 : No  e.g flight-date with frequent flyer rule and at least a pending recommendation: STX+OR:1+FF:1'  In BIF, STX is hardcoded to STX+OR:0'.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="managingAirline" minOccurs="0" type="TransportIdentifierTypeS">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Managing airline designator.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="flightDateOptions" minOccurs="0" type="SelectionDetailsType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Network id (network/beam/subbeam).  optionInformation is never encoded.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="currentDateAndTime" minOccurs="0" type="DateAndTimeInformationTypeI">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Date and time with seconds of the IFLIRR generation on Amadeus side.  qualifier, delayInformation, delayReason and involvedLocation are never encoded.  e.g message generated on 25 May 2007 at 14h26min23s: DAT+:250507:1426::0023'</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="AdditionalEquipmentInformationTypeI">
+    <xs:sequence>
+      <xs:element name="airlineDetails" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline Organisation FOR Airline Owner</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="acvCode" minOccurs="0" type="AlphaNumericString_Length1To17">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Aircraft configuration version code Airline internal version number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdditionalProductDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey additional information concerning an airline flight.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="legDetails" type="AdditionalProductTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details on a leg</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="departureStationInfo" minOccurs="0" type="StationInformationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Departure station information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="arrivalStationInfo" minOccurs="0" type="StationInformationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Arrival station information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdditionalProductTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Additional details describing a specific means of transport.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="boardPoint" type="AlphaString_Length3To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Board point identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="offPoint" type="AlphaString_Length3To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Off point identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AircraftConfigurationVersionType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify aircraft configuration version of an aircraft</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="fittedConfiguration" minOccurs="0" maxOccurs="5" type="ConfigurationDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The details of the fitted configuration.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="acvDetails" minOccurs="0" type="AdditionalEquipmentInformationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ADDITIONAL EQUIPMENT INFORMATION Aircraft configuration version details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorDetailType">
+    <xs:sequence>
+      <xs:element name="applicationErrorCode" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the data validation error condition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codeListQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="applicationErrorDetail" type="ApplicationErrorDetailType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Application error details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AvailabilityCountersType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">class, revenue, segment availabilities, NAV, GAV</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="netClassAvailability" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Net Class Availability  A seats equivalent availability calculated from the class controls only. This availability will be used to cap the sum of CumulativeUPR and NetRevenueAvailability in the calculation of SegmentAvailability under Revenue Controls for all subclasses with MAX controls. For flights under Class Control the NetClassAvailability will simply be a net version of SegmentAvailability.  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="segmentAvailability" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment Availability  The normal availability figure for for all the POSs mapping into this sub-class. A gross availability figure which can be either positive or negative. This availability figure is displayed in AV column at subclass level  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="netRevenueAvailability" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Net Revenue Availability  It is the minimum of the net bucket availabilities (SeatsAvailability, aka AV1/AV2/AV3) taken across all legs in this segment, based on the appropriate Leg Effective Yield, derived from the segment Yield.  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BidpriceOptimiserRecommendationsType">
+    <xs:sequence>
+      <xs:element name="optimiseBidPrice" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Optimise Bid Price  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="optimiseBPLowerBound" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Optimise Bid Price Lower Bound  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="optimiseBPUpperBound" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Optimise Bid Price Upper Bound  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="optimiseBPSeatLowerBound" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Optimise BidPrice Seat Lower Bound  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="optimiseBPSeatUpperBound" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Optimise BidPrice Seat Upper Bound  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BlockspaceType">
+    <xs:sequence>
+      <xs:element name="blockSpaceType" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Type of Block Space</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="marketingFlightDesignator" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Operating/Marketing Flight Designator : Concatenate airline code, flight number, and operational suffix. Example : 6X12A  Mandatory if Block Space Type = S (Codeshare)  Not encoded in the BIF</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="numberSeatsBlocked" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of seats blocked for that kind of BlockSpace, for the leg-cabin  Mandatory if block space type filled.   This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BookingclassCompleteDataType">
+    <xs:sequence>
+      <xs:element name="receivedAvsStatus" type="AlphaNumericString_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">BookingClass : reveived Availability Status</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="flags" minOccurs="0" maxOccurs="5" type="AlphaNumericString_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">BookingClass Flags (published, FirstPostingSent, useManualStatus)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BookingsCountersType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">passengers, groups, WL...</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="bookingsCounter" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Bookings Counter  0 if no bookings  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groupBookingsCounter" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Group Bookings Counter  0 if no group bookings  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groupPendingCounter" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Group Pending Counter  0 if no group pending bookings  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groupWaitlistCounter" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Group Waitlist Counter  0 if no group waitlist bookings  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="waitlistCounter" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Waitlist Counter  0 if no waitlist bookings  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="expectedToBoard" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Forecasted number of bookings  This is an integer value when airline parameters inv_etb_class='RMS' or (inv_etb_class='BKG' and apply_overbooking_on_bookings='N' and inv_overbooking_factor='N') else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="negoAllottedSpace" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Total number of seats allotted to nego.  Mandatory for airlines using negotiated space  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey coded key and corresponding value</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides the attribute Type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="attributeDescription" minOccurs="0" type="AlphaNumericString_Length1To256">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides a description for the attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeInformationType_153490C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey coded key and corresponding value</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides the attribute Type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeDetails" maxOccurs="99" type="CodedAttributeInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides details for the Attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CodedAttributeType_103427S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to have tag value without code list for tag</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="attributeDetails" maxOccurs="99" type="CodedAttributeInformationType_153490C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides details for the Attribute</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CommercialAgreementsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify commercial agreements between two  or more companies related to joint, shared, lease operations etc.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="codeshareDetails" minOccurs="0" type="CompanyRoleIdentificationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Conveys information about a partner airline or a partner flight.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherCodeshareDetails" minOccurs="0" maxOccurs="98" type="CompanyRoleIdentificationType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyIdentificationTypeS">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the company and any associated companies</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="airlineDesignator" type="AlphaNumericString_Length2To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline Designator. IATA 2-3 letter code. If more than 3 letters are used then it is assumed that the full company name is being specified.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyIdentificationTypeS_153497C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the company and any associated companies</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="aircraftOwner" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Aircraft owner.  IATA 2-3 letter code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CompanyRoleIdentificationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To indicate commercial agreements related to the service being provided.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="transportStageQualifier" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to convey the mrketing/operating characteristics of the partner airline or flight.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="airlineDesignator" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline code of the partner airline.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="flightNumber" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Flight number of the partner flight if applicable.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="operationalSuffix" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Operational suffix of the partner flight if applicable.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codeshareType" minOccurs="0" type="AlphaNumericString_Length2To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">To specify type of codeshare agreement between marketing and operating flights: Free Flow (FF), Capped Free Flow (CF), Blockspace (BS).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConfigurationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">CONFIGURATION DETAILS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cabinCode" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">designator To indicate cabin class and not an RBD.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cabinCapacity" type="NumericInteger_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Total number of seats in the cabin class. Can be set to 0 if the information is not pertinent.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="characteristic" minOccurs="0" maxOccurs="26" type="AlphaNumericString_Length1To17">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Configuration Characteristic</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConfigurationDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">CONFIGURATION DETAILS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cabinCode" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Cabin class code designator To indicate cabin class and not an RBD.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cabinCapacity" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">seats Total number of seats in the cabin class.  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="qualifier" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Qualifier : S for Saleable Capacity A for Leg Cabin AU</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CrossCabinConfigurationsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Encapsulate all information regarding Cross Cabin Configurations</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="crossCabinConfiguration" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">saleable Configuration code For example A10.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="crossCabinConfigList" minOccurs="0" maxOccurs="99" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">list of Cross Cabin Configuration in the form Cabin-Capacity. For example F5J10Y105.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndTimeDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="qualifier" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A qualifier describing the date and time to follow.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="date" minOccurs="0" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A date (ddmmyy)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="time" minOccurs="0" type="Time24_HHMM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A time (hhmm)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="delayInformation" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A qualifier describing a duration of time such as early/late.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="timeOffset" minOccurs="0" type="Time24_HHMM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A duration of time (hhmm) ; also used to convey seconds.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="delayReason" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A code describing the reason for delay, diversion or movement.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="involvedLocation" minOccurs="0" type="AlphaString_Length3To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A 3 character city code describing the location of delay, diversion or movement.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndTimeDetailsTypeI_252531C">
+    <xs:sequence>
+      <xs:element name="qualifier" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A qualifier describing the date and time to follow.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="date" minOccurs="0" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A date (ddmmyy)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="time" minOccurs="0" type="Time24_HHMM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A time (hhmm)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="delayInformation" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A qualifier describing a duration of time such as early/late.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="timeOffset" minOccurs="0" type="NumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A duration of time (mmmm) ; also used to convey seconds.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="delayReason" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A code describing the reason for delay, diversion or movement.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="involvedLocation" minOccurs="0" type="AlphaString_Length3To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">A 3 character city code describing the location of delay, diversion or movement.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndTimeInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information regarding estimated or actual dates and times of operational events</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dateAndTimeDetails" minOccurs="0" maxOccurs="99" type="DateAndTimeDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">DATE AND TIME DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndTimeInformationTypeI_179654S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information regarding estimated or actual dates and times of operational events</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dateAndTimeDetails" minOccurs="0" maxOccurs="99" type="DateAndTimeDetailsTypeI_252531C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">DATE AND TIME DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentIdentificationTypeS">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To indicate the type of vehicle being used</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="aircraftType" type="AlphaNumericString_Length3To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Aircraft Type. See SSIM appendix A for code set</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="eqtRegistrationNumber" minOccurs="0" type="AlphaNumericString_Length1To17">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Aircraft registration number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify configuration details of an aircraft.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="configurationDetails" minOccurs="0" maxOccurs="5" type="ConfigurationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The configuration details : cabin codes and capacities.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="configurationCode" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The code of the saleable configuration.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cabinVersion" minOccurs="0" type="AlphaNumericString_Length1To12">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Aircraft cabin version identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="configurationDescription" minOccurs="0" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The description of the saleable configuration.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EquipmentInformationTypeS">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Specify information relating to the vehicle type.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="modeOfTransport" type="ModeOfTransportTypeS">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">MODE OF TRANSPORT</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="equipmentDetails" type="EquipmentIdentificationTypeS">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">EQUIPMENT IDENTIFICATION</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="companyDetails" minOccurs="0" type="CompanyIdentificationTypeS_153497C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Company details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlightDetailsResponseType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To designate a flight for a given date in a reply.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="airlineInformation" type="OutboundCarrierDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Provide information on the airline of the flight</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="flightReference" type="OutboundFlightNumberDetailstypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference of the flight for the airline</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="departureDate" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Departure date ddmmyy  2 possibilities: - Local departure date of the flight (= of the first leg) - If Board Point / Off Point is filled, Segment departure date</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="boardPoint" minOccurs="0" type="AlphaString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment departure airport  Can be omitted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="offPoint" minOccurs="0" type="AlphaString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment arrival airport  Can be ommited.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlightdateLevelDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Characteristics and status for a flight</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flightStatus" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">At the moment only SO code is used to indicate flight cancellation.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="flightCharacteristics" minOccurs="0" maxOccurs="5" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicates the characterics of the flight.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextQualificationTypeI">
+    <xs:sequence>
+      <xs:element name="textQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicates whether the free text is coded or not coded.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="messageType" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Coded text or specifies type of information in 4440.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="language" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ISO code for language of free text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InteractiveFreeTextTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the text of the message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="messageQualifier" minOccurs="0" type="FreeTextQualificationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text qualification.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="messageText" minOccurs="0" maxOccurs="99" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text message.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InventoryParametersForFlightdateType">
+    <xs:sequence>
+      <xs:element name="reviewDate" minOccurs="0" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Review Date (relative date)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reviewTime" minOccurs="0" type="Time24_HHMM">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Review Time</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="controlType" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">C= Class Control R= Revenue Control (when flight date has its revenue controls activated)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="currencyCode" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Currency, coded  Conveyed in Edifact message but not displayed in GUI.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isRevControlSetComplete" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">flag : whether the RevenueControl Set is complete or not</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isUnderActiveRevControl" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Yes/No  For airlines using revenue buckets: the value 'Y' is encoded if and only if the airline parameter REV_CONTROL_GLOBAL_SWITCH is set to 'Y' AND the flight-date has its revenue controls activated AND the flight-date has a complete set of revenue buckets (ie, all buckets for all leg-cabins + FLD yields on all subclasses).  For airlines using Bid Price Vectors, the value 'Y' is encoded if and only if  the airline parameter REV_CONTROL_GLOBAL_SWITCH is set to 'Y' AND the flight-date has its revenue controls activated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemDescriptionTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To describe an item in either an industry or free format.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="itemCharacteristic" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides the Characteristic of the Item.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LegCabinAvailabilitiesType">
+    <xs:sequence>
+      <xs:element name="upr" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin Unsold PRotection  0 if no Unsold Protection  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="bookingsCounter" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin Bookings Counter  0 if no bookings  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="netAvailability" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Net Availability (NAV)  Represents the number of seats that would be left empty on a flight if all the passengers currently booked and those forecasted to book (ie. protected by UPRs), turned up at the airport. This does not include expected cancellations.  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="grossAvailability" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Gross Availability (GAV)  Represents the number of seats that would be left empty if the passengers currently booked and those remaining to book turn up as predicted by the overbooking factors on each class.  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="acp" minOccurs="0" type="NumericDecimal_Length1To7">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Average Cancellation Profile (Leg-Cabin)  Only for airlines using Profile Library  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="expectedToBoard" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Expected to board (ETB)  This is an integer value when airline parameters inv_etb_cabin='SUM' and [inv_etb_class='RMS' or (inv_etb_class='BKG' and apply_overbooking_on_bookings='N' and inv_overbooking_factor='N')] else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="staffStandbyCounter" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Staff Standby counter  0 if no staff stand-by bookings   This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="waitlistBookingsCounter" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin Waitlisted Bookings Counter  0 if no waitlisted bookings   This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groupBookingsCounter" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin Group Bookings Counter  0 if no group bookings  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LegDataType">
+    <xs:sequence>
+      <xs:element name="crossCabinConfigInfo" type="CrossCabinConfigurationsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Gather current cross cabin configuration and available ones.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="crossCabinControls" maxOccurs="3" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Cross Cabin Controls (CrossCabinSharingLevel, ProtectForDowngrades flag, ProtectForExcessUpgrades flag)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LegcabinType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Display parameters at leg-cabin level</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="regradeAdjustment" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin regrade Adjustment  0 if no adjustment  When positive, it represents the number of supplementary seats made available from another cabin. When negative, it means that the seats are taken out from this cabin to be given to another one.  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="maxiRegradeAdjustment" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin maximum regrade Adjustment  0 if no adjustment  The maximum number of seats which can be adjusted out of a cabin through a regrade adjustment.  NB: This is a positive number which provides an upper limit on the negative value of the Balanced Adjustment.   This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="unbalancedAdjustment" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin unbalanced Adjustment  0 if no adjustment  The part of the adjustment which arises from 'speculation' - a process by which a Route Controller can release already committed space back into a cabin.   This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groupsConstrainingYield" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin groups constraining Yield  A parameter set by the Airline Revenue Management System to constrain a 'special availability' groups.  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="avsFlag" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Status at Leg/Cabin level. Contains 'Y' if at least one Subclass of a Segment/Cabin crossing the Leg/Cabin is not open (LN,LC,LL or LR). Else, if all Subclasses are open (neither LN,LC,LL nor LR) this value is 'N'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="notificationLevel" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">leg-cabin Notification Level  GAV Lower notification level: when the GAV goes below that level, the flight date is put on a flight controller queue   This is an decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="avpoolOffset" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin avpool offset  Set by the Optimiser. This value is a revenue bucket constraint on the difference between availability (AV1) in the highest bucket and the AVPool.  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="avpool" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin avpool  = Saleable Capacity - Non-commercial PNRs + Total Adjs - Committed Space  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="maxiGroupProportion" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Leg-Cabin Maximum Group Proportion  Maximum proportion of group bookings allowed for the leg cabin  This is an decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="regradeCounter" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Regrade Counter  This counter will handle the upgrade, downgrade performed on the cabin   This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="blockedSpaceDetails" minOccurs="0" maxOccurs="99" type="BlockspaceType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details for each kind of BlockSpace</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LongTextStringTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To exchange text data block.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="longTextString" minOccurs="0" type="AlphaNumericString_Length1To2500">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">provides a long Text string</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModeOfTransportTypeS">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Method of transport or code name. Code preferred</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="serviceType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Service type code. See SSIM appendix C for code set</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="amountTypeQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Yield type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="valueAmount" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Yield value  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="valueCurrency" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Currency, coded  In airline's currency by default - To be picked up in system settings</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationTypeI">
+    <xs:sequence>
+      <xs:element name="moneyInformation" maxOccurs="5" type="MonetaryInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">MONETARY INFORMATION</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="numberOfUnits" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of Units</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="numberOfUnitsQualifier" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of units qualifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitDetailsTypeI_153472C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of number of units and its purpose.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="numberOfUnit" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="unitQualifier" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Key</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitDetailsTypeI_153507C">
+    <xs:sequence>
+      <xs:element name="numberOfUnit" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of Units</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="unitQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of units qualifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number of units required</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="numberOfUnitsDetails" maxOccurs="99" type="NumberOfUnitDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">NUMBER OF UNIT DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitsType_103417S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number of units required</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="quantityDetails" maxOccurs="99" type="NumberOfUnitDetailsTypeI_153472C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of Unit Details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NumberOfUnitsType_103444S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the number of units required</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="quantityDetails" maxOccurs="2" type="NumberOfUnitDetailsTypeI_153507C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">NUMBER OF UNIT DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginAndDestinationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey the origin and destination of a journey.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="departureCityCode" type="AlphaString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Departure's city code:3 character ATA/IATA airport/city code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="arrivalCityCode" type="AlphaString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Arrival's city code: 3 character ATA/IATA airport/city code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OutboundCarrierDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">OUTBOUND CARRIER DETAILS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="airlineCode" type="AlphaNumericString_Length2To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OutboundFlightNumberDetailstypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">OUTBOUND FLIGHT NUMBER DETAILS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flightNumber" type="NumericInteger_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Flight number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="operationalSuffix" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Operational suffix</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="bookingClassDesignator" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">RBD (Reservation Booking Designator)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="availabilityStatus" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">indicate availability status . coded or numeric</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProductInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify details relating to availability status or cabin configuration for a product</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="bookingClassDetails" maxOccurs="26" type="ProductDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Booking class details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify an association between references given to travellers, to products, to services</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceDetails" minOccurs="0" maxOccurs="6" type="ReferencingDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">REFERENCING DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="qualifier" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference qualifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="number" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="controlNumber" type="AlphaNumericString_Length6To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">DBID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" type="ReservationControlInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">DBID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RevenueBucketType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Leg-cabin revenue bucket</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="yieldRangeUpperValue" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Yield Range Upper (or Lower) Value  Contains the Bid Price of BPV when BPV is used  Contains the yield range lower bound when Greedy Revenue Bucket is used  For airlines using BPV, Revenue Buckets or Greedy Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B', 'V' or 'G')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="availabilityConstraint" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Availability Constraint or protection  Contains availability constraint for airlines using revenue buckets (INV_LEG_CONTROL_TYPE set to 'B')  Contains protection for airlines using greedy revenue buckets (INV_LEG_CONTROL_TYPE set to 'G')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="deltaSeatsEquivalent" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Delta Seats Equivalent  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="av1" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Bucket Availability AV1  For airlines using Revenue Buckets or Greedy Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B' or 'G')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="av2" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Bucket Availability AV2  For airlines using Revenue Buckets or Greedy Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B' or 'G')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="av3" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Bucket Availability AV3  For airlines using BPV, Revenue Buckets or Greedy Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'V', 'B' or 'G')  This is an integer value when airline parameter inv_leg_control_type='V' else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="yieldRangeLowerValue" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Yield Range Lower Value  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="subclassId" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of the subclass with a letter+number code ; Subclass used to construct the Transient Bucket  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="numberOfSeatsTaken" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number of Seats taken from this bucket  For airlines using Revenue Buckets (INV_LEG_CONTROL_TYPE set to 'B')  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="seatIndex" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Seat index for bid price processing  For airlines using Bid-Price Vector Buckets (INV_LEG_CONTROL_TYPE set to 'V')  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SegmentCabinIdentificationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To reference a segment cabin</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cabinCode" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Cabin class designator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="waitListMax" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment-Cabin Waitlist max  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="upr" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment-Cabin UPR  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="bookingsCounter" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment-Cabin Bookings Counter  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="waitList" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment-Cabin Waitlist  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="expectedToBoard" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Expected to board (ETB)  This is an integer value when airline parameters inv_etb_class='RMS' or (inv_etb_class='BKG' and apply_overbooking_on_bookings='N' and inv_overbooking_factor='N') else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="staffStandbyCounter" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Staff Standby counter  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="staffStandbyMax" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Staff Standby max  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SegmentCabinIdentificationType_103436S">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To reference a segment cabin</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="cabinCode" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Cabin class designator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SelectionDetailsInformationTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a selected option and associated              information</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="optionCode" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Option code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="optionInformation" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Option criteria</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SelectionDetailsTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the details for making a selection.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="selectionDetails" maxOccurs="99" type="SelectionDetailsInformationTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Selection details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SelectionDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the details for making a selection.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="selectionDetails" maxOccurs="99" type="SelectionDetailsInformationTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Selection details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpecialRequirementsDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify special requests or services information relating to a traveler</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ssrDetails" type="SpecialRequirementsTypeDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">SSR Details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpecialRequirementsTypeDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Special  requirements type details</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ssrType" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">SSR Type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ssrThreshold" minOccurs="0" type="NumericInteger_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">SSR Threshold  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StationInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify departure/arrival information concerning a means of transport.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="terminal" type="AlphaNumericString_Length1To25">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Terminal Designator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="statusIndicator" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">StatusIndicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="actionRequest" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Action request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To advise the requester system the status of the reply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusInformation" maxOccurs="99" type="StatusDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">STATUS DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubclassControlsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">min, max, upr, mno, notification levels</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="min" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass MIN control  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minNestType" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Min Nest Type (stand-Alone, Primary, Secondary)  For airlines using MIN/MAX method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minNestReference" minOccurs="0" type="AlphaNumericString_Length0To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Min Nest Reference  For airlines using MIN/MAX method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="max" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass MAX control  For airlines using MIN/MAX method This is the MAX.  For airlines using hybrid nesting This is the AU.  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="maxNestType" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Max Nest Type (stand-Alone, Primary, Secondary)  For airlines using MIN/MAX method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="maxNestReference" minOccurs="0" type="AlphaNumericString_Length0To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Max Nest Reference  For airlines using MIN/MAX method</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="upr" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass UPR  This is an integer value when airline parameters use_hybrid_nesting='Y' and apply_overbooking_on_bookings='N' else this is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="lowNotificationLevel" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Low Notification Level  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="highNotificationLevel" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass High Notification Level  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="parentSubclassId" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of the subclass with a letter+number code  For airlines using hybrid nesting</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nettedProtection" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Netted Protection  For airlines using hybrid nesting  This is a integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="waitlistMax" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Waitlist Max  For airlines using hybrid nesting and waitlist at class level  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="waitlistMaxPercentageOfAU" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Waitlist Max percentage of AU  For airlines using hybrid nesting and waitlist at class level  This is an integer value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubclassDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Subclass parameters</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="booleanExpressionID" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ID of the Boolean Expression associated to the subclass (MIB)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="displayOrder" minOccurs="0" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Display Order  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="effectiveDate" minOccurs="0" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Effective Date (ddmmyy) If applicable, it stands for effective date for standalone segment.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="discontinueDate" minOccurs="0" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Discontinue Date (ddmmyy)  If applicable, it stands for discontinue date for standalone segment.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="allFlags" minOccurs="0" type="SubclassDateFlagsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Date Flags</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="controls" minOccurs="0" type="SubclassControlsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Controls</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="obCxProfile" minOccurs="0" type="SubclassOverbookingProfileType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Overbooking/Cancellation Profile</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="bkgCounters" minOccurs="0" type="BookingsCountersType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Bookings Counters</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="avsStatus" minOccurs="0" type="AlphaNumericString_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">AVS Status (LA, LL, LC, LN, LR, L0...9)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="availCounters" minOccurs="0" maxOccurs="3" type="AvailabilityCountersType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass Availability Counters Repetition of 3 is used in Explain Availability to decompose the steps (AV1, AV2, A3)V</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubclassDateFlagsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">accept group bkgs, staff bkgs, allow WL...</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flag" maxOccurs="7" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">each of the subclass flags (accept group bkgs, allowWL, ...)  Only allow waitlist and allow waitlist clearance flags are displayed in the GUI.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubclassIdentificationType">
+    <xs:sequence>
+      <xs:element name="subclassId" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of the subclass with a letter+number code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubclassOverbookingProfileType">
+    <xs:sequence>
+      <xs:element name="profileType" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Either Cancellation or Overboooking profiles (AH, GO, OP, OV)  For airlines using profile library (airline parameter USE_OVERBOOKING_PROFILES set to 'Y')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="profileName" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Profile Name  For airlines using profile library (airline parameter USE_OVERBOOKING_PROFILES set to 'Y')</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="noshowPercentage" minOccurs="0" type="NumericDecimal_Length1To8">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass NoShow Percentage  This is an integer value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="obPercentage" minOccurs="0" type="NumericDecimal_Length1To8">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subclass OverBooking Percentage  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TourDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide details of a tour by code, name of the tour provider, length, number of stops, room occupancy and number of rooms.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tourName" type="AlphaNumericString_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Tour name.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TourInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information concerning a tour.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="tourInformationDetails" type="TourDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Tour name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrafficRestrictionInfoTypeS">
+    <xs:sequence>
+      <xs:element name="trafficRestrictionCode" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">See SSIM appendix G for code set</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="trafficRestrictionDomain" minOccurs="0" type="NumericInteger_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Traffic restriction domain of application (passenger, cargo, mail)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="trafficRestrictionPoint" minOccurs="0" type="NumericInteger_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Traffic restriction application point (board/off point)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="trafficRestrictionText" minOccurs="0" type="AlphaNumericString_Length1To70">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free Text</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TrafficRestrictionInformationTypeS">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide information relating to traffic restrictions</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="trafficRestrictionDetails" minOccurs="0" maxOccurs="9" type="TrafficRestrictionInfoTypeS">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">TRAFFIC RESTRICTION INFORMATION</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransientBucketType">
+    <xs:sequence>
+      <xs:element name="optimiseBidPrice" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Transient Bucket SegmentCabinOptimiseBidPrice  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="linkClass" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">for the transient bucket : linkClass</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="linkSubclass" minOccurs="0" type="AlphaNumericString_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">transient bucket LinkSubclass</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="depth" minOccurs="0" type="NumericDecimal_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Transient Bucket Depth  0 is the default value  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="deleteTransientBucket" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">whether or not the transient bucket has to be deleted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="minimumGroupYield" minOccurs="0" type="NumericDecimal_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Segment-Cabin Minimum Group Yield  This is a decimal value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="groupConstrainingClass" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Group Constraining Class</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransportIdentifierTypeS">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To give a flight designator or a flight range.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="airlineIdentification" type="CompanyIdentificationTypeS">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Details on the airline.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To70">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..70</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="70" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To2500">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..2500</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="2500" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To12">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..12</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="12" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,15}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To18">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..18</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To7">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..7</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To2">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length2To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an2..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,4}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length3To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To25">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..25</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+      </xs:annotation>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length3To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To17">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..17</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="17" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,3}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length2To2">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,1}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length0To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To8">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..8</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To256">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..256</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="256" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="15" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length6To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="6" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Date_DDMMYY">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Date format: DDMMYY</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[1-2][0-9]|3[0-1])(0[1-9]|1[0-2])[0-9]{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Time24_HHMM">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Time format: 24H. All digits are mandatory . Example: from 0000 to 2359</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([0-1][0-9]|2[0-3])[0-5][0-9]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095544D8FDA3010BDFB5758BDF45011C26AB56D917CC86E80221558B154BD2021130F60AD63A71E076DBADAFFDE7112DAEDA16A7B4133E3C97CBCF786D9643959679B49BE5B2DC5553ABA1EA4D783D10DFF0ACA022AD9F0F4E3F8EA663CBAE6B3C5E65D9A8ED394658B2C3415E0541BB0B2044181DDAD445D6C62387942C5F61261496F58C902C429846A3C1C3E952691A554506352B872C8F6B5550672EDC51021046D8F3854BA40569CA0787CA0DF528AE06B608553402928ACB3D12B4BB0E4F56F65256D13DB095B1B4381AAF1FA780AE24DD6B5E3F7DE555E4390BEE1D22A7EE7EC412BAAA1A5E1737B70BE94413B3BE6B595753839AFBF83E235429BAE3416C661ED8163F0BA08A6E1F4CD5E2BAA9170422EE5037E6986894C30FAC6F0759C03F99AA6F76750C91BA6E0206B1366BE8A7029719006812957EF0D3CC0B71A6C01F73214A7FE05ECED3F8109F657CE7324E865F77C068FB415591E0C5019B2E4913A342FEC40F4AD6B4398B9C864EBB774B61F47EB2F058C2BA4E92137EEA888C67CBCFD34C9F2ED44E9832CC2C63983DBC966976B0CD2863B628AF823E6B60BE91F2132DEE560CB356E3FBB23D5B2C77610AD56D634AC047F841E8CD69E6A300A1F9C0F3FE1A3C591E6CA3062FA7B2C27D6B5E99563FF0BA2CA691B96103A3A5AB179E7C22B845A3F0A3861DD0A11518CA7940ED3511FC3A9F399D154BB576CD4822E00735212F52651762862297D8875BF585DE8D0F48B042F2D9A569F848F20AC71D857DE648BE1B302A3690D49027A49E895C5F1D4EBF321B1DC5D6EA6AB499116AAF692B52DD8139AB0AA435587A9330ABC8801C606834507E35BE4FAD79D0C06AC03498C32F6AABFC8EEB3DDDC9E771FAEF6A4E9526A2BF2D51D9F757F34F3D592C15345CCED24EEF2C94C6CD65F2617A6B8F420C5CDFB8B2FE6D3CFF3F59A55741A1A4F44764741C793189175D6913CF1A1C348B6708AD83F53674987A46610A626DE602E836417DEFE9CB2868A24D78B42A4EFD90F9407A55823050000
+-->
+

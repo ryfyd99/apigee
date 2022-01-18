@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:inv_advancedgetflightdata_7_1="http://xml.amadeus.com/IFLIRQ_07_1_1A" xmlns:inv_advancedgetflightdatareply_7_1="http://xml.amadeus.com/IFLIRR_07_1_1A" xmlns:Office_Display_13_1="http://xml.amadeus.com/OIDREQ_13_1_1A" xmlns:Office_DisplayReply_13_1="http://xml.amadeus.com/OIDRSP_13_1_1A" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/IFLIRQ_07_1_1A" schemaLocation="Inv_AdvancedGetFlightData_07_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/IFLIRR_07_1_1A" schemaLocation="Inv_AdvancedGetFlightDataReply_07_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/OIDREQ_13_1_1A" schemaLocation="Office_Display_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/OIDRSP_13_1_1A" schemaLocation="Office_DisplayReply_13_1_1A.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Inv_AdvancedGetFlightData_7_1">
+    <wsdl:part name="Inv_AdvancedGetFlightData_7_1" element="inv_advancedgetflightdata_7_1:Inv_AdvancedGetFlightData"/>
+  </wsdl:message>
+  <wsdl:message name="Inv_AdvancedGetFlightDataReply_7_1">
+    <wsdl:part name="Inv_AdvancedGetFlightDataReply_7_1" element="inv_advancedgetflightdatareply_7_1:Inv_AdvancedGetFlightDataReply"/>
+  </wsdl:message>
+  <wsdl:message name="Office_Display_13_1">
+    <wsdl:part name="Office_Display_13_1" element="Office_Display_13_1:Office_Display"/>
+  </wsdl:message>
+  <wsdl:message name="Office_DisplayReply_13_1">
+    <wsdl:part name="Office_DisplayReply_13_1" element="Office_DisplayReply_13_1:Office_DisplayReply"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Inv_AdvancedGetFlightData">
+      <wsdl:input message="pipa:Inv_AdvancedGetFlightData_7_1"/>
+      <wsdl:output message="pipa:Inv_AdvancedGetFlightDataReply_7_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Office_Display">
+      <wsdl:input message="pipa:Office_Display_13_1"/>
+      <wsdl:output message="pipa:Office_DisplayReply_13_1"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Inv_AdvancedGetFlightData">
+      <soap:operation soapAction="http://pip.koreanair.com/Inv_AdvancedGetFlightData_07_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Office_Display">
+      <soap:operation soapAction="http://pip.koreanair.com/Office_Display_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_IOPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

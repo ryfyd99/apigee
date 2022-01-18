@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+	xmlns:docissuance_issuecombined_9_2="http://xml.amadeus.com/TCTMIQ_09_2_1A" xmlns:docissuance_issuecombinedreply_9_2="http://xml.amadeus.com/TCTMIR_09_2_1A" xmlns:docissuance_issueticket_9_1="http://xml.amadeus.com/TTKTIQ_09_1_1A" xmlns:docissuance_issueticketreply_9_1="http://xml.amadeus.com/TTKTIR_09_1_1A" xmlns:docissuance_issuemiscellaneousdocuments_9_2="http://xml.amadeus.com/TMDSIQ_09_2_1A" xmlns:docissuance_issuemiscellaneousdocumentsreply_9_2="http://xml.amadeus.com/TMDSIR_09_2_1A" 
+	xmlns:docrefund_ignorerefund_9_2="http://xml.amadeus.com/TRFIDQ_09_2_IA" xmlns:docrefund_ignorerefundreply_9_2="http://xml.amadeus.com/TRFIDR_09_2_IA" xmlns:docrefund_updaterefund_13_1="http://xml.amadeus.com/TRFUUQ_13_1_1A" xmlns:docrefund_updaterefundreply_13_1="http://xml.amadeus.com/TRFUUR_13_1_1A" xmlns:docrefund_processrefund_13_1="http://xml.amadeus.com/TRFPCQ_13_1_1A" xmlns:docrefund_processrefundreply_13_1="http://xml.amadeus.com/TRFPCR_13_1_1A" xmlns:docrefund_initrefund_13_1="http://xml.amadeus.com/TRFSRQ_13_1_1A" xmlns:docrefund_initrefundreply_13_1="http://xml.amadeus.com/TRFSRR_13_1_1A" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+    	<xsd:import namespace="http://xml.amadeus.com/TCTMIQ_09_2_1A" schemaLocation="DocIssuance_IssueCombined_09_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TCTMIR_09_2_1A" schemaLocation="DocIssuance_IssueCombinedReply_09_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TTKTIQ_09_1_1A" schemaLocation="DocIssuance_IssueTicket_09_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TTKTIR_09_1_1A" schemaLocation="DocIssuance_IssueTicketReply_09_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TMDSIQ_09_2_1A" schemaLocation="DocIssuance_IssueMiscellaneousDocuments_09_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TMDSIR_09_2_1A" schemaLocation="DocIssuance_IssueMiscellaneousDocumentsReply_09_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TRFIDQ_09_2_IA" schemaLocation="DocRefund_IgnoreRefund_09_2_IA.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TRFIDR_09_2_IA" schemaLocation="DocRefund_IgnoreRefundReply_09_2_IA.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TRFUUQ_13_1_1A" schemaLocation="DocRefund_UpdateRefund_13_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TRFUUR_13_1_1A" schemaLocation="DocRefund_UpdateRefundReply_13_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TRFPCQ_13_1_1A" schemaLocation="DocRefund_ProcessRefund_13_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TRFPCR_13_1_1A" schemaLocation="DocRefund_ProcessRefundReply_13_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TRFSRQ_13_1_1A" schemaLocation="DocRefund_InitRefund_13_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TRFSRR_13_1_1A" schemaLocation="DocRefund_InitRefundReply_13_1_1A.xsd" />
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="DocIssuance_IssueCombined_9_2">
+    <wsdl:part name="DocIssuance_IssueCombined_9_2" element="docissuance_issuecombined_9_2:DocIssuance_IssueCombined"/>
+  </wsdl:message>
+  <wsdl:message name="DocIssuance_IssueCombinedReply_9_2">
+    <wsdl:part name="DocIssuance_IssueCombinedReply_9_2" element="docissuance_issuecombinedreply_9_2:DocIssuance_IssueCombinedReply"/>
+  </wsdl:message>
+  <wsdl:message name="DocIssuance_IssueTicket_9_1">
+    <wsdl:part name="DocIssuance_IssueTicket_9_1" element="docissuance_issueticket_9_1:DocIssuance_IssueTicket"/>
+  </wsdl:message>
+  <wsdl:message name="DocIssuance_IssueTicketReply_9_1">
+    <wsdl:part name="DocIssuance_IssueTicketReply_9_1" element="docissuance_issueticketreply_9_1:DocIssuance_IssueTicketReply"/>
+  </wsdl:message>
+  <wsdl:message name="DocIssuance_IssueMiscellaneousDocuments_9_2">
+    <wsdl:part name="DocIssuance_IssueMiscellaneousDocuments_9_2" element="docissuance_issuemiscellaneousdocuments_9_2:DocIssuance_IssueMiscellaneousDocuments"/>
+  </wsdl:message>
+  <wsdl:message name="DocIssuance_IssueMiscellaneousDocumentsReply_9_2">
+    <wsdl:part name="DocIssuance_IssueMiscellaneousDocumentsReply_9_2" element="docissuance_issuemiscellaneousdocumentsreply_9_2:DocIssuance_IssueMiscellaneousDocumentsReply"/>
+  </wsdl:message>
+  <wsdl:message name="DocRefund_IgnoreRefund_9_2">
+    <wsdl:part name="DocRefund_IgnoreRefund_9_2" element="docrefund_ignorerefund_9_2:DocRefund_IgnoreRefund"/>
+  </wsdl:message>
+  <wsdl:message name="DocRefund_IgnoreRefundReply_9_2">
+    <wsdl:part name="DocRefund_IgnoreRefundReply_9_2" element="docrefund_ignorerefundreply_9_2:DocRefund_IgnoreRefundReply"/>
+  </wsdl:message>
+  <wsdl:message name="DocRefund_UpdateRefund_13_1">
+    <wsdl:part element="docrefund_updaterefund_13_1:DocRefund_UpdateRefund" name="DocRefund_UpdateRefund_13_1" />
+  </wsdl:message>
+  <wsdl:message name="DocRefund_UpdateRefundReply_13_1">
+    <wsdl:part element="docrefund_updaterefundreply_13_1:DocRefund_UpdateRefundReply" name="DocRefund_UpdateRefundReply_13_1" />
+  </wsdl:message>
+  <wsdl:message name="DocRefund_ProcessRefund_13_1">
+    <wsdl:part element="docrefund_processrefund_13_1:DocRefund_ProcessRefund" name="DocRefund_ProcessRefund_13_1" />
+  </wsdl:message>
+  <wsdl:message name="DocRefund_ProcessRefundReply_13_1">
+    <wsdl:part element="docrefund_processrefundreply_13_1:DocRefund_ProcessRefundReply" name="DocRefund_ProcessRefundReply_13_1" />
+  </wsdl:message>
+  <wsdl:message name="DocRefund_InitRefund_13_1">
+    <wsdl:part element="docrefund_initrefund_13_1:DocRefund_InitRefund" name="DocRefund_InitRefund_13_1" />
+  </wsdl:message>
+  <wsdl:message name="DocRefund_InitRefundReply_13_1">
+    <wsdl:part element="docrefund_initrefundreply_13_1:DocRefund_InitRefundReply" name="DocRefund_InitRefundReply_13_1" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+  	<wsdl:operation name="DocIssuance_IssueCombined">
+      <wsdl:input message="pipa:DocIssuance_IssueCombined_9_2"/>
+      <wsdl:output message="pipa:DocIssuance_IssueCombinedReply_9_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="DocIssuance_IssueTicket">
+      <wsdl:input message="pipa:DocIssuance_IssueTicket_9_1"/>
+      <wsdl:output message="pipa:DocIssuance_IssueTicketReply_9_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="DocIssuance_IssueMiscellaneousDocuments">
+      <wsdl:input message="pipa:DocIssuance_IssueMiscellaneousDocuments_9_2"/>
+      <wsdl:output message="pipa:DocIssuance_IssueMiscellaneousDocumentsReply_9_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_IgnoreRefund">
+      <wsdl:input message="pipa:DocRefund_IgnoreRefund_9_2"/>
+      <wsdl:output message="pipa:DocRefund_IgnoreRefundReply_9_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_UpdateRefund">
+      <wsdl:input message="pipa:DocRefund_UpdateRefund_13_1" />
+      <wsdl:output message="pipa:DocRefund_UpdateRefundReply_13_1" />
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_ProcessRefund">
+      <wsdl:input message="pipa:DocRefund_ProcessRefund_13_1" />
+      <wsdl:output message="pipa:DocRefund_ProcessRefundReply_13_1" />
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_InitRefund">
+      <wsdl:input message="pipa:DocRefund_InitRefund_13_1" />
+      <wsdl:output message="pipa:DocRefund_InitRefundReply_13_1" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="DocIssuance_IssueCombined">
+      <soap:operation soapAction="http://pip.koreanair.com/DocIssuance_IssueCombined_09_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocIssuance_IssueTicket">
+      <soap:operation soapAction="http://pip.koreanair.com/DocIssuance_IssueTicket_09_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocIssuance_IssueMiscellaneousDocuments">
+      <soap:operation soapAction="http://pip.koreanair.com/DocIssuance_IssueMiscellaneousDocuments_09_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_IgnoreRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/DocRefund_IgnoreRefund_09_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_UpdateRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/DocRefund_UpdateRefund_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_ProcessRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/DocRefund_ProcessRefund_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocRefund_InitRefund">
+      <soap:operation soapAction="http://pip.koreanair.com/DocRefund_InitRefund_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_DOCPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

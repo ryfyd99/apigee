@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:fare_displaypassengerfacilitycharges_8_2="http://xml.amadeus.com/FARQZQ_08_2_1A" xmlns:fare_displaypassengerfacilitychargesreply_8_2="http://xml.amadeus.com/FARQZR_08_2_1A" xmlns:fare_displayticketimage_8_2="http://xml.amadeus.com/FITQQQ_08_2_1A" xmlns:fare_displayticketimagereply_8_2="http://xml.amadeus.com/FITQQR_08_2_1A" xmlns:fare_displayinformationnotes_8_2="http://xml.amadeus.com/FARQIQ_08_2_1A" xmlns:fare_displayinformationnotesreply_8_2="http://xml.amadeus.com/FARQIR_08_2_1A" xmlns:fare_displayroutinginformation_8_2="http://xml.amadeus.com/FARQRQ_08_2_1A" xmlns:fare_displayroutinginformationreply_8_2="http://xml.amadeus.com/FARQRR_08_2_1A" xmlns:fare_displayfaresforcitypair_12_1="http://xml.amadeus.com/FQDREQ_12_1_1A" xmlns:fare_displayfaresforcitypairreply_12_1="http://xml.amadeus.com/FQDRES_12_1_1A" xmlns:fare_displayfaredetails_8_2="http://xml.amadeus.com/FARRVQ_08_2_1A" xmlns:fare_displayfaredetailsreply_8_2="http://xml.amadeus.com/FARRVR_08_2_1A" xmlns:fare_displaybookingcodeinformation_8_2="http://xml.amadeus.com/FARQSQ_08_2_1A" xmlns:fare_displaybookingcodeinformationreply_8_2="http://xml.amadeus.com/FARQSR_08_2_1A" xmlns:fare_displayfarecalculation_8_2="http://xml.amadeus.com/FITQHQ_08_2_1A" xmlns:fare_displayfarecalculationreply_8_2="http://xml.amadeus.com/FITQHR_08_2_1A" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/FITQQQ_08_2_1A" schemaLocation="Fare_DisplayTicketImage_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FITQQR_08_2_1A" schemaLocation="Fare_DisplayTicketImageReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQIQ_08_2_1A" schemaLocation="Fare_DisplayInformationNotes_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQIR_08_2_1A" schemaLocation="Fare_DisplayInformationNotesReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQRQ_08_2_1A" schemaLocation="Fare_DisplayRoutingInformation_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQRR_08_2_1A" schemaLocation="Fare_DisplayRoutingInformationReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FQDREQ_12_1_1A" schemaLocation="Fare_DisplayFaresForCityPair_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FQDRES_12_1_1A" schemaLocation="Fare_DisplayFaresForCityPairReply_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARRVQ_08_2_1A" schemaLocation="Fare_DisplayFareDetails_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARRVR_08_2_1A" schemaLocation="Fare_DisplayFareDetailsReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQSQ_08_2_1A" schemaLocation="Fare_DisplayBookingCodeInformation_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQSR_08_2_1A" schemaLocation="Fare_DisplayBookingCodeInformationReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FITQHQ_08_2_1A" schemaLocation="Fare_DisplayFareCalculation_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FITQHR_08_2_1A" schemaLocation="Fare_DisplayFareCalculationReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQZQ_08_2_1A" schemaLocation="Fare_DisplayPassengerFacilityCharges_08_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FARQZR_08_2_1A" schemaLocation="Fare_DisplayPassengerFacilityChargesReply_08_2_1A.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Fare_DisplayTicketImage_8_2">
+    <wsdl:part name="Fare_DisplayTicketImage_8_2" element="fare_displayticketimage_8_2:Fare_DisplayTicketImage"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayTicketImageReply_8_2">
+    <wsdl:part name="Fare_DisplayTicketImageReply_8_2" element="fare_displayticketimagereply_8_2:Fare_DisplayTicketImageReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayInformationNotes_8_2">
+    <wsdl:part name="Fare_DisplayInformationNotes_8_2" element="fare_displayinformationnotes_8_2:Fare_DisplayInformationNotes"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayInformationNotesReply_8_2">
+    <wsdl:part name="Fare_DisplayInformationNotesReply_8_2" element="fare_displayinformationnotesreply_8_2:Fare_DisplayInformationNotesReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayRoutingInformation_8_2">
+    <wsdl:part name="Fare_DisplayRoutingInformation_8_2" element="fare_displayroutinginformation_8_2:Fare_DisplayRoutingInformation"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayRoutingInformationReply_8_2">
+    <wsdl:part name="Fare_DisplayRoutingInformationReply_8_2" element="fare_displayroutinginformationreply_8_2:Fare_DisplayRoutingInformationReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayFaresForCityPair_12_1">
+    <wsdl:part name="Fare_DisplayFaresForCityPair_12_1" element="fare_displayfaresforcitypair_12_1:Fare_DisplayFaresForCityPair"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayFaresForCityPairReply_12_1">
+    <wsdl:part name="Fare_DisplayFaresForCityPairReply_12_1" element="fare_displayfaresforcitypairreply_12_1:Fare_DisplayFaresForCityPairReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayFareDetails_8_2">
+    <wsdl:part name="Fare_DisplayFareDetails_8_2" element="fare_displayfaredetails_8_2:Fare_DisplayFareDetails"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayFareDetailsReply_8_2">
+    <wsdl:part name="Fare_DisplayFareDetailsReply_8_2" element="fare_displayfaredetailsreply_8_2:Fare_DisplayFareDetailsReply"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayBookingCodeInformation_8_2">
+    <wsdl:part name="Fare_DisplayBookingCodeInformation_8_2" element="fare_displaybookingcodeinformation_8_2:Fare_DisplayBookingCodeInformation"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayBookingCodeInformationReply_8_2">
+    <wsdl:part name="Fare_DisplayBookingCodeInformationReply_8_2" element="fare_displaybookingcodeinformationreply_8_2:Fare_DisplayBookingCodeInformationReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayFareCalculation_8_2">
+    <wsdl:part name="Fare_DisplayFareCalculation_8_2" element="fare_displayfarecalculation_8_2:Fare_DisplayFareCalculation"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayFareCalculationReply_8_2">
+    <wsdl:part name="Fare_DisplayFareCalculationReply_8_2" element="fare_displayfarecalculationreply_8_2:Fare_DisplayFareCalculationReply"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayPassengerFacilityCharges_8_2">
+    <wsdl:part name="Fare_DisplayPassengerFacilityCharges_8_2" element="fare_displaypassengerfacilitycharges_8_2:Fare_DisplayPassengerFacilityCharges"/>
+  </wsdl:message>
+  <wsdl:message name="Fare_DisplayPassengerFacilityChargesReply_8_2">
+    <wsdl:part name="Fare_DisplayPassengerFacilityChargesReply_8_2" element="fare_displaypassengerfacilitychargesreply_8_2:Fare_DisplayPassengerFacilityChargesReply"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Fare_DisplayTicketImage">
+      <wsdl:input message="pipa:Fare_DisplayTicketImage_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayTicketImageReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayInformationNotes">
+      <wsdl:input message="pipa:Fare_DisplayInformationNotes_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayInformationNotesReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayRoutingInformation">
+      <wsdl:input message="pipa:Fare_DisplayRoutingInformation_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayRoutingInformationReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayFaresForCityPair">
+      <wsdl:input message="pipa:Fare_DisplayFaresForCityPair_12_1"/>
+      <wsdl:output message="pipa:Fare_DisplayFaresForCityPairReply_12_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayFareDetails">
+      <wsdl:input message="pipa:Fare_DisplayFareDetails_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayFareDetailsReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayBookingCodeInformation">
+      <wsdl:input message="pipa:Fare_DisplayBookingCodeInformation_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayBookingCodeInformationReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayFareCalculation">
+      <wsdl:input message="pipa:Fare_DisplayFareCalculation_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayFareCalculationReply_8_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayPassengerFacilityCharges">
+      <wsdl:input message="pipa:Fare_DisplayPassengerFacilityCharges_8_2"/>
+      <wsdl:output message="pipa:Fare_DisplayPassengerFacilityChargesReply_8_2"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Fare_DisplayTicketImage">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayTicketImage_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayInformationNotes">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayInformationNotes_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayRoutingInformation">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayRoutingInformation_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayFaresForCityPair">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayFaresForCityPair_12_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayFareDetails">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayFareDetails_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayBookingCodeInformation">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayBookingCodeInformation_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayFareCalculation">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayFareCalculation_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Fare_DisplayPassengerFacilityCharges">
+      <soap:operation soapAction="http://pip.koreanair.com/Fare_DisplayPassengerFacilityCharges_08_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_FARE_DISPLAYPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

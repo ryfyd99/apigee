@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns="http://PIP_Service_Library/PIP_Processing" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://PIP_Service_Library/PIP_Processing" version="1.00" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ProcessingFlow">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="guid" type="xs:string" />
+        <xs:element minOccurs="0" name="requestSystem" type="xs:string" />
+        <xs:element minOccurs="0" name="employeeNo" type="xs:string" />
+        <xs:element minOccurs="0" name="lssUserId" type="xs:string" />
+        <xs:element minOccurs="0" name="officeId" type="xs:string" />
+        <xs:element minOccurs="0" name="dutyCode" type="xs:string" />
+        <xs:element minOccurs="0" name="wsap" type="xs:string" />
+        <xs:element minOccurs="0" name="companyName" type="xs:string" />
+        <xs:element minOccurs="0" name="workstationId" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

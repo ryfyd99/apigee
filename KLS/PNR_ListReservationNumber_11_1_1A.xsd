@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/PRSNRQ_11_1_1A" xmlns="http://xml.amadeus.com/PRSNRQ_11_1_1A" elementFormDefault="qualified">
+  <xs:element name="PNR_ListReservationNumber">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">List of reservation numbers query</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="listType" type="StatusType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">there are 2 types of reservation number lists that can be generated: - standard list - alternate list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="reservationNumber" type="ReservationControlInformationType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Contains the reservation number used to generate the list</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ReservationControlInformationDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">for the PNR record locator: 1A for the reservation number: provider code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="controlNumber" type="AlphaNumericString_Length1To20">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">this is the place to store the identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="controlType" minOccurs="0" type="AMA_EDICodesetType_Length1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">if "N" is filled, it indicates that the number is a reservation number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" minOccurs="0" maxOccurs="2" type="ReservationControlInformationDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">this segment is used to store the reservation number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a status, the action to be taken, and an additional qualification of the status.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="action" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">indicates which type of list is requeste: the standard list or the alternate list</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To advise the requester system the status of the reply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusInformation" type="StatusDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">STATUS DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To20">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..20</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AMA_EDICodesetType_Length1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used for codes in the AMADEUS code tables. Code Length is one alphanumeric character.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D6FDB300CBDEB5708BDEC30C471D20D2802E8E0366936A049B334BD0530148B4984CA9227CA45BCA2FF7D94EDACDD651F1783A4687EBCF7389F2D67EB6C339BE6F74B314E47E3417A3548C77C73AC3D2AD9F0F46A32BE9C5C5EF1F962F3314D2769CAB245169A0AF0561BB0B2044181FC5AA22E36319C9C50B19D4458D21B56B200710CA19A0C87A7D224B2940A6A4C0A570ED9AEB6CAC0547B31440841DB030E952E901547289E1EE85B4A117C0DAC700A28058575367A650996BCFEADACA46D623B616B632850355E1F8E415C645D3BBEF2AEF21A82F40D9756F11B67F75A510D2D0DFF6AF7CE9732686727BCB6B20E47E7F50F50BC4668D395C6C238AC3D700C5E17C1349CFED9694535124EC0A57CC0CFCD30910946DF18BE8E73205FD3F4FE195472C114EC656DC2DC57112E25F6D22030E5EA9D8107F85E832D60254371EC5FC05EFF139860DF725E2241AFF9CB3378A4ADC8F26080CA90250FD4A179657BA26F5D1BC2CC45265BBFA5B3FD395A7F29605C214D0FB9710745344E27DB2FB36CBA9D29BD9745D83867703BDBE4538D41DA70434C117FC4DC7621FD1344C6BB1C6CB9C6ED9D3B502D7B6807D1EADE9A8695E00FD083D1DAB71A8CC207E7C32FF86871A4B9328C98FE1E9B12EBDAF4CAB1FF0551E5B40D4B081D1DADD8BC73E11D42AD1F059CB06E858828C64B4A87E9A88FE1ADF399D154BB576CD4822E00A7A424EA4DA2EC50C452FA10EB3E5A5DE8D0F48B042F2D9A569F848F20AC71D857DE648BE18B02A3690D49027A4DE895C5F1D4FBF321B1DC9C6FA6AB499116AAF692B52DD8094DB8AF4355875B67147811038C0D068B0EC60FC8F5DB9D0C06AC03498C32F6AEBFC85659BE5AAEF3D1F81369BA94DA0A72199C2AA22B97984F6773B1593FCECEF470E9418AD1E7B32F56EB87E5FA1BABE81E341E89E10EF78E1C3122EB5947C6C86C81912D86B14B7E4732EB2EAD1D7259973BF0EC4CD61F527A1188D188FD049376F73512050000
+-->
+

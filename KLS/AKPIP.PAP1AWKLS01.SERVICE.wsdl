@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:service_priceserviceinstandardmode_11_1="http://xml.amadeus.com/TPSSGQ_11_1_1A" xmlns:service_priceserviceinstandardmodereply_11_1="http://xml.amadeus.com/TPSSGR_11_1_1A" 
+xmlns:service_priceintegratedmode_11_1="http://xml.amadeus.com/TPISGQ_11_1_1A" 
+xmlns:service_priceintegratedmodereply_11_1="http://xml.amadeus.com/TPISGR_11_1_1A" 
+xmlns:service_integratedcatalogue_13_1="http://xml.amadeus.com/TPICGQ_13_1_1A" 
+xmlns:service_integratedcataloguereply_13_1="http://xml.amadeus.com/TPICGR_13_1_1A" 
+xmlns:service_offlinecatalogue_13_1="http://xml.amadeus.com/TPOCGQ_13_1_1A" 
+xmlns:service_offlinecataloguereply_13_1="http://xml.amadeus.com/TPOCGR_13_1_1A" 
+targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/TPSSGQ_11_1_1A" schemaLocation="Service_PriceServiceInStandardMode_11_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/TPSSGR_11_1_1A" schemaLocation="Service_PriceServiceInStandardModeReply_11_1_1A.xsd"/>
+      <xsd:import schemaLocation="Service_IntegratedCatalogue_13_1_1A.xsd" namespace="http://xml.amadeus.com/TPICGQ_13_1_1A" />
+      <xsd:import schemaLocation="Service_IntegratedCatalogueReply_13_1_1A.xsd" namespace="http://xml.amadeus.com/TPICGR_13_1_1A" />
+      <xsd:import schemaLocation="Service_PriceIntegratedMode_11_1_1A.xsd" namespace="http://xml.amadeus.com/TPISGQ_11_1_1A" />
+      <xsd:import schemaLocation="Service_PriceIntegratedModeReply_11_1_1A.xsd" namespace="http://xml.amadeus.com/TPISGR_11_1_1A" />
+      <xsd:import namespace="http://xml.amadeus.com/TPOCGQ_13_1_1A" schemaLocation="Service_OfflineCatalogue_13_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/TPOCGR_13_1_1A" schemaLocation="Service_OfflineCatalogueReply_13_1_1A.xsd" />    
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Service_PriceServiceInStandardMode_11_1">
+    <wsdl:part name="Service_PriceServiceInStandardMode_11_1" element="service_priceserviceinstandardmode_11_1:Service_PriceServiceInStandardMode"/>
+  </wsdl:message>
+  <wsdl:message name="Service_PriceServiceInStandardModeReply_11_1">
+    <wsdl:part name="Service_PriceServiceInStandardModeReply_11_1" element="service_priceserviceinstandardmodereply_11_1:Service_PriceServiceInStandardModeReply"/>
+  </wsdl:message>
+  <wsdl:message name="Service_PriceIntegratedMode_11_1">
+    <wsdl:part element="service_priceintegratedmode_11_1:Service_PriceIntegratedMode" name="Service_PriceIntegratedMode_11_1" />
+  </wsdl:message>
+  <wsdl:message name="Service_PriceIntegratedModeReply_11_1">
+    <wsdl:part element="service_priceintegratedmodereply_11_1:Service_PriceIntegratedModeReply" name="Service_PriceIntegratedModeReply_11_1" />
+  </wsdl:message>
+  <wsdl:message name="Service_IntegratedCatalogue_13_1">
+    <wsdl:part element="service_integratedcatalogue_13_1:Service_IntegratedCatalogue" name="Service_IntegratedCatalogue_13_1" />
+  </wsdl:message>
+  <wsdl:message name="Service_IntegratedCatalogueReply_13_1">
+    <wsdl:part element="service_integratedcataloguereply_13_1:Service_IntegratedCatalogueReply" name="Service_IntegratedCatalogueReply_13_1" />
+  </wsdl:message>
+  <wsdl:message name="Service_OfflineCatalogue_13_1">
+    <wsdl:part name="Service_OfflineCatalogue_13_1" element="service_offlinecatalogue_13_1:Service_OfflineCatalogue" />
+  </wsdl:message>
+  <wsdl:message name="Service_OfflineCatalogueReply_13_1">
+    <wsdl:part name="Service_OfflineCatalogueReply_13_1" element="service_offlinecataloguereply_13_1:Service_OfflineCatalogueReply" />
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Service_PriceServiceInStandardMode">
+      <wsdl:input message="pipa:Service_PriceServiceInStandardMode_11_1"/>
+      <wsdl:output message="pipa:Service_PriceServiceInStandardModeReply_11_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Service_IntegratedCatalogue">
+      <wsdl:input message="pipa:Service_IntegratedCatalogue_13_1" />
+      <wsdl:output message="pipa:Service_IntegratedCatalogueReply_13_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Service_PriceIntegratedMode">
+      <wsdl:input message="pipa:Service_PriceIntegratedMode_11_1" />
+      <wsdl:output message="pipa:Service_PriceIntegratedModeReply_11_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Service_OfflineCatalogue">
+      <wsdl:input message="pipa:Service_OfflineCatalogue_13_1" />
+      <wsdl:output message="pipa:Service_OfflineCatalogueReply_13_1" />
+    </wsdl:operation>
+  </wsdl:portType>
+  
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Service_PriceServiceInStandardMode">
+      <soap:operation soapAction="http://pip.koreanair.com/Service_PriceServiceInStandardMode_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+         <wsdl:operation name="Service_PriceIntegratedMode">
+      <soap:operation soapAction="http://pip.koreanair.com/Service_PriceIntegratedMode_11_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Service_IntegratedCatalogue">
+      <soap:operation soapAction="http://pip.koreanair.com/Service_IntegratedCatalogue_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Service_OfflineCatalogue">
+      <soap:operation soapAction="http://pip.koreanair.com/Service_OfflineCatalogue_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>  
+  </wsdl:binding>
+  
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_SERVICEPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

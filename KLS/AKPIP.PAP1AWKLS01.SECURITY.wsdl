@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:security_authenticate_6_1="http://xml.amadeus.com/VLSSLQ_06_1_1A" xmlns:security_authenticatereply_6_1="http://xml.amadeus.com/VLSSLR_06_1_1A" xmlns:security_opentrustedsession_12_1="http://xml.amadeus.com/VTRSAQ_12_1_1A" xmlns:security_opentrustedsessionreply_12_1="http://xml.amadeus.com/VTRSAR_12_1_1A" xmlns:security_signout_4_1="http://xml.amadeus.com/VLSSOQ_04_1_1A" xmlns:security_signoutreply_4_1="http://xml.amadeus.com/VLSSOR_04_1_1A" targetNamespace="http://xml.amadeus.com">
+<wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+    	<xsd:import namespace="http://xml.amadeus.com/VLSSLQ_06_1_1A" schemaLocation="Security_Authenticate_06_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/VLSSLR_06_1_1A" schemaLocation="Security_AuthenticateReply_06_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/VTRSAQ_12_1_1A" schemaLocation="Security_OpenTrustedSession_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/VTRSAR_12_1_1A" schemaLocation="Security_OpenTrustedSessionReply_12_1_1A.xsd" />
+      <xsd:import namespace="http://xml.amadeus.com/VLSSOQ_04_1_1A" schemaLocation="Security_SignOut_04_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/VLSSOR_04_1_1A" schemaLocation="Security_SignOutReply_04_1_1A.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Security_Authenticate_6_1">
+    <wsdl:part name="Security_Authenticate_6_1" element="security_authenticate_6_1:Security_Authenticate"/>
+  </wsdl:message>
+  <wsdl:message name="Security_AuthenticateReply_6_1">
+    <wsdl:part name="Security_AuthenticateReply_6_1" element="security_authenticatereply_6_1:Security_AuthenticateReply"/>
+  </wsdl:message>
+  <wsdl:message name="Security_OpenTrustedSession_12_1">
+    <wsdl:part name="Security_OpenTrustedSession_12_1" element="security_opentrustedsession_12_1:Security_OpenTrustedSession" />
+  </wsdl:message>
+  <wsdl:message name="Security_OpenTrustedSessionReply_12_1">
+    <wsdl:part name="Security_OpenTrustedSessionReply_12_1" element="security_opentrustedsessionreply_12_1:Security_OpenTrustedSessionReply" />
+  </wsdl:message>
+  <wsdl:message name="Security_SignOut_4_1">
+    <wsdl:part name="Security_SignOut_4_1" element="security_signout_4_1:Security_SignOut"/>
+  </wsdl:message>
+  <wsdl:message name="Security_SignOutReply_4_1">
+    <wsdl:part name="Security_SignOutReply_4_1" element="security_signoutreply_4_1:Security_SignOutReply"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+  	<wsdl:operation name="Security_Authenticate">
+      <wsdl:input message="pipa:Security_Authenticate_6_1"/>
+      <wsdl:output message="pipa:Security_AuthenticateReply_6_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Security_OpenTrustedSession">
+      <wsdl:input message="pipa:Security_OpenTrustedSession_12_1" />
+      <wsdl:output message="pipa:Security_OpenTrustedSessionReply_12_1" />
+    </wsdl:operation>
+    <wsdl:operation name="Security_SignOut">
+      <wsdl:input message="pipa:Security_SignOut_4_1"/>
+      <wsdl:output message="pipa:Security_SignOutReply_4_1"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Security_Authenticate">
+      <soap:operation soapAction="http://pip.koreanair.com/Security_Authenticate_06_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Security_OpenTrustedSession">
+      <soap:operation soapAction="http://pip.koreanair.com/Security_OpenTrustedSession_12_1" />
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+   	<wsdl:operation name="Security_SignOut">
+      <soap:operation soapAction="http://pip.koreanair.com/Security_SignOut_04_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_SECURITYPort" binding="pipa:PAP1AWKLS01Binding">
+	    <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

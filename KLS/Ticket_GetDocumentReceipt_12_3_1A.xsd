@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/TRECSQ_12_3_1A" xmlns="http://xml.amadeus.com/TRECSQ_12_3_1A" elementFormDefault="qualified">
+  <xs:element name="Ticket_GetDocumentReceipt">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Ticketing RECeipt Standard Query</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="eDocumentDetails" maxOccurs="99" type="TicketNumberType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey e-document number and type of e-document.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="typeOfReceipt" type="StatusType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey the type of receipt which should be delivered</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="paymentReceiptDetailsGroup" minOccurs="0" type="PaymentReceiptDetailsType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey data essential to prepare payment receipt formatting.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="additionnalManualRemarks" minOccurs="0" maxOccurs="10" type="LongTextStringType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey manual remarks to added within the receipt.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="deliveryOptionsGroup" type="DeliveryOptionsType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey details about options on the receipt delivery.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="reservationControlInformation" minOccurs="0" type="ReservationControlInformationType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey Information about the PNR.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DeliveryOptionsType">
+    <xs:sequence>
+      <xs:element name="mediaInformation" type="DocumentMessageTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey information about the media to be delivered.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="printerDeliverydetails" minOccurs="0" maxOccurs="10" type="ReferenceInfoType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">To provide the printer delivery details (type of printer addressing and printer address)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="phoneOrEmailDeliveryDetails" minOccurs="0" maxOccurs="10" type="PhoneAndEmailAddressType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">To provide telephone or Email delivery details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentMessageDetailsTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of document/message by number, status, source and/or language.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="languageCode" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the language code. Specify the language on media to be delivered.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentMessageNameTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Identification of a type of document/message by code or name. Code preferred.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="contentType" minOccurs="0" type="AlphaNumericString_Length1To17">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the layout content type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentMessageTypeU">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify documents and details directly related to it.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mediaID" type="DocumentMessageNameTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey identification of the media to be delivered.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="mediaDetails" minOccurs="0" type="DocumentMessageDetailsTypeU">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey details about media to be delivered.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="mediaType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the media delivery type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemReferencesAndVersionsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Exchange and link unique identifiers</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the equipment type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="uniqueReference" type="NumericInteger_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">ID (DID, IID, SID number or any uniquer identifier) Convey the equipment ID value. Mobile phone number,  ID number,  credit card number,  cash card number,  company number...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="actionCategory" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Approval type (approval or cancellation)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LongTextStringType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide unlimited length free for information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="messageText" type="AlphaNumericString_Length1To30720">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey text message.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the type of monetary amount, the amount, and the currency code.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="typeQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Sales type:  00 =) individual  01 =) company.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="amount" type="NumericDecimal_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Amount. '00057000' leading zero should be entered.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="currency" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Currency</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MonetaryInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey monetary amounts, rates and percentages.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="monetaryDetails" type="MonetaryInformationDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Monetary Details upon payment receipt.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentReceiptDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey input data for payment receipt delivery.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="equipmentReference" type="ItemReferencesAndVersionsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey information about the equipment specified within the payment receipt.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="monetaryInformation" type="MonetaryInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey details about: - sales type.  - amount.  - currency.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhoneAndEmailAddressType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a phone or email address</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="phoneOrEmailType" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Phone or Email contact type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="telephoneNumberDetails" minOccurs="0" type="StructuredTelephoneNumberType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Structured telephone or fax number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="emailAddress" minOccurs="0" type="AlphaNumericString_Length1To250">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Email address</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInfoType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide specific Hotel reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceDetails" minOccurs="0" type="ReferencingDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Type of printer addressing</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" type="AlphaNumericString_Length1To60">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">printer device value</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the information required to identify a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Company Id.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="controlNumber" type="AlphaNumericString_Length1To20">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the Booking reference or the Amadeus Record Locator which would be triggered to help in formatting receipt(s).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="controlType" minOccurs="0" type="AMA_EDICodesetType_Length1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Control type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="date" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">date</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="time" minOccurs="0" type="NumericInteger_Length1To9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">time</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="bfeType" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Booking file element type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationControlInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a reference to a reservation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reservation" minOccurs="0" type="ReservationControlInformationDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey details about reservation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a status, the action to be taken, and an additional qualification of the status.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="indicator" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">List of ticketing receipt types: - RCP (all receipts allowed) - ITR - Payment Receipt - ACC (Agent Credit Card Form) - PCC (Passenger Credit Card Form) - PCA (Passenger Cash Sales Receipt) - EMR (EMD Receipt)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="action" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey action code specifying the action to be taken while formatting the receipt.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the type of layout enrichment upon which the receipt will be build.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To advise the requester system the status of the reply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusInformation" type="StatusDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">STATUS DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredTelephoneNumberType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Convey structured phone information</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="internationalDialCode" minOccurs="0" type="AlphaNumericString_Length1To25">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">International dial code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="localPrefixCode" minOccurs="0" type="AlphaNumericString_Length1To25">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Local prefix code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="areaCode" minOccurs="0" type="AlphaNumericString_Length1To25">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Area code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="telephoneNumber" type="AlphaNumericString_Length1To50">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Telephone number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a ticket number, type of ticket, and related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey electronic document number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the electronic document type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information related to a specific ticket.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="documentDetails" type="TicketNumberDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey information about the electronic document the receipt should reference.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,35}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To30720">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..30720</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="30720" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To250">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..250</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="250" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericDecimal_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal" />
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To17">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..17</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="17" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To10">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..10</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To60">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..60</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="60" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To25">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..25</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="25" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To50">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..50</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To20">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..20</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="20" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,9}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AMA_EDICodesetType_Length1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used for codes in the AMADEUS code tables. Code Length is one alphanumeric character.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Z]" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D6FDB300CBDEB5708BBEC30C471D2EDB0003A78B5930D58DA2E4D6F010255621261B2E4897251AFE87F1F653B5B77D9C7C5A0489A1FEF3DAEAAAB6A536CAB727F7D25E6F9EC6292CF27B3777C198C961D9FE58BF96C91BFE5ABF5F64D9E2FF29C15EB22760DE0D25870B206418EFD0789466D933B7B44CDEE25C215C5B0910AC429C666319D3ED63693B5D4D062A67C3D65F7ADD3164A13C4142146E38E38D546215327505F6FE95B4B11430B4C790D9482C279975E750D8E5E63AC6EA4EB523BE15A6BC9D174C11C4F51BC2A8676FC26F826188832745C3ACD2FBD3B184D358CB4FC933BF850CB68BC5BF0D6C9369E7C30DF41F316A14FD70695F5D806E0188351D1769CFEB9379A6A649C60CBF9849F9B6126334C6F6BF926CD817C43D38707D0D92BA6E1205B1B57A14970697190168169DFDE5BB8856F2D38053732AAD31801F7E19FC004F72BE72911F4BC7F7A8080B41559012C5019B2E4913A74CFEC40F46D5A4B98F9C464FFEEE9EC7F4ED65F0A58AFA41D21B7FEA889C672B1FB5815E5AED2E62055DC7A6F71576DF7A5C1285DBC24A6883F626EB796E12B24C6871CECB9C6DD677FA45AEED80F62F4B5B31DAB211C6104A3B79706ACC65B1FE24FF86871A4B90A4C98FEEE2B89756347E5B8FF82A8F1C6C52B88031DBDD882F7F10542FD3B093863C30A09514C77944FF3D9E8C3A50F8535547B546CD28251802529897A93280714B19621A6BA77CE2813BB719118A443DBEB93F01184354EC7CADB623D7DD2600DAD214940CF1945591A4FBF3C1F12CBE5F966869AE4E9A1EA2FD938C51ED1C6EB36366D5C7AAB2188E4606C32590F30BE466E7EDDC964C20690C4AC602FFA8BE2A6D86F8D226EF7B3F985225DD7D23871536E183C3644D95EE2BEAC5662BBB9ABCE147119408AF9FBB7670745ABCBDB2FACA1A33078229A07F00786C405590F26D126DE0DE8C81E4831765E412CBD6AD3BE1B50609AC8CE8CFD2165548298CDD90FCA4ADB5B15050000
+-->
+

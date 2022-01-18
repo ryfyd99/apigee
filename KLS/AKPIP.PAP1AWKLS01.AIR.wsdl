@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:pipa="http://xml.amadeus.com" xmlns:pip="http://PIP_Service_Library/PIP_Processing" xmlns:pips="http://PIP_Service_Library/PIP_Session" xmlns:pipe="http://PIP_Service_Library/PIP_Error" xmlns:ws="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:air_flightinfo_7_1="http://xml.amadeus.com/FLIREQ_07_1_1A" xmlns:air_flightinforeply_7_1="http://xml.amadeus.com/FLIRES_07_1_1A" xmlns:air_multiavailability_13_1="http://xml.amadeus.com/SATRQT_13_1_1A" xmlns:air_multiavailabilityreply_13_1="http://xml.amadeus.com/SATRSP_13_1_1A" xmlns:air_rebookairsegment_3_2="http://xml.amadeus.com/ARBKUQ_03_2_1A" xmlns:air_rebookairsegmentreply_3_2="http://xml.amadeus.com/ARBKUR_03_2_1A" xmlns:air_retrieveseatmap_13_1="http://xml.amadeus.com/SMPREQ_13_1_IA" xmlns:air_retrieveseatmapreply_13_1="http://xml.amadeus.com/SMPRES_13_1_IA" targetNamespace="http://xml.amadeus.com">  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xml.amadeus.com">
+      <xsd:import namespace="http://xml.amadeus.com/FLIREQ_07_1_1A" schemaLocation="Air_FlightInfo_07_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/FLIRES_07_1_1A" schemaLocation="Air_FlightInfoReply_07_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SATRQT_13_1_1A" schemaLocation="Air_MultiAvailability_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SATRSP_13_1_1A" schemaLocation="Air_MultiAvailabilityReply_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/ARBKUQ_03_2_1A" schemaLocation="Air_RebookAirSegment_03_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/ARBKUR_03_2_1A" schemaLocation="Air_RebookAirSegmentReply_03_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SMPREQ_13_1_IA" schemaLocation="Air_RetrieveSeatMap_13_1_IA.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SMPRES_13_1_IA" schemaLocation="Air_RetrieveSeatMapReply_13_1_IA.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Air_FlightInfo_7_1">
+    <wsdl:part name="Air_FlightInfo_7_1" element="air_flightinfo_7_1:Air_FlightInfo"/>
+  </wsdl:message>
+  <wsdl:message name="Air_FlightInfoReply_7_1">
+    <wsdl:part name="Air_FlightInfoReply_7_1" element="air_flightinforeply_7_1:Air_FlightInfoReply"/>
+  </wsdl:message>
+  <wsdl:message name="Air_MultiAvailability_13_1">
+    <wsdl:part name="Air_MultiAvailability_13_1" element="air_multiavailability_13_1:Air_MultiAvailability"/>
+  </wsdl:message>
+  <wsdl:message name="Air_MultiAvailabilityReply_13_1">
+    <wsdl:part name="Air_MultiAvailabilityReply_13_1" element="air_multiavailabilityreply_13_1:Air_MultiAvailabilityReply"/>
+  </wsdl:message>
+  <wsdl:message name="Air_RebookAirSegment_3_2">
+    <wsdl:part name="Air_RebookAirSegment_3_2" element="air_rebookairsegment_3_2:Air_RebookAirSegment"/>
+  </wsdl:message>
+  <wsdl:message name="Air_RebookAirSegmentReply_3_2">
+    <wsdl:part name="Air_RebookAirSegmentReply_3_2" element="air_rebookairsegmentreply_3_2:Air_RebookAirSegmentReply"/>
+  </wsdl:message>
+  <wsdl:message name="Air_RetrieveSeatMap_13_1">
+    <wsdl:part name="Air_RetrieveSeatMap_13_1" element="air_retrieveseatmap_13_1:Air_RetrieveSeatMap"/>
+  </wsdl:message>
+  <wsdl:message name="Air_RetrieveSeatMapReply_13_1">
+    <wsdl:part name="Air_RetrieveSeatMapReply_13_1" element="air_retrieveseatmapreply_13_1:Air_RetrieveSeatMapReply"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessingFlow" xmlns="http://PIP_Service_Library/PIP_Processing">
+    <wsdl:part name="ProcessingFlow" element="pip:ProcessingFlow"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://PIP_Service_Library/PIP_Session">
+    <wsdl:part name="Session" element="pips:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAP1AWKLS01PT">
+    <wsdl:operation name="Air_FlightInfo">
+      <wsdl:input message="pipa:Air_FlightInfo_7_1"/>
+      <wsdl:output message="pipa:Air_FlightInfoReply_7_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Air_MultiAvailability">
+      <wsdl:input message="pipa:Air_MultiAvailability_13_1"/>
+      <wsdl:output message="pipa:Air_MultiAvailabilityReply_13_1"/>
+    </wsdl:operation>
+    <wsdl:operation name="Air_RebookAirSegment">
+      <wsdl:input message="pipa:Air_RebookAirSegment_3_2"/>
+      <wsdl:output message="pipa:Air_RebookAirSegmentReply_3_2"/>
+    </wsdl:operation>
+    <wsdl:operation name="Air_RetrieveSeatMap">
+      <wsdl:input message="pipa:Air_RetrieveSeatMap_13_1"/>
+      <wsdl:output message="pipa:Air_RetrieveSeatMapReply_13_1"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAP1AWKLS01Binding" type="pipa:PAP1AWKLS01PT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Air_FlightInfo">
+      <soap:operation soapAction="http://pip.koreanair.com/Air_FlightInfo_07_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Air_MultiAvailability">
+      <soap:operation soapAction="http://pip.koreanair.com/Air_MultiAvailability_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Air_RebookAirSegment">
+      <soap:operation soapAction="http://pip.koreanair.com/Air_RebookAirSegment_03_2"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Air_RetrieveSeatMap">
+      <soap:operation soapAction="http://pip.koreanair.com/Air_RetrieveSeatMap_13_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:ProcessingFlow" part="ProcessingFlow" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAP1AWKLS01Services">
+    <wsdl:port name="PAP1AWKLS01_AIRPort" binding="pipa:PAP1AWKLS01Binding">
+      <soap:address location="http://PIPESB:9080/PSPSOAPHPSRBY02/sca/V1_01"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

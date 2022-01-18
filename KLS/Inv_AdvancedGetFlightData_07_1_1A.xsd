@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/IFLIRQ_07_1_1A" xmlns="http://xml.amadeus.com/IFLIRQ_07_1_1A" elementFormDefault="qualified">
+  <xs:element name="Inv_AdvancedGetFlightData">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Provide Complete Data for a Flight request message
+Requests full information about a flight.
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="flightDate" type="FlightDetailsQueryType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Flight-date for which information are to be provided to the RMS.  boardPoint and offPoint can specify a segment. In that case departureDate becomes the boarding date for the segment and the flight-date retrieved is the one containing this segment with this boarding date. If only one of this information is missing, the other is ignored.  e.g. for a flight with 2 legs AAA-BBB and BBB-CCC with the respective boarding date 25-MAR-02 and 26-MAR-02 the following FDQ segment will retrieve the same flight-date:  - FDQ+6X+42+250302'  - FDQ+6X+42+250302+AAA+BBB'  - FDQ+6X+42+250302+AAA+CCC'  - FDQ+6X+42+250302+BBB'  - FDQ+6X+42+250302++CCC'  - FDQ+6X+42+260302+BBB+CCC'</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="grabLock" type="StatusTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Indicates whether or not the lock should be grabbed on the flight-date.  type is not used, and should not be filled.  Possible values for statusIndicator are:  - GBL: Grab the lock (mandatory)  Possible valuse for actionRequest are:  - 2: Retrieve the flight-date information without grabing any lock (mandatory)  The RMS must hardcode statusIndicator to "GBL", and actionRequest to "2".  e.g: STX+GBL:2'</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="FlightDetailsQueryType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To designate a flight for a given date in a query.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="airlineInformation" type="OutboundCarrierDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Provide information on the airline of the flight</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="flightReference" type="OutboundFlightNumberDetailstypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference of the flight for the airline</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="departureDate" type="Date_DDMMYY">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Departure date ddmmyy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="boardPoint" minOccurs="0" type="AlphaString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Can be ommited</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="offPoint" minOccurs="0" type="AlphaString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Can be ommited</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OutboundCarrierDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">OUTBOUND CARRIER DETAILS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="airlineCode" type="AlphaNumericString_Length2To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Airline code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OutboundFlightNumberDetailstypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">OUTBOUND FLIGHT NUMBER DETAILS</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="flightNumber" type="NumericInteger_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Flight number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="operationalSuffix" minOccurs="0" type="AlphaString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Operational suffix</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusDetailsTypeI">
+    <xs:sequence>
+      <xs:element name="statusIndicator" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">StatusIndicator</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="actionRequest" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Action request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To advise the requester system the status of the reply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusInformation" maxOccurs="99" type="StatusDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">STATUS DETAILS</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length2To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an2..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,4}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Date_DDMMYY">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Date format: DDMMYY</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[1-2][0-9]|3[0-1])(0[1-9]|1[0-2])[0-9]{2}" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095544D8F1A3910BDFB5758B9EC21021A92DD44483E74A681450A30CB901B12AA691760C56DF7BADC68C868FEFB96BB9B6472CAE6D2727D7495EBBD575ECCD6B36DBE9B1587CD5A4DB2F1BB41F6E7609CC979301AAE723C99BE7B3F7DFF412E56BBB75936CD3291AFF278AD91E6C6A2830A153B0E9F804CB94BEEE11369F108846B8E510D25AA738CF574347AAAEC102AD0D8D0B0F4D5483C364E5B2C4C5023C2188D3BD1489B924479C6F2EB037F2B503134284AAF91534839EF925555E8D8EA63550DEE9ADA29D758CB8EFA1ACCE91CD59BBC6B27EF83AF83C108E12AC16979E7DDD168AE61C0CAA53BFA504134DE4D65E3A089671FCC37D4B2216CD3B5A1D27A6A024A8AC194D15E25FFF36834D7184A862D9303796B46431852B2AD95DB740F925BBE7DB8A01EBE111A8FD0D8B80875824BAB235842A17DF368F101FF6DD095780FB13CF711749FFE1798E87EE43C27825E0ECF170CC453F129A0452EC327387187EB8B38327DDBC632663E31D9DA2D9DEDCFE9F48B02D697607BC8AD3F69A6B198EEFF9EE5C57EA6CD11CAB8F3DED27EB63B148622B878C74C317FCCDC7E05E12B26C6BB1C6AB9A6FD677FE25AEED45EC4E88DB357516138610F467B9E1BB49A1E7C88DFE1E3C189EF9553C2F4675FC1AC1BDB2BC7FD1644B5372EAE317674B4620BDEC75708B57612F0507423244429ED5136CAC6BD8FE63EE4D670ED5EB1490BA6442A5849DC9B45D9A148158498EA7E71A634F1DA0F120338B2AD3E191FC558D3A8AFBCCB57A3678DD6F018C0027A197254A4EBE9D7EBC362B9BBED4C57933D2D54ED261B578A27B271D3C4BA89736F3506951C420C06AB0EC63F489A1F7B3218880E2435CEC5ABFE2ABFCF0F4B77397C9C006BBA02E354B1B9938BEE95596ED6029F6A66EE007428660BB5DB7E99DD98921010D45F1F6EB65ACE3F2FB7FF889A57C3D099C9EE28E87852633E5D4C224F4D3A8CA08553A5FEB9BE002F925E609CDBB48305441037DE14BF0717DEFF24488B11533091D4A56ED31652EC0717BD42543611FF017B3A62CF2D050000
+-->
+

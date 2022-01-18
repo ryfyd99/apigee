@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/TRECSR_12_3_1A" xmlns="http://xml.amadeus.com/TRECSR_12_3_1A" elementFormDefault="qualified">
+  <xs:element name="Ticket_GetDocumentReceiptReply">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Ticketing Receipt Standard Reply</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="mergeReceiptDeliveryStatus" minOccurs="0" type="ResponseAnalysisDetailsType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Indicate correct processing of the delivery of a merge receipt (which is associated to more than one electronic document).</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="urlLinkToMergeReceipt" minOccurs="0" type="CommunicationContactType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey url Link to the Merge Receipt, if requested.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="mergeReceiptErrorGroup" minOccurs="0" type="ErrorGroupType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey details upon error occured during merge receipt delivery (which is associated to more than one electronic document).</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="receiptDeliveryStatusGroup" minOccurs="0" maxOccurs="99" type="DocumentDeliveryStatusType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convey the delivery status of receipt (which is associated to a single electronic document) to be deliverd.   Convey if requested: - The receipt display  - url link pointed to the receipt</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationErrorDetailType">
+    <xs:sequence>
+      <xs:element name="errorCode" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the data validation error condition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCategory" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCodeOwner" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the agency responsible for a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorDetails" type="ApplicationErrorDetailType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Application error details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CommunicationContactDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Communication identifier such as URL address.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="urlAddress" type="AlphaNumericString_Length1To2500">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">url</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="urlType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">this type is used to identify the url : BO - Boleto FOP</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CommunicationContactType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Describes communication channel</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="communication" type="CommunicationContactDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Communication channel</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentDeliveryStatusType">
+    <xs:sequence>
+      <xs:element name="eDocumentDetails" type="TicketNumberType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey details upon the electronic document used to format receipt.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="receiptDeliveryStatus" minOccurs="0" type="ResponseAnalysisDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Indicate correct processing of the receipt delivery (which is associated to a single electronic document).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="urlLinkToReceipt" minOccurs="0" type="CommunicationContactType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey URL link to the Ticketing receipt, if requested.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="receiptErrorGroup" minOccurs="0" type="ErrorGroupType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey details upon error occured during receipt delivery (which is associated to a single electronic document).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Conveys a potential error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorOrWarningCodeDetails" type="ApplicationErrorInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The details of error/warning code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorWarningDescription" minOccurs="0" type="FreeTextInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The desciption of warning or error.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextDetailsType">
+    <xs:sequence>
+      <xs:element name="textSubjectQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code specifying subject of a free text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="source" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code specifying the source.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="encoding" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Coded identification of the character encoding used in the interchange.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to convey the free text and associated language, encoding.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeTextDetails" type="FreeTextDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="freeText" maxOccurs="99" type="AlphaNumericString_Length1To199">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text and message sequence numbers of the remarks.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseAnalysisDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the type of query and the processing status associated with this response.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="statusCode" type="AlphaString_Length1To6">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the status code of the receipt delivery.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a ticket number, type of ticket, and related information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" type="NumericInteger_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey electronic document number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey the electronic document type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TicketNumberType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To convey information related to a specific ticket.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="documentDetails" type="TicketNumberDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Convey information about the electronic document the receipt should reference.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaString_Length1To6">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a..6</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To199">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..199</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="199" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To2500">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..2500</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="2500" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,35}" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.0.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534D6FDB3810BDF35710BDECA1B02C3BEDA106785023D92D502781E2DE0C180C39B68952A4CAA182A841FE7B8792DCA68762772FC27066341FEFBDD95437555DECAAF2707B2396F9E26A962F678BF77C1D8C963D5FE4ABE56295BFE39BEDEE6D9EAFF29C15DB22F62DE0DA5870B201418EC3478946ED923B7B42CD1E24C20DC5B0950AC439C676359F3F3536938DD4D061A67C33670F9DD3164A13C41C2146E34E38D74621536750DFEEE9DB481143074C790D9482C279975E4D038E5E53AC69A5EB533BE13A6BC9D1F6C19CCE51BC29C676FC2EF836188832F45C3ACDAFBD3B1A4D358CB4FCB33BFAD0C868BC5BF1CEC92E9E7D303F40F30E6148D70695F5D805E0188351D1F69CFE79309A6A649C60CBF98C5F9A6126334C6F6B799DE6405ED3F4E11174F6866938CACEC64D68135C5A1CA54560DA770F16EEE17B074EC19D8CEA3C45C07DFC4F6082FB9DF39C087A393C3F4240DA8AAC0016A80C59F2441DFA177624FAEACE12663E3139BC073A879F93F52F05AC57D24E905B7FD24463B9DA7FAA8A725F6973942AEEBCB7B8AF7687D260942E5E1353C41F31B7DFCAF00D12E3630E0E5CE3FE8B3F512D771A0631FAD6D99E35104E308131D86B0356E3BD0FF1177CB438D25C05264CFFF495C4BAB19372DCFF82A8F5C6C51B88231D83D882F7F11542C33B093863E30A09514C7794CFF3C5E4C3B50F8535547B526CD28251802529897A93284714B19121A6BA5F9D5126F6D32231488776D027E123086B9C4F9577C576FEACC11A5A4392805E328AB2349E7E7D3E2496EBCBCD8C35C93340355CB2718A3DA18DB75D6CBBB8F6564310C9C1D86CB61D61FC07B9F97D27B3191B41128B82BDEA2F8ABBE2B0338AB83D2C96578A74DD48E3C45D5933786A89B283C443596DC4AEFE5A5D28E2328014CB0FEF2E0E8A56D7F7356BE9280C9E89E611FC91217145D6A349B49139A0230720C5D47903B1F4AA4BFBD6A0C0B4915D18FB7B4A0D2D896D9283582CD94F57B76A951A050000
+-->
+
