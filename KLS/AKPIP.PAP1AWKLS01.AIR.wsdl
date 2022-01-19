@@ -5,14 +5,14 @@
     <xsd:schema targetNamespace="http://xml.amadeus.com">
       <xsd:import namespace="http://xml.amadeus.com/FLIREQ_07_1_1A" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_FlightInfo_07_1_1A.xsd"/>
       <xsd:import namespace="http://xml.amadeus.com/FLIRES_07_1_1A" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_FlightInfoReply_07_1_1A.xsd"/>
-      <xsd:import namespace="http://xml.amadeus.com/SATRQT_13_1_1A" schemaLocation="Air_MultiAvailability_13_1_1A.xsd"/>
-      <xsd:import namespace="http://xml.amadeus.com/SATRSP_13_1_1A" schemaLocation="Air_MultiAvailabilityReply_13_1_1A.xsd"/>
-      <xsd:import namespace="http://xml.amadeus.com/ARBKUQ_03_2_1A" schemaLocation="Air_RebookAirSegment_03_2_1A.xsd"/>
-      <xsd:import namespace="http://xml.amadeus.com/ARBKUR_03_2_1A" schemaLocation="Air_RebookAirSegmentReply_03_2_1A.xsd"/>
-      <xsd:import namespace="http://xml.amadeus.com/SMPREQ_13_1_IA" schemaLocation="Air_RetrieveSeatMap_13_1_IA.xsd"/>
-      <xsd:import namespace="http://xml.amadeus.com/SMPRES_13_1_IA" schemaLocation="Air_RetrieveSeatMapReply_13_1_IA.xsd"/>
-      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="ProcessingFlow-1.1.xsd"/>
-      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="Session-1.0.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SATRQT_13_1_1A" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_MultiAvailability_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SATRSP_13_1_1A" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_MultiAvailabilityReply_13_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/ARBKUQ_03_2_1A" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_RebookAirSegment_03_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/ARBKUR_03_2_1A" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_RebookAirSegmentReply_03_2_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SMPREQ_13_1_IA" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_RetrieveSeatMap_13_1_IA.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/SMPRES_13_1_IA" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Air_RetrieveSeatMapReply_13_1_IA.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Processing" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/ProcessingFlow-1.1.xsd"/>
+      <xsd:import namespace="http://PIP_Service_Library/PIP_Session" schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/KLS/Session-1.0.xsd"/>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="Air_FlightInfo_7_1">
