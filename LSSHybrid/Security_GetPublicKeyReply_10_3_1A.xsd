@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/Security_GetPublicKeyReply_10_3_1A" xmlns="http://xml.amadeus.com/Security_GetPublicKeyReply_10_3_1A" elementFormDefault="qualified">
+  <xs:element name="Security_GetPublicKeyReply">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="errorGroup" minOccurs="0" type="ErrorGroupType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">error group</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="passwordGroup" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Password group.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="externalConversationID" type="ItemReferencesAndVersionsType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Conversation id provided by the external system in order to correlate the provided public key with his private one.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="publickeyN" type="BinaryDataType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">this is one part of the public key (N,e)</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="publickeyE" type="BinaryDataType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">This is one part of the public key (N,e).</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ApplicationErrorDetailType">
+    <xs:sequence>
+      <xs:element name="errorCode" type="AlphaNumericString_Length1To5">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the data validation error condition.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCategory" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Identification of a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorCodeOwner" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Code identifying the agency responsible for a code list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ApplicationErrorInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of application error within a message.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorDetails" type="ApplicationErrorDetailType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Application error details.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BinaryDataType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">to carry binary data within an Edifact segment</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="dataLength" type="NumericInteger_Length1To15">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Length of 203K</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dataType" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">type of the data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="binaryData" type="AlphaNumericString_Length1To99999">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">used to store binary data</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorGroupType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Conveys a potential error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="errorOrWarningCodeDetails" type="ApplicationErrorInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The details of error/warning code.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="errorWarningDescription" minOccurs="0" type="FreeTextInformationType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The desciption of warning or error.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextDetailsType">
+    <xs:sequence>
+      <xs:element name="textSubjectQualifier" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Subject</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="informationType" minOccurs="0" type="AlphaNumericString_Length1To4">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Info Type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="language" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Language</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="source" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Source</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="encoding" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Encoding</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FreeTextInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">This segment is used to convey the free text</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="freeTextDetails" type="FreeTextDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free Text Information</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="freeText" maxOccurs="99" type="AlphaNumericString_Length1To199">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Free text and message sequence numbers of the remarks.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemReferencesAndVersionsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Exchange and link unique identifiers</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="uniqueReference" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The value of the reference</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To199">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..199</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="199" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To15">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..15</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,15}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To99999">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..99999</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="99999" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To5">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..5</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="5" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To4">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="4" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 4.3.5 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B08000000000000008D534D6FDB300CBDEB5708BBEC30C4B1970ED802E8E0361F18D6B4859D6E3B040814894984C99227C945BDA2FF7D94EDF40318B05E0C8A341FC9F7C8E5FC6A5EE4EBF96C7B7DC53EA6D964944E46D967BAB246F2966667D3349DA6195DAED61FA295927C9587B606BF501A0CAF80A1637BCEBD12EBE84EEEBD243BEEE10A63BEE602D831847A3A1EDF573AE11597D0F844D86A4CC411C4AF12BF1567C135408495E0217866AC89AFAA0283AF2156D5DCB4119599466B74D4AD53876360EFF21E95DE385B3B0581BB967223E985357B251143714DBF9ABD75150FCA9A296D0C6FC2D13AF507246D3C74BF4BE585B6BE71407D704A04DD52CCD9298918094576523AA2A7623EE1898F6FAD6911FBF0B4C0EEDD1DC8E41D91B0E78D0E4B57475624DB73ED8148DBEC3494F0BB0123E08607711C2260CEDFC41998E77F1EA20E8FDB873B701EA742CB810684418B1FB042FB48F6A852D168609DD5E9D5A545EB3FA9DA0AAE07B2B53D48E5D86CBA9959D174B26C0622363F60474B9C5B09F09B9FE56CB304038E07EB36BDB8E78DD2121C3D4B26C9A7CDA53D209C3974BD28796D744B2A70071898E8EC85022D7D695D78E20EA7F6D85AEE23A1AF7D33945CE9616DCC6B7EDE30686D950957107A3DBA6D73D68617F9C4778344227DBC92749C6683CF2FACCBB542C46151FD40C50C17082BE22EF614FA8ABB10D16E8D122AB4C308C171E375B796C80C43A2FD78405EE7ABF18304ADB0798E7BF3986094C4A6E4CBABC11DB9389D4A8F899E8EA4EE4E9511E4DEEB70DD84BA090B1BA560D141C868B4EA097CEFA97A3E8FD188F4D4B02C272FEAB38BDB725B82681CB6BFCDD209EE73C59561976549E0BE46B5B6DC6F67F3255B17B7F3933A943BE0EC4B7A7AB3EF45991705A9F116943FA2C03DE5BD2E6C82D69D8A62B1AC67877744B2A7CA4B942AE68A6FD0929346FF0E1750E37A0DE2B32C257F01AA5C99FDF0040000
+-->
+

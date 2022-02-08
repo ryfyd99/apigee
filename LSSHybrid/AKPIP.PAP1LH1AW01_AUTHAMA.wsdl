@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+	xmlns:wsa="http://www.w3.org/2005/08/addressing" 
+	xmlns:pipa="http://PIP_Service_Library" 
+	xmlns:ama_securityhosteduser="http://xml.amadeus.com/2010/06/Security_v1" 
+	xmlns:session="http://xml.amadeus.com/2010/06/Session_v3" 
+	xmlns:security_authenticatefromAmadeus_12_1="http://xml.amadeus.com/Security_AuthenticateFromAmadeus_12_1_1A" 
+	xmlns:security_authenticatefromAmadeusreply_12_1="http://xml.amadeus.com/Security_AuthenticateFromAmadeusReply_12_1_1A" 
+	targetNamespace="http://PIP_Service_Library">
+<wsdl:types>
+    <xsd:schema targetNamespace="http://PIP_Service_Library">
+      <xsd:import namespace="http://xml.amadeus.com/Security_AuthenticateFromAmadeus_12_1_1A" schemaLocation="ICD-XSD-Security_AuthenticateFromAmadeus_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/Security_AuthenticateFromAmadeusReply_12_1_1A" schemaLocation="ICD-XSD-Security_AuthenticateFromAmadeusReply_12_1_1A.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/Security_v1" schemaLocation="AMA_SecurityHostedUser.xsd"/>
+      <xsd:import namespace="http://xml.amadeus.com/2010/06/Session_v3" schemaLocation="AMA_WS_Session.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Security_AuthenticateFromAmadeus_12_1">
+    <wsdl:part name="Security_AuthenticateFromAmadeus_12_1" element="security_authenticatefromAmadeus_12_1:Security_AuthenticateFromAmadeus"/>
+  </wsdl:message>
+  <wsdl:message name="Security_AuthenticateFromAmadeusReply_12_1">
+    <wsdl:part name="Security_AuthenticateFromAmadeusReply_12_1" element="security_authenticatefromAmadeusreply_12_1:Security_AuthenticateFromAmadeusReply"/>
+  </wsdl:message>
+  <wsdl:message name="AMA_SecurityHostedUser" xmlns="http://xml.amadeus.com/2010/06/Security_v1">
+    <wsdl:part name="AMA_SecurityHostedUser" element="ama_securityhosteduser:AMA_SecurityHostedUser"/>
+  </wsdl:message>
+  <wsdl:message name="Session" xmlns="http://xml.amadeus.com/2010/06/Session_v3">
+    <wsdl:part name="Session" element="session:Session"/>
+  </wsdl:message>
+  <wsdl:portType name="PAPLSSHYBRIDPT">
+    <wsdl:operation name="Security_AuthenticateFromAmadeus">
+      <wsdl:input message="pipa:Security_AuthenticateFromAmadeus_12_1"/>
+      <wsdl:output message="pipa:Security_AuthenticateFromAmadeusReply_12_1"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PAPLSSHYBRIDBinding" type="pipa:PAPLSSHYBRIDPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Security_AuthenticateFromAmadeus">
+      <soap:operation soapAction="http://pip.koreanair.com/Security_AuthenticateFromAmadeus_12_1"/>
+      <wsdl:input>
+        <soap:header message="pipa:AMA_SecurityHostedUser" part="AMA_SecurityHostedUser" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:header message="pipa:AMA_SecurityHostedUser" part="AMA_SecurityHostedUser" use="literal"/>
+        <soap:header message="pipa:Session" part="Session" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PAPLSSHYBRIDServices">
+    <wsdl:port name="PAPLSSHYBRIDPort" binding="pipa:PAPLSSHYBRIDBinding">
+	    <soap:address location="https://sso.koreanair.com:4443/SecurityAuthenticateWebService-SecurityAuthenticateWebService-context-root/SecurityAuthenticateWebServiceSoapHttpPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

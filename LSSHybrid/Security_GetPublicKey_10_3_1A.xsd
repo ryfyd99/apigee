@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/Security_GetPublicKey_10_3_1A" xmlns="http://xml.amadeus.com/Security_GetPublicKey_10_3_1A" elementFormDefault="qualified">
+  <xs:element name="Security_GetPublicKey">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Retrieve Public Key Query
+Retrieve a public key
+get Public Key</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="unitsOfMesure" minOccurs="0" type="MeasurementsType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Convery the unit of mesure for weights, fuel density and temperature.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="systemDetailsInfoType" minOccurs="0" type="SystemDetailsInfoType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">this segment contains the external system which will provide the public key.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="MeasurementsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify physical Measurements.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="valueRange" type="ValueRangeTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">measure type/value.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemDetailsInfoType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to specify a system</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="workstationId" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">LNIATA as sent in the AGT.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="deliveringSystem" minOccurs="0" type="SystemDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Company linked to the workstation id</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="idQualifier" minOccurs="0" type="AlphaNumericString_Length1To1">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Explain what type of workstation ID is stored in data element 3148</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify by code or name and location the system that originates or delivers the message for a third party.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="companyId" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Organization id</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValueRangeTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Measurement value and relevant minimum and maximum tolerances in that order.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="unit" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">unit type</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" minOccurs="0" type="NumericInteger_Length1To18">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Length of requested key.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To1">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an1</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To18">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..18</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,18}" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 4.3.5 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B08000000000000008D534B6FDB300CBEEB5708BBEC30C4B1DB0ED802E8E0366930ACE9234EB71D0204AAC424C264C9D3A3A857F4BF8FB29D3E4EEBC5A048F323F97DE47C76395B96ABD9747375C98EF2E278941F8F8A2F74618DE42D2D4E26793EC90B3A5FAC3E252B27E5A20C6D03FE5C6930BC06868ECD29F74AAC923B7BF092DC710F9718F30D17C0F6213493F1F8A1D619AFB984E83361EB31117B10BF2BFCD69C051781082BC143F0CC58935E750D065F43AC6EB869132A33516B7434AD53BB7D601FCA1E955E3BDB380581BB967223E999355B251143714DBF99AD75350FCA9A098D86C7B0B74EFD0549A387EE77A9BCD0D64707D407A744D02DC59C3B251123A3C84E4E47F450CC673CF3E9AD355DA63E3C5D62F7EE1E64F68148D8F2A8C3DC358915C9B65C7B20D2C63B0D15FC8960045CF320F64304CCE9BB3803F3F2CF63D2E169F3780FCEE3546839D0803068F11D56689FC816555A460DACB33ABDBAB464FD27555BC1F540B6B63BA91C9B4ED6532B6227CB7A2062FD13EE6885732B017EFDAB9AAEE760C0F160DDBA17F7342A2DC1D193EC38FBBCBEB03B8433BBAE1725AF8C6E490D6E0703139D7DAE404B5F59179EB9C3A93DB656FA44E85BDF1425577A581BF3969F770CDA5865C225845E8F6EDB9CB5E1553EF1DD2089489FAE241FE7C5E0F3E7D6955A21E2B0A87EA0628A0B841571177B0A7DCD5D4868B7460915DA6184E0B8F1BA5B4B648621D17E3C20AFCAC5F8518256D83CC7BD79CA304A5253F2F5D5E08E9C1D4EA5C7444F475277A7CA08F2E075B88AA189E1DC2629587210321A2D7A023F7AAA5ECE6334223D35AC28C9ABFAECECB6DA5420A2C3F637457E8CFB5C7365D8455511786850AD0DF79BE96CCE56CBDBD9411DCA1D70F6353FBCD98F65552E6F4883B7A0FC1E05EE29EF75614768DDAB24162B7A767847247BAE3C47A952AEF80E2D3968C49680370BF7F01CBA89E05A3208CF8A9CFC0357562D5DEC040000
+-->
+
