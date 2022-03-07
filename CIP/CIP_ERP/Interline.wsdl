@@ -42,13 +42,13 @@
 		<!-- import XSD ProcessingFlow.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://CIP_Service_Library/CIP_Processing"
-				schemaLocation="CipHeader/ProcessingFlow-1.1.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/CipHeader/ProcessingFlow-1.1.xsd" />
 		</schema>
 
 		<!-- import XSD Session.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://CIP_Service_Library/CIP_Session"
-				schemaLocation="CipHeader/Session-1.0.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/CipHeader/Session-1.0.xsd" />
 		</schema>
 	</wsdl:types>
 
