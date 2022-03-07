@@ -30,13 +30,13 @@
 		<!-- import XSD IfMailRequest.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://soa.koreanair.com/InterlineRequest"
-				schemaLocation="Schemas/Interline(JOPRM)/InterlineRequest.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/Interline_JOPRM/InterlineRequest.xsd" />
 		</schema>
 
 		<!-- import XSD Response.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://soa.koreanair.com/Response"
-				schemaLocation="Schemas/Interline(JOPRM)/Response.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/Interline_JOPRM/Response.xsd" />
 		</schema>
 
 		<!-- import XSD ProcessingFlow.xsd -->
