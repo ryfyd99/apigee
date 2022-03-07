@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<wsdl:definitions name="ICGO_0020_0001_XXAR"
+	targetNamespace="http://soa.koreanair.com/KALEAI_ICGO/ICGO_0020_0001_XXAR/ICGO_0020_0001_XXAR"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:client="http://soa.koreanair.com/KALEAI_ICGO/ICGO_0020_0001_XXAR/ICGO_0020_0001_XXAR"
+	xmlns:ns1="http://soa.koreanair.com/IfMailRequest" xmlns:ns2="http://soa.koreanair.com/Response"
+	xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:cips="http://CIP_Service_Library/CIP_Session" xmlns:cipa="http://CIP_Service_Library/CIP_Processing">
+
+	<!-- WSSE -->
+	<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+		wsu:Id="wss_username_token_service_policy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<sp:SupportingTokens
+			xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+			<wsp:Policy>
+				<sp:UsernameToken
+					sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+					<wsp:Policy>
+						<sp:WssUsernameToken10 />
+					</wsp:Policy>
+				</sp:UsernameToken>
+			</wsp:Policy>
+		</sp:SupportingTokens>
+	</wsp:Policy>
+
+	<!-- Types -->
+	<wsdl:types>
+		<!-- import XSD IfMailRequest.xsd -->
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://soa.koreanair.com/IfMailRequest"
+				schemaLocation="Schemas/IfMail(MFLT)/IfMailRequest.xsd" />
+		</schema>
+
+		<!-- import XSD Response.xsd -->
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://soa.koreanair.com/Response"
+				schemaLocation="Schemas/IfMail(MFLT)/Response.xsd" />
+		</schema>
+
+		<!-- import XSD ProcessingFlow.xsd -->
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://CIP_Service_Library/CIP_Processing"
+				schemaLocation="CipHeader/ProcessingFlow-1.1.xsd" />
+		</schema>
+
+		<!-- import XSD Session.xsd -->
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://CIP_Service_Library/CIP_Session"
+				schemaLocation="CipHeader/Session-1.0.xsd" />
+		</schema>
+	</wsdl:types>
+
+	<!-- Message ICGO_0020_0001_XXARRequestMessage -->
+	<wsdl:message name="ICGO_0020_0001_XXARRequestMessage">
+		<wsdl:part name="payload" element="ns1:IfMailType" />
+	</wsdl:message>
+
+	<!-- Message ICGO_0020_0001_XXARResponseMessage -->
+	<wsdl:message name="ICGO_0020_0001_XXARResponseMessage">
+		<wsdl:part name="payload" element="ns2:Response" />
+	</wsdl:message>
+
+	<!-- Message ProcessingFlow -->
+	<wsdl:message name="ProcessingFlow">
+		<wsdl:part element="cipa:ProcessingFlow" name="ProcessingFlow" />
+	</wsdl:message>
+
+	<!-- Message Session -->
+	<wsdl:message name="Session">
+		<wsdl:part element="cips:Session" name="Session" />
+	</wsdl:message>
+
+	<!-- PortType ICGO_0020_0001_XXAR -->
+	<wsdl:portType name="ICGO_0020_0001_XXAR">
+		<wsdl:operation name="process">
+			<wsdl:input message="client:ICGO_0020_0001_XXARRequestMessage" />
+			<wsdl:output message="client:ICGO_0020_0001_XXARResponseMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<!-- Binding Name ICGO_0020_0001_XXARBinding -->
+	<wsdl:binding name="ICGO_0020_0001_XXARBinding" type="client:ICGO_0020_0001_XXAR">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsp:PolicyReference xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+			URI="#wss_username_token_service_policy" wsdl:required="false" />
+		<wsdl:operation name="process">
+			<soap:operation style="document" soapAction="process" />
+			<!-- INPUT -->
+			<wsdl:input>
+				<soap:header use="literal" part="ProcessingFlow"
+					message="client:ProcessingFlow" />
+				<soap:header use="literal" part="Session" message="client:Session" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<!-- OUTPUT -->
+			<wsdl:output>
+				<soap:header use="literal" part="ProcessingFlow"
+					message="client:ProcessingFlow" />
+				<soap:header use="literal" part="Session" message="client:Session" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<!-- Service Name IfMail_client_ep -->
+	<wsdl:service name="IfMail_client_ep">
+		<wsdl:port name="ICGO_0020_0001_XXAR_pt" binding="client:ICGO_0020_0001_XXARBinding">
+			<soap:address
+				location="http://cipdev.koreanair.com:9080/soa-infra/services/kaleai_icgo/ICGO_0020_0001_XXAR/IfMail_client_ep" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
