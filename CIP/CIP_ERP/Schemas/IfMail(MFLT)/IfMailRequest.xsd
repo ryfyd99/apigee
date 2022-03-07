@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://soa.koreanair.com/IfMailRequest"
+     targetNamespace="http://soa.koreanair.com/IfMailRequest" elementFormDefault="qualified">
+    <xsd:element name="IfMailType" type="IfMailType"/>
+    <xsd:complexType name="IfMailType">
+        <xsd:sequence>
+            <xsd:element name="IfMail" type="IfMail" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IfMail">
+        <xsd:sequence>
+            <xsd:element name="AcctDt" type="xsd:string" nillable="true"/>
+            <xsd:element name="MailN" type="xsd:string" nillable="true"/>
+            <xsd:element name="RgnC" type="xsd:string" nillable="true"/>
+            <xsd:element name="BrnC" type="xsd:string" nillable="true"/>
+            <xsd:element name="MailC" type="xsd:string" nillable="true"/>
+            <xsd:element name="MailTypeX" type="xsd:string" nillable="true"/>
+            <xsd:element name="SttlC" type="xsd:string" nillable="true"/>
+            <xsd:element name="OrgC" type="xsd:string" nillable="true"/>
+            <xsd:element name="DstC" type="xsd:string" nillable="true"/>
+            <xsd:element name="AdjC" type="xsd:string" nillable="true"/>
+            <xsd:element name="MailW" type="xsd:string" nillable="true"/>
+            <xsd:element name="RevCyC" type="xsd:string" nillable="true"/>
+            <xsd:element name="LinC" type="xsd:string" nillable="true"/>
+            <xsd:element name="HlN" type="xsd:string" nillable="true"/>
+            <xsd:element name="PtnM" type="xsd:string" nillable="true"/>
+            <xsd:element name="PtnFmM" type="xsd:string" nillable="true"/>
+            <xsd:element name="CtrlN" type="xsd:string" nillable="true"/>
+            <xsd:element name="BillBrnC" type="xsd:string" nillable="true"/>
+            <xsd:element name="CarrTypeC" type="xsd:string" nillable="true"/>
+            <xsd:element name="MfstNoFlt" type="xsd:string" nillable="true"/>
+            <xsd:element name="MfstDtFlt" type="xsd:string" nillable="true"/>
+            <xsd:element name="MfstCdDprt" type="xsd:string" nillable="true"/>
+            <xsd:element name="MfstCdArry" type="xsd:string" nillable="true"/>
+            <xsd:element name="AwbFltD" type="xsd:string" nillable="true"/>
+            <xsd:element name="ErpSeq" type="xsd:string" nillable="true"/>
+            <xsd:element name="IfDErp" type="xsd:string" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

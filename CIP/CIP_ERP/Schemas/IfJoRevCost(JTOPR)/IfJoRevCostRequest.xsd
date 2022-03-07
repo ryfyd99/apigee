@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://soa.koreanair.com/IfJoRevCostRequest"
+     targetNamespace="http://soa.koreanair.com/IfJoRevCostRequest" elementFormDefault="qualified">
+    <xsd:element name="IfJoRevCostType" type="IfJoRevCostType"/>
+    <xsd:complexType name="IfJoRevCostType">
+        <xsd:sequence>
+            <xsd:element name="IfJoRevCost" type="IfJoRevCost" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IfJoRevCost">
+        <xsd:sequence>
+            <xsd:element name="AcctDt" type="xsd:string" nillable="true"/>
+            <xsd:element name="TypCost" type="xsd:string" nillable="true"/>
+            <xsd:element name="DivCd" type="xsd:string" nillable="true"/>
+            <xsd:element name="NoCarr" type="xsd:string" nillable="true"/>
+            <xsd:element name="CdCarr" type="xsd:string" nillable="true"/>
+            <xsd:element name="NoAwb" type="xsd:string" nillable="true"/>
+            <xsd:element name="DtFlt" type="xsd:string" nillable="true"/>
+            <xsd:element name="TypInv" type="xsd:string" nillable="true"/>
+            <xsd:element name="NoInv" type="xsd:string" nillable="true"/>
+            <xsd:element name="BillYm" type="xsd:string" nillable="true"/>
+            <xsd:element name="Per" type="xsd:string" nillable="true"/>
+            <xsd:element name="CdLcl" type="xsd:string" nillable="true"/>
+            <xsd:element name="DcCd" type="xsd:string" nillable="true"/>
+            <xsd:element name="TotAmt" type="xsd:string" nillable="true"/>
+            <xsd:element name="Orgn" type="xsd:string" nillable="true"/>
+            <xsd:element name="Dest" type="xsd:string" nillable="true"/>
+            <xsd:element name="CdBrch" type="xsd:string" nillable="true"/>
+            <xsd:element name="NoHl" type="xsd:string" nillable="true"/>
+            <xsd:element name="NoFlt" type="xsd:string" nillable="true"/>
+            <xsd:element name="FrC" type="xsd:string" nillable="true"/>
+            <xsd:element name="ToC" type="xsd:string" nillable="true"/>
+            <xsd:element name="IfYm" type="xsd:string" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

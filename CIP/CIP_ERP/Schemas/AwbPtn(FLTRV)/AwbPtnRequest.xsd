@@ -1,0 +1,76 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://soa.koreanair.com/AwbPtnRequest" targetNamespace="http://soa.koreanair.com/AwbPtnRequest"
+	elementFormDefault="qualified">
+
+	<xsd:element name="AwbPtnType" type="AwbPtnType" />
+	<xsd:complexType name="AwbPtnType">
+		<xsd:sequence>
+			<xsd:element name="AwbPtn" type="AwbPtn" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AwbPtn">
+		<xsd:sequence>
+			<xsd:element name="AcctDt" type="xsd:string" nillable="true" />
+			<xsd:element name="AwbN" type="xsd:string" nillable="true" />
+			<xsd:element name="FltN" type="xsd:string" nillable="true" />
+			<xsd:element name="FltDt" type="xsd:string" nillable="true" />
+			<xsd:element name="CarTypC" type="xsd:string" nillable="true" />
+			<xsd:element name="FrmC" type="xsd:string" nillable="true" />
+			<xsd:element name="ToC" type="xsd:string" nillable="true" />
+			<xsd:element name="OrgX" type="xsd:string" nillable="true" />
+			<xsd:element name="AdjC" type="xsd:string" nillable="true" />
+			<xsd:element name="PtnSeqN" type="xsd:string" nillable="true" />
+			<xsd:element name="LinC" type="xsd:string" nillable="true" />
+			<xsd:element name="KoX" type="xsd:string" nillable="true" />
+			<xsd:element name="HlN" type="xsd:string" nillable="true" />
+			<xsd:element name="RgnC" type="xsd:string" nillable="true" />
+			<xsd:element name="BrnC" type="xsd:string" nillable="true" />
+			<xsd:element name="AgtC" type="xsd:string" nillable="true" />
+			<xsd:element name="IssD" type="xsd:string" nillable="true" />
+			<xsd:element name="AwbFltD" type="xsd:string" nillable="true" />
+			<xsd:element name="OrgCityC" type="xsd:string" nillable="true" />
+			<xsd:element name="DstCityC" type="xsd:string" nillable="true" />
+			<xsd:element name="SpclC" type="xsd:string" nillable="true" />
+			<xsd:element name="SalCurC" type="xsd:string" nillable="true" />
+			<xsd:element name="NmlProM" type="xsd:string" nillable="true" />
+			<xsd:element name="SpaProM" type="xsd:string" nillable="true" />
+			<xsd:element name="OchrgProM" type="xsd:string" nillable="true" />
+			<xsd:element name="DiscProM" type="xsd:string" nillable="true" />
+			<xsd:element name="NComProM" type="xsd:string" nillable="true" />
+			<xsd:element name="IscM" type="xsd:string" nillable="true" />
+			<xsd:element name="InsPrmM" type="xsd:string" nillable="true" />
+			<xsd:element name="CctFeeM" type="xsd:string" nillable="true" />
+			<xsd:element name="GrsWhtM" type="xsd:string" nillable="true" />
+			<xsd:element name="ChgWhtM" type="xsd:string" nillable="true" />
+			<xsd:element name="MfstWhtM" type="xsd:string" nillable="true" />
+			<xsd:element name="PayConC" type="xsd:string" nillable="true" />
+			<xsd:element name="WtValM" type="xsd:string" nillable="true" />
+			<xsd:element name="CarrPpdM" type="xsd:string" nillable="true" />
+			<xsd:element name="CarCctM" type="xsd:string" nillable="true" />
+			<xsd:element name="AgtCctM" type="xsd:string" nillable="true" />
+			<xsd:element name="DiscM" type="xsd:string" nillable="true" />
+			<xsd:element name="NcomM" type="xsd:string" nillable="true" />
+			<xsd:element name="Extra1M" type="xsd:string" nillable="true" />
+			<xsd:element name="Extra3M" type="xsd:string" nillable="true" />
+			<xsd:element name="NetM1" type="xsd:string" nillable="true" />
+			<xsd:element name="NettM1" type="xsd:string" nillable="true" />
+			<xsd:element name="IfD" type="xsd:string" nillable="true" />
+			<xsd:element name="CarrNum" type="xsd:string" nillable="true" />
+			<xsd:element name="CctSubCarr" type="xsd:string" nillable="true" />
+			<xsd:element name="AmtOcSec" type="xsd:string" nillable="true" />
+			<xsd:element name="AmtOcDgr" type="xsd:string" nillable="true" />
+			<xsd:element name="IntlFromC" type="xsd:string" nillable="true" />
+			<xsd:element name="IntlToC" type="xsd:string" nillable="true" />
+			<xsd:element name="LastPtnX" type="xsd:string" nillable="true" />
+			<xsd:element name="ErpSeq" type="xsd:string" nillable="true" />
+			<xsd:element name="JoYn" type="xsd:string" nillable="true" />
+			<xsd:element name="ChtrSttlYn" type="xsd:string" nillable="true" />
+			<xsd:element name="TaxCode" type="xsd:string" nillable="true" />
+			<xsd:element name="TaxAmount" type="xsd:string" nillable="true" />
+			<xsd:element name="AmtMccL" type="xsd:string" nillable="true" />
+			<xsd:element name="DescRmk1" type="xsd:string" nillable="true" />
+			<xsd:element name="AwbCgoPc" type="xsd:string" nillable="true" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

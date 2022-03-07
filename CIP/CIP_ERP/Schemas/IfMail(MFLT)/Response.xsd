@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://soa.koreanair.com/Response"
+     targetNamespace="http://soa.koreanair.com/Response" elementFormDefault="qualified">
+    <xsd:element name="Response">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="result" type="xsd:string"/>
+                <xsd:element name="detail" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
