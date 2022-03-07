@@ -34,7 +34,7 @@
 			xmlns:ns1="http://soa.koreanair.com/IfJoRevCostRequest" xmlns:ns2="http://soa.koreanair.com/Response"
 			xmlns:ns3="http://soa.koreanair.com/errorMessage/types" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
 			<import namespace="http://soa.koreanair.com/IfJoRevCostRequest"
-				schemaLocation="Schemas/IfJoRevCost(JTOPR)/IfJoRevCostRequest.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/IfJoRevCost_JTOPR/IfJoRevCostRequest.xsd" />
 		</schema>
 
 		<!-- import XSD Response.xsd -->
@@ -43,7 +43,7 @@
 			xmlns:ns1="http://soa.koreanair.com/IfJoRevCostRequest" xmlns:ns2="http://soa.koreanair.com/Response"
 			xmlns:ns3="http://soa.koreanair.com/errorMessage/types" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
 			<import namespace="http://soa.koreanair.com/Response"
-				schemaLocation="Schemas/IfJoRevCost(JTOPR)/Response.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/IfJoRevCost_JTOPR/Response.xsd" />
 		</schema>
 
 		<!-- import XSD error_message.xsd -->
@@ -52,19 +52,19 @@
 			xmlns:ns1="http://soa.koreanair.com/IfJoRevCostRequest" xmlns:ns2="http://soa.koreanair.com/Response"
 			xmlns:ns3="http://soa.koreanair.com/errorMessage/types" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
 			<import namespace="http://soa.koreanair.com/errorMessage/types"
-				schemaLocation="Schemas/IfJoRevCost(JTOPR)/error_message.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/IfJoRevCost_JTOPR/error_message.xsd" />
 		</schema>
 
 		<!-- import XSD ProcessingFlow.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://CIP_Service_Library/CIP_Processing"
-				schemaLocation="CipHeader/ProcessingFlow-1.1.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/CipHeader/ProcessingFlow-1.1.xsd" />
 		</schema>
 
 		<!-- import XSD Session.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://CIP_Service_Library/CIP_Session"
-				schemaLocation="CipHeader/Session-1.0.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/CipHeader/Session-1.0.xsd" />
 		</schema>
 	</wsdl:types>
 
