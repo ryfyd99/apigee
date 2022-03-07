@@ -30,25 +30,25 @@
 		<!-- import XSD AwbPtnRequest.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://soa.koreanair.com/AwbPtnRequest"
-				schemaLocation="Schemas/AwbPtn(FLTRV)/AwbPtnRequest.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/AwbPtn(FLTRV)/AwbPtnRequest.xsd" />
 		</schema>
 
 		<!-- import XSD Response.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://soa.koreanair.com/Response"
-				schemaLocation="Schemas/AwbPtn(FLTRV)/Response.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/AwbPtn(FLTRV)/Response.xsd" />
 		</schema>
 
 		<!-- import XSD ProcessingFlow.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://CIP_Service_Library/CIP_Processing"
-				schemaLocation="CipHeader/ProcessingFlow-1.1.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/CipHeader/ProcessingFlow-1.1.xsd" />
 		</schema>
 
 		<!-- import XSD Session.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://CIP_Service_Library/CIP_Session"
-				schemaLocation="CipHeader/Session-1.0.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/CipHeader/Session-1.0.xsd" />
 		</schema>
 	</wsdl:types>
 
