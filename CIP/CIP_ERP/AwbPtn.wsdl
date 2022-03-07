@@ -30,13 +30,13 @@
 		<!-- import XSD AwbPtnRequest.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://soa.koreanair.com/AwbPtnRequest"
-				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/AwbPtn(FLTRV)/AwbPtnRequest.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/AwbPtn_FLTRV/AwbPtnRequest.xsd" />
 		</schema>
 
 		<!-- import XSD Response.xsd -->
 		<schema xmlns="http://www.w3.org/2001/XMLSchema">
 			<import namespace="http://soa.koreanair.com/Response"
-				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/AwbPtn(FLTRV)/Response.xsd" />
+				schemaLocation="https://raw.githubusercontent.com/ryfyd99/apigee/main/CIP/CIP_ERP/Schemas/AwbPtn_FLTRV/Response.xsd" />
 		</schema>
 
 		<!-- import XSD ProcessingFlow.xsd -->
