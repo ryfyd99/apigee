@@ -154,6 +154,23 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
+		<wsdl:operation name="process">
+			<soap:operation style="document" soapAction="process" />
+			<!-- INPUT -->
+			<wsdl:input>
+				<soap:header use="literal" part="ProcessingFlow"
+					message="client:ProcessingFlow" />
+				<soap:header use="literal" part="Session" message="client:Session" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<!-- OUTPUT -->
+			<wsdl:output>
+				<soap:header use="literal" part="ProcessingFlow"
+					message="client:ProcessingFlow" />
+				<soap:header use="literal" part="Session" message="client:Session" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
 	</wsdl:binding>
 
 	<!-- Service Name AwbPtn_client_ep -->
