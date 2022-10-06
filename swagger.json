@@ -1,0 +1,747 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "WS_OICODS_XML_01",
+        "description": "WS_OICODS_XML_01",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/cip/ods/v1"
+        }
+    ],
+    "paths": {
+        "/getFltSkdList/": {
+            "post": {
+                "description": "Insert a getFltSkdList",
+                "operationId": "postGetFltSkdList",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetFltSkdList_Request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "The operation was successful.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetFltSkdList_Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        },
+        "/getOpptyList/": {
+            "post": {
+                "description": "Insert a getOpptyList",
+                "operationId": "postGetOpptyList",
+                "requestBody": {
+                    "description": "The request body for the operation",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOpptyList_Request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "The operation was successful.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOpptyList_Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        },
+        "/getOpptyResultList/": {
+            "post": {
+                "description": "Insert a getOpptyResultList",
+                "operationId": "postGetOpptyResultList",
+                "requestBody": {
+                    "description": "The request body for the operation",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOpptyResultList_Request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "The operation was successful.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOpptyResultList_Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        },
+        "/getOpptyFinishList/": {
+            "post": {
+                "description": "Insert a getOpptyFinishList",
+                "operationId": "postGetOpptyFinishList",
+                "requestBody": {
+                    "description": "The request body for the operation",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetOpptyFinishList_Request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "The operation was successful.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetOpptyFinishList_Response"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codegen-request-body-name": "body"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetFltSkdList_Request": {
+                "type": "object",
+                "properties": {
+                    "destCd": {
+                        "type": "string"
+                    },
+                    "fltDtFrom": {
+                        "type": "string"
+                    },
+                    "fltDtTo": {
+                        "type": "string"
+                    },
+                    "fltNumber": {
+                        "type": "string"
+                    },
+                    "orgnCd": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetFltSkdList_Response": {
+                "type": "object",
+                "properties": {
+                    "result_msg": {
+                        "type": "string"
+                    },
+                    "result_code": {
+                        "type": "string"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "final_dest_iata_cty_apo_cd": {
+                                    "type": "string"
+                                },
+                                "first_origin_iata_cty_apo_cd": {
+                                    "type": "string"
+                                },
+                                "flight_number": {
+                                    "type": "string"
+                                },
+                                "icgo_aircraft_type_cd": {
+                                    "type": "string"
+                                },
+                                "local_time_base_std_date": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "GetOpptyFinishList_Response": {
+                "type": "object",
+                "properties": {
+                    "result_msg": {
+                        "type": "string"
+                    },
+                    "result_code": {
+                        "type": "string"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "amt_airfrt_charge": {
+                                    "type": "string"
+                                },
+                                "amt_ar": {
+                                    "type": "string"
+                                },
+                                "amt_base_charge": {
+                                    "type": "string"
+                                },
+                                "amt_discount": {
+                                    "type": "string"
+                                },
+                                "amt_grand_ttl": {
+                                    "type": "string"
+                                },
+                                "amt_nefs": {
+                                    "type": "string"
+                                },
+                                "amt_net_ar": {
+                                    "type": "string"
+                                },
+                                "amt_net_charge": {
+                                    "type": "string"
+                                },
+                                "amt_oc_agt": {
+                                    "type": "string"
+                                },
+                                "amt_oc_carr": {
+                                    "type": "string"
+                                },
+                                "amt_oc_fuel": {
+                                    "type": "string"
+                                },
+                                "amt_tax": {
+                                    "type": "string"
+                                },
+                                "amt_ttl_charge": {
+                                    "type": "string"
+                                },
+                                "amt_yield": {
+                                    "type": "string"
+                                },
+                                "cd_agt": {
+                                    "type": "string"
+                                },
+                                "cd_arrv": {
+                                    "type": "string"
+                                },
+                                "cd_cmod": {
+                                    "type": "string"
+                                },
+                                "cd_curr": {
+                                    "type": "string"
+                                },
+                                "cd_dprt": {
+                                    "type": "string"
+                                },
+                                "cd_dstn": {
+                                    "type": "string"
+                                },
+                                "cd_orgn": {
+                                    "type": "string"
+                                },
+                                "cd_prdt": {
+                                    "type": "string"
+                                },
+                                "cd_scc": {
+                                    "type": "string"
+                                },
+                                "cd_shpr": {
+                                    "type": "string"
+                                },
+                                "cd_sts": {
+                                    "type": "string"
+                                },
+                                "desc_shipment": {
+                                    "type": "string"
+                                },
+                                "dt_flt": {
+                                    "type": "string"
+                                },
+                                "dt_ship": {
+                                    "type": "string"
+                                },
+                                "dwhextseq": {
+                                    "type": "string"
+                                },
+                                "dwhextseq_1": {
+                                    "type": "string"
+                                },
+                                "dwhflg": {
+                                    "type": "string"
+                                },
+                                "dwhflg_1": {
+                                    "type": "string"
+                                },
+                                "dwhtim": {
+                                    "type": "string"
+                                },
+                                "dwhtim_1": {
+                                    "type": "string"
+                                },
+                                "etl_date": {
+                                    "type": "string"
+                                },
+                                "etl_date_1": {
+                                    "type": "string"
+                                },
+                                "id_rate": {
+                                    "type": "string"
+                                },
+                                "nm_agt": {
+                                    "type": "string"
+                                },
+                                "nm_shpr": {
+                                    "type": "string"
+                                },
+                                "no_awb_master": {
+                                    "type": "string"
+                                },
+                                "no_awb_prx": {
+                                    "type": "string"
+                                },
+                                "no_flt": {
+                                    "type": "string"
+                                },
+                                "pc_ttl": {
+                                    "type": "string"
+                                },
+                                "rt_fnr": {
+                                    "type": "string"
+                                },
+                                "rt_rate": {
+                                    "type": "string"
+                                },
+                                "ubr_num": {
+                                    "type": "string"
+                                },
+                                "wt_adjust": {
+                                    "type": "string"
+                                },
+                                "wt_chrg": {
+                                    "type": "string"
+                                },
+                                "wt_ttl": {
+                                    "type": "string"
+                                },
+                                "wt_vol": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "GetOpptyFinishList_Request": {
+                "type": "object",
+                "properties": {
+                    "awbNumber": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetOpptyResultList_Request": {
+                "type": "object",
+                "properties": {
+                    "awbNumber": {
+                        "type": "string"
+                    },
+                    "fromDt": {
+                        "type": "string"
+                    },
+                    "toDt": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetOpptyResultList_Response": {
+                "type": "object",
+                "properties": {
+                    "result_msg": {
+                        "type": "string"
+                    },
+                    "result_code": {
+                        "type": "string"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "amt_airfrt_charge": {
+                                    "type": "string"
+                                },
+                                "amt_ar": {
+                                    "type": "string"
+                                },
+                                "amt_base_charge": {
+                                    "type": "string"
+                                },
+                                "amt_discount": {
+                                    "type": "string"
+                                },
+                                "amt_grand_ttl": {
+                                    "type": "string"
+                                },
+                                "amt_nefs": {
+                                    "type": "string"
+                                },
+                                "amt_net_ar": {
+                                    "type": "string"
+                                },
+                                "amt_net_charge": {
+                                    "type": "string"
+                                },
+                                "amt_oc_agt": {
+                                    "type": "string"
+                                },
+                                "amt_oc_carr": {
+                                    "type": "string"
+                                },
+                                "amt_oc_fuel": {
+                                    "type": "string"
+                                },
+                                "amt_tax": {
+                                    "type": "string"
+                                },
+                                "amt_ttl_charge": {
+                                    "type": "string"
+                                },
+                                "amt_yield": {
+                                    "type": "string"
+                                },
+                                "cd_agt": {
+                                    "type": "string"
+                                },
+                                "cd_arrv": {
+                                    "type": "string"
+                                },
+                                "cd_cmod": {
+                                    "type": "string"
+                                },
+                                "cd_curr": {
+                                    "type": "string"
+                                },
+                                "cd_dprt": {
+                                    "type": "string"
+                                },
+                                "cd_dstn": {
+                                    "type": "string"
+                                },
+                                "cd_orgn": {
+                                    "type": "string"
+                                },
+                                "cd_prdt": {
+                                    "type": "string"
+                                },
+                                "cd_scc": {
+                                    "type": "string"
+                                },
+                                "cd_shpr": {
+                                    "type": "string"
+                                },
+                                "cd_sts": {
+                                    "type": "string"
+                                },
+                                "desc_shipment": {
+                                    "type": "string"
+                                },
+                                "dt_flt": {
+                                    "type": "string"
+                                },
+                                "dt_ship": {
+                                    "type": "string"
+                                },
+                                "dwhextseq": {
+                                    "type": "string"
+                                },
+                                "dwhextseq_1": {
+                                    "type": "string"
+                                },
+                                "dwhflg": {
+                                    "type": "string"
+                                },
+                                "dwhflg_1": {
+                                    "type": "string"
+                                },
+                                "dwhtim": {
+                                    "type": "string"
+                                },
+                                "dwhtim_1": {
+                                    "type": "string"
+                                },
+                                "etl_date": {
+                                    "type": "string"
+                                },
+                                "etl_date_1": {
+                                    "type": "string"
+                                },
+                                "id_rate": {
+                                    "type": "string"
+                                },
+                                "nm_agt": {
+                                    "type": "string"
+                                },
+                                "nm_shpr": {
+                                    "type": "string"
+                                },
+                                "no_awb_master": {
+                                    "type": "string"
+                                },
+                                "no_awb_prx": {
+                                    "type": "string"
+                                },
+                                "no_flt": {
+                                    "type": "string"
+                                },
+                                "pc_ttl": {
+                                    "type": "string"
+                                },
+                                "rt_fnr": {
+                                    "type": "string"
+                                },
+                                "rt_rate": {
+                                    "type": "string"
+                                },
+                                "ubr_num": {
+                                    "type": "string"
+                                },
+                                "wt_adjust": {
+                                    "type": "string"
+                                },
+                                "wt_chrg": {
+                                    "type": "string"
+                                },
+                                "wt_ttl": {
+                                    "type": "string"
+                                },
+                                "wt_vol": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "GetOpptyList_Request": {
+                "type": "object",
+                "properties": {
+                    "agentCd": {
+                        "type": "string"
+                    },
+                    "destCd": {
+                        "type": "string"
+                    },
+                    "fromDt": {
+                        "type": "string"
+                    },
+                    "orgnCd": {
+                        "type": "string"
+                    },
+                    "prodCd": {
+                        "type": "string"
+                    },
+                    "shipDt": {
+                        "type": "string"
+                    },
+                    "toDt": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetOpptyList_Response": {
+                "type": "object",
+                "properties": {
+                    "result_msg": {
+                        "type": "string"
+                    },
+                    "result_code": {
+                        "type": "string"
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "amt_airfrt_charge": {
+                                    "type": "string"
+                                },
+                                "amt_ar": {
+                                    "type": "string"
+                                },
+                                "amt_base_charge": {
+                                    "type": "string"
+                                },
+                                "amt_discount": {
+                                    "type": "string"
+                                },
+                                "amt_grand_ttl": {
+                                    "type": "string"
+                                },
+                                "amt_nefs": {
+                                    "type": "string"
+                                },
+                                "amt_net_ar": {
+                                    "type": "string"
+                                },
+                                "amt_net_charge": {
+                                    "type": "string"
+                                },
+                                "amt_oc_agt": {
+                                    "type": "string"
+                                },
+                                "amt_oc_carr": {
+                                    "type": "string"
+                                },
+                                "amt_oc_fuel": {
+                                    "type": "string"
+                                },
+                                "amt_tax": {
+                                    "type": "string"
+                                },
+                                "amt_ttl_charge": {
+                                    "type": "string"
+                                },
+                                "amt_yield": {
+                                    "type": "string"
+                                },
+                                "cd_agt": {
+                                    "type": "string"
+                                },
+                                "cd_arrv": {
+                                    "type": "string"
+                                },
+                                "cd_cmod": {
+                                    "type": "string"
+                                },
+                                "cd_curr": {
+                                    "type": "string"
+                                },
+                                "cd_dprt": {
+                                    "type": "string"
+                                },
+                                "cd_dstn": {
+                                    "type": "string"
+                                },
+                                "cd_orgn": {
+                                    "type": "string"
+                                },
+                                "cd_prdt": {
+                                    "type": "string"
+                                },
+                                "cd_scc": {
+                                    "type": "string"
+                                },
+                                "cd_shpr": {
+                                    "type": "string"
+                                },
+                                "cd_sts": {
+                                    "type": "string"
+                                },
+                                "desc_shipment": {
+                                    "type": "string"
+                                },
+                                "dt_flt": {
+                                    "type": "string"
+                                },
+                                "dt_ship": {
+                                    "type": "string"
+                                },
+                                "dwhextseq": {
+                                    "type": "string"
+                                },
+                                "dwhextseq_1": {
+                                    "type": "string"
+                                },
+                                "dwhflg": {
+                                    "type": "string"
+                                },
+                                "dwhflg_1": {
+                                    "type": "string"
+                                },
+                                "dwhtim": {
+                                    "type": "string"
+                                },
+                                "dwhtim_1": {
+                                    "type": "string"
+                                },
+                                "etl_date": {
+                                    "type": "string"
+                                },
+                                "etl_date_1": {
+                                    "type": "string"
+                                },
+                                "id_rate": {
+                                    "type": "string"
+                                },
+                                "nm_agt": {
+                                    "type": "string"
+                                },
+                                "nm_shpr": {
+                                    "type": "string"
+                                },
+                                "no_awb_master": {
+                                    "type": "string"
+                                },
+                                "no_awb_prx": {
+                                    "type": "string"
+                                },
+                                "no_flt": {
+                                    "type": "string"
+                                },
+                                "pc_ttl": {
+                                    "type": "string"
+                                },
+                                "rt_fnr": {
+                                    "type": "string"
+                                },
+                                "rt_rate": {
+                                    "type": "string"
+                                },
+                                "ubr_num": {
+                                    "type": "string"
+                                },
+                                "wt_adjust": {
+                                    "type": "string"
+                                },
+                                "wt_chrg": {
+                                    "type": "string"
+                                },
+                                "wt_ttl": {
+                                    "type": "string"
+                                },
+                                "wt_vol": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
